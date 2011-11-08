@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+   <!--引入父pom -->
+	<parent>
+		<groupId>com.xiaoxiang</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+    <!--模块信息-->
+    <groupId>com.xiaoxiang</groupId>
+    <artifactId>web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>web</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoxiang</groupId>
+            <artifactId>service</artifactId>
+            <version>${service-version}</version>
+        </dependency>
+		<dependency>
+            <groupId>com.xiaoxiang</groupId>
+            <artifactId>task</artifactId>
+            <version>${task-version}</version>
+        </dependency>
+    </dependencies>
+
+		<build>
+		<finalName>webapp</finalName>
+		<plugins>
+			<plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-version}</version>
+				<configuration>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8080</port>
+							<forwarded>true</forwarded>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+					<requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
+						<filename>target/access.log</filename>
+						<retainDays>90</retainDays>
+						<append>false</append>
+						<extended>false</extended>
+						<logTimeZone>GMT+8:00</logTimeZone>
+					</requestLog>
+					<systemProperties>
+						<systemProperty>
+							<name>productionMode</name>
+							<value>false</value>
+						</systemProperty>
+					</systemProperties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
