@@ -26,11 +26,7 @@ public class Main {
         logger.info("得到info信息8");
         logger.warn("得到warn信息8");
         logger.error("得到error信息8");
-        try{
-           int d = 1/0;
-        }catch (Exception e){
-            logger.error("出现异常",e);
-        }
+
         for (int i = 0; i < 10; i++) {
             list.add("次夺" + i);
         }

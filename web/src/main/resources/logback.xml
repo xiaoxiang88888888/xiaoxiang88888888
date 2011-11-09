@@ -3,7 +3,7 @@
 <configuration scan="true" debug="false">
     <!--日志放置目录,可配置-->
 	<Property name="log.path" value="/home/admin/new_xiaoxiang/logs" />
-	<Property name="log.pattern" value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURL}?%X{queryString}[ip=%X{remoteHost}, ref=%X{xForwardedFor}, ua=%X{userAgent}] %-5level %logger{80}[%F:%L] - %m%n" />
+	<Property name="log.pattern" value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURL}?%X{queryString}[ip=%X{remoteHost}, ref=%X{xForwardedFor}, ua=%X{userAgent}] %n %-5level %logger{80}[%F:%L] - %m%n" />
     <!-- 仅在开发时使用 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
