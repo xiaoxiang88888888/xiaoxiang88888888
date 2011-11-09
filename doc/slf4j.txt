@@ -31,3 +31,28 @@ additivity的作用在于 children-logger是否使用 rootLogger配置的appende
 false：表示只用当前logger的appender-ref。
 true：表示当前logger的appender-ref和rootLogger的appender-ref都有效。
 
+因为内部已优化，作者认为slf4j的logger不需要定义为static。
+
+MDCInsertingServletFilter  使用这个filter,放在其它filter之前,
+
+web.xml中加入
+<filter>
+  <filter-name>MDCInsertingServletFilter</filter-name>
+  <filter-class>
+    ch.qos.logback.classic.helpers.MDCInsertingServletFilter
+  </filter-class>
+</filter>
+<filter-mapping>
+  <filter-name>MDCInsertingServletFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+</filter-mapping>
+使用
+req.remoteHost	as returned by the getRemoteHost() method
+req.xForwardedFor	value of the "X-Forwarded-For" header
+req.requestURI	 as returned by getRequestURI() method
+req.requestURL	 as returned by getRequestURL() method
+req.queryString	 as returned by getQueryString() method
+req.userAgent	value of the "User-Agent" header
+
+%X{req.remoteHost} %X{req.requestURI}
+
