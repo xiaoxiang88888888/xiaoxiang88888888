@@ -1,6 +1,5 @@
 package com.xiaoxiang.filter;
 
-import ch.qos.logback.classic.ClassicConstants;
 import org.slf4j.MDC;
 
 import javax.servlet.*;
