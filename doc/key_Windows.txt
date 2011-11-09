@@ -1,0 +1,115 @@
+Windows 系统组合键
+F1：帮助
+CTRL+ESC：打开“开始”菜单
+ALT+TAB：在打开的多个程序之间切换
+ALT+F4：退出程序
+SHIFT+DELETE：永久删除项目
+Windows 徽标+L：锁定计算机 (不使用 CTRL+ALT+DELETE)
+回到顶端
+Windows 程序组合键
+CTRL+C：Copy
+CTRL+X：剪切
+CTRL+V：粘贴
+CTRL+Z：撤消
+CTRL+B：加粗
+CTRL+U：下划线
+CTRL+I：倾斜
+回到顶端
+外壳对象的鼠标单击/键盘修改键组合
+SHIFT+右键单击：显示包含可选命令的快捷菜单
+SHIFT+双击：运行备用的默认命令（菜单上的第二个项目）
+ALT+双击：显示属性
+SHIFT+DELETE：立即删除项目，不将其放到回收站中
+回到顶端
+常用的仅使用键盘的命令
+F1：启动 Windows 帮助
+F10：激活菜单栏选项
+SHIFT+F10 打开对应于选定项目的快捷菜单（这与右键单击对象等效）
+CTRL+ESC：打开“开始”菜单（使用箭头键可选择项目）
+CTRL+ESC 或 ESC：选择“开始”按钮（按 TAB 键选择任务栏，或者按 SHIFT+F10 显示上下文菜单）
+CTRL+SHIFT+ESC：打开 Windows 任务管理器
+ALT+下箭头：打开下拉列表框
+ALT+TAB：切换到另一个正在运行的程序（按住 ALT 键，然后按 TAB 键可查看任务切换窗口）
+SHIFT：插入 CD-ROM 时按住 SHIFT 键可跳过自动运行功能
+ALT+空格键：显示主窗口的“系统”菜单（从系统菜单中，您可以还原、移动、最大化、最小化或关闭窗口）
+ALT+-（ALT+短划线）：显示多文档界面 (MDI) 子窗口的系统菜单（从 MDI 子窗口的“系统”菜单中，您可以还原、移动、最大化、最小化或关闭子窗口）
+CTRL+TAB：切换到多文档界面 (MDI) 程序的下一个子窗口
+ALT+underlined letter in menu:打开菜单
+ALT+F4：关闭当前窗口
+CTRL+F4：关闭当前多文档界面 (MDI) 窗口
+ALT+F6：在同一程序的多个窗口之间切换（例如，当显示记事本的查找对话框时，按 ALT+F6 可在“查找”对话框和记事本主窗口之间切换）
+回到顶端
+外壳对象和常用文件夹/Windows 资源管理器快捷键
+对于选定对象：
+F2：重命名对象
+F3：查找所有文件
+CTRL+X：剪切
+CTRL+C：复制
+CTRL+V：粘贴
+SHIFT+DELETE：立即删除选定项目，不将项目移动到回收站
+ALT+ENTER：打开选定对象的属性
+复制文件
+按住 CTRL 键将文件拖到另一文件夹。
+创建快捷方式
+按住 CTRL+SHIFT 将文件拖到桌面或文件夹中。
+回到顶端
+常用文件夹/快捷键控件
+F4：选择“转到不同的文件夹”框并沿框中的项向下移动（如果工具栏在 Windows 资源管理器中是活动的）
+F5：刷新当前窗口。
+F6：在 Windows 资源管理器中的窗格之间移动
+CTRL+G：打开“转到文件夹”工具（仅限于 Windows 95 中的 Windows 资源管理器）
+CTRL+Z：撤消上一命令
+CTRL+A：选择当前窗口中的所有项目
+BACKSPACE：切换到父文件夹
+SHIFT+ 单击 +关闭按钮：对于文件夹，关闭当前文件夹和所有父文件夹
+回到顶端
+Windows 资源管理器树控件
+数字键盘 *：展开当前选项下的所有内容
+数字键盘 +：展开当前选项
+数字键盘 -：折叠当前选项。
+右箭头：如果当前选项未展开，则展开它；否则转到第一个子节点
+左箭头：如果当前选项已展开，则折叠它；否则转到父节点
+回到顶端
+属性控件
+CTRL+TAB/CTRL+SHIFT+TAB：在属性选项卡中移动
+回到顶端
+辅助功能快捷键
+按 SHIFT 键五次：打开和关闭粘滞键
+按住右 SHIFT 键八秒钟：打开和关闭筛选键
+按住 NUM LOCK 键五秒钟：打开和关闭切换键
+左 ALT+左 SHIFT+NUM LOCK：打开和关闭鼠标键
+左 ALT+左 SHIFT+PRINT SCREEN：打开和关闭高对比度
+回到顶端
+Microsoft Natural Keyboard 键
+Windows 徽标：“开始”菜单
+Windows 徽标+R：“运行”对话框
+Windows 徽标+M：全部最小化
+SHIFT+Windows 徽标+M：撤消全部最小化
+Windows 徽标+F1：帮助
+Windows 徽标+E：Windows 资源管理器
+Windows 徽标+F：查找文件或文件夹
+Windows 徽标+D：最小化所有打开的窗口并显示桌面
+CTRL+Windows 徽标+F：查找计算机
+CTRL+Windows 徽标+TAB：将焦点从“开始”菜单移动到“快速启动”工具栏或系统任务栏（使用右箭头键或左箭头键可将焦点移动到“快速启动”工具栏和系统任务栏中的项目）
+Windows 徽标+TAB：在任务栏按钮之间循环
+Windows 徽标+Break：“系统属性”对话框
+应用程序键：显示对应于选定项目的快捷菜单
+回到顶端
+安装有 IntelliType 软件的 Microsoft Natural Keyboard
+Windows 徽标+L：注销 Windows
+Windows 徽标+P：启动打印管理器
+Windows 徽标+C：打开控制面板
+Windows 徽标+V：启动剪贴板
+Windows 徽标+K：打开“键盘属性”对话框
+Windows 徽标+I：打开“鼠标属性”对话框
+Windows 徽标+A：启动辅助功能选项（如果已安装）
+Windows 徽标+空格键：显示 Microsoft IntelliType 快捷键的列表
+Windows 徽标+S：打开和关闭 CAPS LOCK
+回到顶端
+对话框键盘命令
+TAB：移动到对话框中的下一个控件
+SHIFT+TAB：移动到对话框中的上一个控件
+空格键：如果当前控件是一个按钮，将单击此按钮。如果当前控件是一个复选框，将选中或清除该复选框。如果当前控件是一个选项，将选择该选项。
+ENTER：与单击选定的按钮（带有轮廓线的按钮）等效
+ESC：与单击“取消”按钮等效
+ALT+underlined letter in dialog box item:移动到相应的项目
