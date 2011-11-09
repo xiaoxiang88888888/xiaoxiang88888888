@@ -11,6 +11,7 @@
 <head><title>Simple jsp page</title></head>
 <body>Place your content here
 <%=new Main().toString()%>
-<%=JsonUtil.getInstance().ObjectToJson(new Main())%>
+<br/>
+<%=JsonUtil.getInstance().ObjectToJson(new Main().toString())%>
 </body>
 </html>
