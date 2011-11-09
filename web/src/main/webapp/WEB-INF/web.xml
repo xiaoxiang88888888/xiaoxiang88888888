@@ -5,13 +5,13 @@
     <display-name>xiaoxiang</display-name>
     <!--MDC slf4j中用于在日志文件中插入上下文 保证是第一个filter-->
     <filter>
-        <filter-name>MDCInsertingServletFilter</filter-name>
+        <filter-name>MDCFilter</filter-name>
         <filter-class>
-            ch.qos.logback.classic.helpers.MDCInsertingServletFilter
+            com.xiaoxiang.filter.MDCFilter
         </filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>MDCInsertingServletFilter</filter-name>
+        <filter-name>MDCFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <!--urlwrite 实现rest -->
