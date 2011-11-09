@@ -40,6 +40,7 @@
                     <webAppConfig>
                         <contextPath>/</contextPath>
                     </webAppConfig>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>8080</port>

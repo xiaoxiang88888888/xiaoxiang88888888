@@ -216,6 +216,10 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<encoding>${java.encoding}</encoding>
+                    <excludes>
+                        <exclude>**/**svn</exclude>
+                        <exclude>**/**cvs</exclude>
+                    </excludes>
 				</configuration>
 			</plugin>
 			<!--生成eclipse工程项目编码是UTF-8-->
