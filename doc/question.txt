@@ -2,4 +2,6 @@ Q1:java.lang.NoSuchMethodError: org.slf4j.helpers.MessageFormatter.arrayFormat(L
    Lorg/slf4j/helpers/FormattingTuple;
 A1: http://groups.google.com/group/fornax-platform/browse_thread/thread/e0071d401220e5f2?pli=1
     It looks like version misconfiguration. Please check that you have
-    slf4j in version 1.6.0 and Logback  version 0.9.28.
+    slf4j in version 1.6.0 and Logback  version 0.9.28
+    主要是版本不匹配.
+

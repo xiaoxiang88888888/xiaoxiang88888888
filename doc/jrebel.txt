@@ -1,0 +1,17 @@
+1 下载jrebel
+  ./jrebel/目录下
+2 将需要监听的相关路径加入MAVEN_DEBUG_OPTS这个变量定义前面
+BASE_HOME=/home/admin/new_xiaoxiang
+COMMON=$BASE_HOME/common/target/classes
+SERVICE=$BASE_HOME/service/target/classes
+TASK=$BASE_HOME/task/target/classes
+WEBAPP=$BASE_HOME/webapp/target/classes
+REBELDIR=$COMMON,$SERVICE,$TASK,$WEBAPP
+JREBELPATH=$BASE_HOME/doc/jrebel/jrebel.jar
+export REBELDIR
+3 mvnDebug 中加入相关配置
+MAVEN_DEBUG_OPTS这个变量定义中加入如下:
+-noverify -javaagent:$JREBELPATH -Drebel.dirs=$REBELDIR
+注:suspend=y 为y时,需要IDE开启一个远程端口,应用才会继续运行
+             为n时,则不需要
+
