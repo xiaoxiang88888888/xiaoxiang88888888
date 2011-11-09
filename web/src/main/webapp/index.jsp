@@ -12,7 +12,8 @@
 <body>Place your content here
 <%=new Main().toString()%>
 <br/>
-sdf
 <%=JsonUtil.getInstance().ObjectToJson(new Main().toString())%>
+<br/>
+<%=JsonUtil.getInstance().ObjectToJson(new Main().getList())%>
 </body>
 </html>
