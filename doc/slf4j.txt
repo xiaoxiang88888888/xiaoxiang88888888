@@ -1,0 +1,33 @@
+slf4j-api-1.5.11.jar：一个通用的日志门面库，为各种Logging API提供了一套通用的日志接口，相当于jcl(Jakarta Commons Logging)。
+jcl-over-slf4j-1.5.11.jar：将现有的jakarta commons logging的调用转换成slf4j的调用，是对遗留的系统用的，就是log4j与logback两套日志系统混合提供可能。如果是新的项目，可以不需要这个包。
+logback-classic-0.9.18.jar：slf4j的实现：logback，用来取代log4j。更快、更强。
+
+slf4j会根据classpath中所存在的适配器的jar来决定将使用的日志实现库，一般项目中使用XML格式的配置文件进行配置（编程引用也可实现，但不方便）：
+Logback采取下面的步骤进行自我配置：
+1. 尝试在classpath下查找文件logback-test.xml；
+2. 如果文件不存在，则查找文件logback.xml；
+3. 如果两个文件都不存在，logback用BasicConfigurator自动对自己进行配置，这会导致记录输出到控制台。
+
+格式	说明
+%n	换行
+%-4r	r:输出从程序启动到创建记录事件的逝去时间，单位毫秒
+-:左对齐
+-4:如果逝去时间名少于4个字符则右填充空格
+
+%d{yyyy-MM-dd HH:mm:ss}	按{yyyy-MM-dd HH:mm:ss}显示时间
+%X{method}	用MDC中的变量method代替
+%X{requestURIWithQueryString}	用MDC中的变量requestURIWithQueryString代替
+%X{remoteAddr}	用MDC中的变量remoteAddr代替
+%X{referrer}	用MDC中的变量referrer代替
+%X{cookie.JSESSIONID}	用MDC中的变量cookie.JSESSIONID代替
+%-5level	日志的级别
+%logger{35}	可以有一个整数型的参数，功能是缩短logger名。设为“0”表示只输出logger名里最右边的点号之后的字符串,
+注意最右边的logger名永远不被省略，即使它的长度超过了“length”选项。logger名里的其他片段可以被缩短为至少1个字符，但永远不会消失
+右对齐 最小宽度35 最大宽度无限制 如果logger名少于20个字符则右填充空格
+%m	具体的日志信息
+
+注意:
+additivity的作用在于 children-logger是否使用 rootLogger配置的appender进行输出。
+false：表示只用当前logger的appender-ref。
+true：表示当前logger的appender-ref和rootLogger的appender-ref都有效。
+

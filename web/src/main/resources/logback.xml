@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration scan="true" debug="false">
+    <!--日志放置目录,可配置-->
+	<Property name="log.path" value="/home/admin/new_xiaoxiang/logs" />
+	<Property name="log.pattern" value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] %n  %-5level %logger{80}[%F:%L] - %m%n" />
+    <!-- 仅在开发时使用 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+            <encoding>UTF-8</encoding>
+			<pattern><![CDATA[
+              ${log.pattern}
+            ]]></pattern>
+		</layout>
+	</appender>
+    <!--输出到文件-->
+	<appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.path}/xiaoxiang.log</File>
+        <append>false</append>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.path}/xiaoxiang.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<MaxHistory>14</MaxHistory>
+		</rollingPolicy>
+        <encoding>UTF-8</encoding>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern><![CDATA[
+              ${log.pattern}
+            ]]></pattern>
+		</layout>
+	</appender>
+
+	<!-- 基础控制日志输出 BEGIN -->
+	<logger name="java.sql" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+	<logger name="org.springframework" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+	<logger name="org.quartz" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+	<logger name="com.opensymphony" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="RollingFile" />
+	</logger>
+
+	<!-- 基础控制日志输出 END -->
+	<root level="debug">
+        <!--开发用-->
+		<appender-ref ref="STDOUT" />
+        <!--生产用-->
+        <appender-ref ref="RollingFile" />
+	</root>
+
+	<!--=============特殊日志输出 BEGIN===============-->
+	<!--名称-->
+
+
+	<!--=============特殊日志输出 END===============-->
+</configuration>
+
+
