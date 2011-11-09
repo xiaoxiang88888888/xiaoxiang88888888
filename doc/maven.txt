@@ -89,7 +89,7 @@ mvn install
 mvn site
 出错：SiteToolException ArtifactNotFoundException The skin does not exist Unable to determine the release version
 先下载
-http://repo.alibaba-inc.com/mvn/external/org/apache/maven/skins/maven-default-skin/1.0/
+http://repo.xxx-inc.com/mvn/external/org/apache/maven/skins/maven-default-skin/1.0/
 maven-default-skin-1.0.jar
 maven-default-skin-1.0.xml
 maven-metadata.xml
@@ -108,16 +108,16 @@ Z:\xiaoxiang\m2\repository\org\apache\maven\skins\maven-default-skin
 
 
 ##执行某个类的方法 注意，多模块下，要先转到该模块，不能在父模块执行，否则会出错
-mvn exec:java -Dexec.mainClass=com.alibaba.service.common.util.StringUtil
+mvn exec:java -Dexec.mainClass=com.common.util.StringUtil
 
-mvn exec:java -Dexec.mainClass=com.alibaba.ucs.revise.Main -Dexec.args="1 128"
+mvn exec:java -Dexec.mainClass=com.Main -Dexec.args="1 128"
 
-mvnDebug exec:java -Dexec.mainClass=com.alibaba.ucs.revise.Main -Dexec.args="1 128"
+mvnDebug exec:java -Dexec.mainClass=com.Main -Dexec.args="1 128"
 
 mvnDebug exec:java  -Dexec.mainClass="org.eclipse.jetty.start.Main" -Dexec.args="--ini=/home/admin/webapp/jetty_server/conf/start.ini" -Dexec.classpathScope=runtime
 
-mvnDebug install exec:java -Dexec.mainClass=com.alibaba.eshop.supplygoods.screen.SupplyGoodsMain -e
-mvnDebug install exec:java -Dexec.mainClass=com.alisoft.eshop.GoodsTest -e
+mvnDebug install exec:java -Dexec.mainClass=com.supplygoods.screen.SupplyGoodsMain -e
+mvnDebug install exec:java -Dexec.mainClass=com.GoodsTest -e
 
 
 ##帮助查看
