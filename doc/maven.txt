@@ -189,6 +189,9 @@ mvnDebug jetty:run-war
 mvn jetty:run默认启动的是8080端口，tomcat通常占用这个端口，可以手动修改jetty插件的启动端口，命令如下：
 mvnDebug jetty:run -Djetty.port=8081
 
+下载源代码
+mvn dependency:sources
+
 
 
 

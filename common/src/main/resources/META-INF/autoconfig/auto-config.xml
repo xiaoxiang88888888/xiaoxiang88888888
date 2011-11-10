@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config description="自动配置">
+    <group name="datasource">
+        <property name="xiaoxiang.jdbc.driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
+                  description="JDBC驱动名称"/>
+        <property name="xiaoxiang.jdbc.url"
+                  defaultValue="jdbc:mysql://10.20.168.57:3306/musketeer?useUnicode=true&amp;characterEncoding=UTF-8"
+                  description="数据库连接URL"/>
+        <property name="xiaoxiang.jdbc.username" defaultValue="musketeer"
+                  description="数据库用户名"/>
+        <property name="xiaoxiang.jdbc.password" defaultValue="musketeer"
+                  description="数据库密码"/>
+        <property name="xiaoxiang.jdbc.minPoolSize" defaultValue="0"
+                  description="数据库连接池最小连接数（推荐25-50）"/>
+        <property name="xiaoxiang.jdbc.maxPoolSize" defaultValue="5"
+                  description="数据库连接池最大连接数（测试环境下DB最大支持300个，不要超过这个值）"/>
+        <property name="xiaoxiang.jdbc.initialPoolSize" defaultValue="0"
+                  description="初始化时获取连接数，取值应在minPoolSize与maxPoolSize之间"/>
+        <property name="xiaoxiang.jdbc.acquireIncrement" defaultValue="1"
+                  description="当连接池中的连接耗尽的时候c3p0一次同时获取的连接数"/>
+        <property name="xiaoxiang.jdbc.maxIdleTime" defaultValue="180"
+                  description="最大空闲时间（秒）"/>
+        <property name="xiaoxiang.jdbc.idleConnectionTestPeriod" defaultValue="60"
+                  description="每隔多少秒检查所有连接池中的空闲连接"/>
+        <property name="xiaoxiang.jdbc.maxStatements" defaultValue="0"
+                  description="数据源内加载的最大PreparedStatements数量"/>
+        <property name="xiaoxiang.jdbc.acquireRetryAttempts" defaultValue="30"
+                  description="在从数据库获取新连接失败后重复尝试的次数"/>
+        <property name="xiaoxiang.jdbc.breakAfterAcquireFailure" defaultValue="false"
+                  description="获取连接失败后数据源是否仍有效保留"/>
+        <property name="xiaoxiang.jdbc.testConnectionOnCheckout" defaultValue="false"
+                  description="是否在每个connection提交的时候都校验其有效性"/>
+        <property name="xiaoxiang.jdbc.batchSelectMaxNum" defaultValue="1000"
+                  description="批量查询最大个数"/>
+        <property name="xiaoxiang.jdbc.preferredTestQuery" defaultValue="select now()"
+                  description="侦测连接有效性"/>
+    </group>     
+
+    <script>
+        <generate template="common.properties.vm" destfile="common.properties" charset="UTF-8"/>        
+    </script>
+</config>

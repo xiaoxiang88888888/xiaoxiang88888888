@@ -49,6 +49,7 @@
 		<maven-war-version>2.1-beta-1</maven-war-version>
 		<maven-resources-version>2.3</maven-resources-version>
 		<jetty-version>7.0.1.v20091125</jetty-version>
+		<autoconfig-version>1.0.10</autoconfig-version>
 		<!-- 子模块使用 -->
 		<common-version>1.0-SNAPSHOT</common-version>
 		<webapp-version>1.0-SNAPSHOT</webapp-version>
@@ -240,8 +241,8 @@
                         </file>
                     </additionalConfig>
 				</configuration>
-			</plugin>
-		</plugins>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

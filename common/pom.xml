@@ -18,7 +18,7 @@
 
     <dependencies>
         <!--需放到前面-->
-         <!-- servlet -->
+        <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
