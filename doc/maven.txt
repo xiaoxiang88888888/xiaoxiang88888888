@@ -193,7 +193,10 @@ mvnDebug jetty:run -Djetty.port=8081
 mvn dependency:sources
 
 
-
+开发plugin
+http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+http://www.iteye.com/topic/1117477
+http://www.iteye.com/topic/348945
 
 
 
