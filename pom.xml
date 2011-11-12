@@ -242,7 +242,7 @@
                     </additionalConfig>
                 </configuration>
             </plugin>
-            <!-- resource插件, 设定编码 -->
+            <!-- resource插件, 设定编码-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
