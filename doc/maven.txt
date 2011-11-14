@@ -11,6 +11,8 @@ mvn help:describe -Dcmd=jar:jar
 mvn help:describe -Dplugin=help
 ##在Maven里面， 一个插件目标也被认为是一个 “Mojo”
 mvn help:describe -Dplugin=compiler -Dmojo=compile -Dfull
+##
+mvn -e -B clean install -Denv=release -Dmaven.test.skip=true -Dautoconf.skip -Dmaven.wagon.provider.http=httpclient -Dmaven.wagon.provider.https=httpclient
 
 
 ##常用命令
@@ -201,6 +203,10 @@ http://www.iteye.com/topic/1117477
 http://www.iteye.com/topic/348945
 //运行plugin
 mvn com.xiaoxiang.maven:config-maven-plugin:1.0:config
+
+mvn -Dtest=ConfigMojoTest test
+
+
 
 
 

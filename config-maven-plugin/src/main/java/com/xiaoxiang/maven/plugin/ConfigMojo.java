@@ -11,9 +11,15 @@ import org.apache.maven.plugin.MojoFailureException;
  * @goal config
  */
 
-public class ConfigMojo extends AbstractMojo{
+public class ConfigMojo extends AbstractMojo {
+
+    /**
+     * @parameter expression="${length}" default-value="0"
+     */
+    private Integer length;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-       getLog().info("bye,world!");
+        getLog().info("bye,world!"+length);
     }
 }
