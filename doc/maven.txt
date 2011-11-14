@@ -192,6 +192,8 @@ mvnDebug jetty:run -Djetty.port=8081
 下载源代码
 mvn dependency:sources
 
+///////////////plugin////////////////////////////////
+mvn archetype:create -DgroupId=com.xiaoxiang.maven -DartifactId=maven-xiaoxiang-plugin -DarchetypeArtifactId=maven-archetype-mojo
 
 开发plugin
 http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
