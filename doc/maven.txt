@@ -199,6 +199,8 @@ mvn archetype:create -DgroupId=com.xiaoxiang.maven -DartifactId=maven-xiaoxiang-
 http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
 http://www.iteye.com/topic/1117477
 http://www.iteye.com/topic/348945
+//运行plugin
+mvn com.xiaoxiang.maven:maven-xiaoxiang-plugin:1.0:config
 
 
 

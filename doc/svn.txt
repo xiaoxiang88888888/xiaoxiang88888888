@@ -2,5 +2,13 @@ svn过滤的条件
 *.db *.class *.eclipse .project .classpath *.jar *.log */classes/* */deploy/* */target/* target
 
 常用命令
+svn co 地址  目录
+
+svn up  目录
+svn add 目录
+svn st 目录
+
+其它命令
+
 
 

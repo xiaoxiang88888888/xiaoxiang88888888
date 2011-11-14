@@ -9,10 +9,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xiaoxiang.maven</groupId>
-    <artifactId>xiaoxiang-config-plugin</artifactId>
+    <artifactId>config-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <version>1.0</version>
-    <name>xiaoxiang-config-plugin</name>
+    <name>config-maven-plugin</name>
     <url>http://maven.apache.org</url>
 
     <!--属性定义-->
@@ -127,16 +127,8 @@
     </dependencies>
 
     <build>
-        <finalName>maven-xiaoxiang-plugin</finalName>
+        <finalName>config-maven-plugin</finalName>
         <plugins>
-            <!--引用插件,使用自定义前缀-->
-            <plugin>
-                <artifactId>maven-plugin-plugin</artifactId>
-                <version>${maven-plugin-version}</version>
-                <configuration>
-                    <goalPrefix>config</goalPrefix>
-                </configuration>
-            </plugin>
             <!--编译设置-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
