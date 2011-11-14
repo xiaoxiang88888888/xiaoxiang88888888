@@ -1,6 +1,5 @@
 package com.xiaoxiang.maven.plugin;
 
-import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 
 import java.io.File;

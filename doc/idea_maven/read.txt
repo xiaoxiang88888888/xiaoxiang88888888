@@ -1,0 +1,4 @@
+1 下载模板文件(http://maven.apache.org/developers/maven.xml) 放入.IntelliJIdea/config/templates
+2 重启 IntelliJIdea
+3 设置 Settings -> IDE -> Errors -> General -> Unknown javadoc tags -> Additional javadoc tags
+  示例aggregator, execute, goal, phase, requiresDirectInvocation, requiresProject, requiresReports, requiresOnline, parameter, component, required, readonly

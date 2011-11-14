@@ -5,7 +5,8 @@
       <plugin>
         <artifactId>config-maven-plugin</artifactId>
         <configuration>
-            <length>5699999</length>
+            <propertiesPath>/home/admin/xiaoxiang.properties</propertiesPath>
+           <!-- <templateType>freemarker</templateType>-->
         </configuration>
       </plugin>
     </plugins>
