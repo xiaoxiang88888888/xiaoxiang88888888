@@ -1,0 +1,6 @@
+svn过滤的条件
+*.db *.class *.eclipse .project .classpath *.jar *.log */classes/* */deploy/* */target/* target
+
+常用命令
+
+
