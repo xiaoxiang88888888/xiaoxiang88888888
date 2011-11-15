@@ -5,6 +5,9 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.maven.project.MavenProject;
+
+import java.util.Properties;
 
 /**
  * 说明
@@ -14,12 +17,19 @@ import org.slf4j.LoggerFactory;
  */
 
 public class ConfigMojo extends AbstractMojo {
-    private final Logger logger =  LoggerFactory.getLogger(ConfigMojo.class);
+    private final Logger logger = LoggerFactory.getLogger(ConfigMojo.class);
+
+    /**
+     * @parameter expression="${project}"
+     * @required
+     * @readonly
+     */
+    MavenProject project;
 
     /**
      * 自定义的属性文件,用于动态生成其它文件的数据源
      *
-     * @parameter expression="${propertiesPath}" default-value="${user.home}"
+     * @parameter expression="${propertiesPath}" default-value="${user.home}/xiaoxiang.properties"
      */
     String propertiesPath;
 
@@ -46,10 +56,12 @@ public class ConfigMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        logger.info("//////////////finalName=" + finalName);
+        Properties propertie = System.getProperties();
+        logger.info("//////////////finalName=" + propertie);
         getLog().info("//////////////propertiesPath=" + propertiesPath);
         getLog().info("//////////////templateType=" + templateType);
         getLog().info("//////////////encoding=" + encoding);
         getLog().info("//////////////finalName=" + finalName);
+
     }
 }
