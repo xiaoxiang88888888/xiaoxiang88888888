@@ -129,4 +129,28 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--测试自定义插件-->
+            <plugin>
+                <groupId>com.xiaoxiang.maven</groupId>
+                <artifactId>config-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <templateType>freemarker</templateType>
+                    <propertiesPath>/home/admin</propertiesPath>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>config</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

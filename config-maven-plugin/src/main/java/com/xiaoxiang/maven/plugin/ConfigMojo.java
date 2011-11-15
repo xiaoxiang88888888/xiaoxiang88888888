@@ -36,7 +36,8 @@ public class ConfigMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("propertiesPath=" + propertiesPath);
-        getLog().info("templatetype=" + templateType);
+        getLog().info("//////////////propertiesPath=" + propertiesPath);
+        getLog().info("//////////////templateType=" + templateType);
+        getLog().info("//////////////encoding=" + encoding);
     }
 }
