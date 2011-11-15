@@ -203,6 +203,7 @@ http://www.iteye.com/topic/1117477
 http://www.iteye.com/topic/348945
 //运行plugin
 mvn com.xiaoxiang.maven:config-maven-plugin:1.0:config
+mvnDebug com.xiaoxiang.maven:config-maven-plugin:1.0:config
 mvn -Dtest=ConfigMojoTest test
 
 boolean(包括 boolean和Boolean)
