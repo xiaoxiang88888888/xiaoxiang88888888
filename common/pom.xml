@@ -139,7 +139,7 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <templateType>freemarker</templateType>
-                    <propertiesPath>/home/admin</propertiesPath>
+                    <propertiesPath>/home/admin/xiaoxiang.properties</propertiesPath>
                 </configuration>
                 <executions>
                     <execution>
