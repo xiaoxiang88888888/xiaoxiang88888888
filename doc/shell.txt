@@ -6,7 +6,7 @@ scp特点：
 
 /////////////rsync///////////////
 
-rsync -v -r -l -H -p -g -t -S -e ssh --delete  admin@10.20.147.195:/home/admin/dataMarket  /home/admin 
+rsync -v -r -l -H -p -g -t -S -e ssh --delete  admin@xx.xx.xx.xx:/home/admin/xx /home/admin/temp
 
 rsync优点
 1、可以镜像保存整个目录树和文件系统。  
@@ -17,4 +17,3 @@ rsync优点
 6、支持匿名传输。
 
 
-/home/admin/dataMarket
