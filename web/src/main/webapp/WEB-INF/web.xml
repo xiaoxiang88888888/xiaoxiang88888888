@@ -3,6 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>xiaoxiang</display-name>
+    <!--起动时读入 spring配置文件
+        Spring ApplicationContext配置文件的路径,可使用通配符,多个路径用,号分隔
+		此参数用于后面的Spring Context Loader -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:springconfig/*.xml</param-value>
+    </context-param>
+
     <!--MDC slf4j中用于在日志文件中插入上下文 保证是第一个filter-->
     <filter>
         <filter-name>MDCFilter</filter-name>
@@ -14,6 +22,25 @@
         <filter-name>MDCFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!-- 对请求参数进行强制转码 统一为UTF-8 -->
+    <filter>
+        <filter-name>encodingfilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingfilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!--urlwrite 实现rest -->
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
@@ -27,9 +54,58 @@
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
+    <!-- 将请求交由struts2处理 -->
+    <filter>
+        <filter-name>Struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+    <!-- <filter-mapping>
+        <filter-name>Struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>-->
+    <!-- struts2对request进行了封装，所以当fck的request.getinputStream的时候就会出错.
+    修改的方法就是对filtermapping的路径进行修改-->
+    <filter-mapping>
+        <filter-name>Struts2</filter-name>
+        <url-pattern>*.htm</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>Struts2</filter-name>
+        <url-pattern>*.json</url-pattern>
+    </filter-mapping>
 
+    <!-- 对会话设置过期时间，单位为分钟 -->
+    <session-config>
+        <session-timeout>100</session-timeout>
+    </session-config>
+
+    <!--Spring ApplicationContext 载入-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- Spring 刷新Introspector防止内存泄露 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+
+    <!-- 设置错误页面 相应的错误对应相应的页面
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.frm</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403.frm</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.frm</location>
+    </error-page>-->
 
 </web-app>
