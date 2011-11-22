@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+       default-autowire="byName">
+    <bean id="propertyConfigurer1" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          lazy-init="false">
+        <property name="order" value="1"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:common.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+          <property name="driverClassName" value="${xiaoxiang.jdbc.driverClassName}" />
+          <property name="url" value="${xiaoxiang.jdbc.url}" />
+          <property name="username" value="${xiaoxiang.jdbc.username}" />
+          <property name="password" value="${xiaoxiang.jdbc.password}" />
+          <property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
+          <property name="maxIdle" value="${xiaoxiang.jdbc.maxIdle}" />
+          <property name="maxActive" value="${xiaoxiang.jdbc.maxActive}" />
+          <property name="maxWait" value="${xiaoxiang.jdbc.maxWait}" />
+          <property name="testWhileIdle" value="${xiaoxiang.jdbc.testWhileIdle}" />
+          <property name="testOnReturn" value="${xiaoxiang.jdbc.testOnReturn}" />
+          <property name="testOnBorrow" value="${xiaoxiang.jdbc.testOnBorrow}" />
+          <property name="minEvictableIdleTimeMillis" value="${xiaoxiang.jdbc.minEvictableIdleTimeMillis}" />
+          <property name="timeBetweenEvictionRunsMillis" value="${xiaoxiang.jdbc.timeBetweenEvictionRunsMillis}" />
+          <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionTemplate"
+          class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+    </bean>
+
+    <!-- iBatis SQL map定义 -->
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
+    </bean>
+
+    <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+        <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+</beans>
