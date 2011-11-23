@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="area">
+
+    <typeAlias alias="area" type="com.xiaoxiang.model.Area"/>
+    <resultMap id="areaResult" class="area">
+        <result property="areaid" column="areaid"/>
+        <result property="area.areaid" column="are_areaid"/>
+        <result property="areacode" column="areacode"/>
+        <result property="areaname" column="areaname"/>
+        <result property="orderno" column="orderno"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <insert id="insert" parameterClass="area">
+        <![CDATA[
+
+        insert into
+        area (areaid, are_areaid, areacode, areaname, orderno,remark)
+        values (#areaid#, #area.areaid#, #areacode#, #areaname#,
+                #orderno#, #remark#)
+
+        ]]>
+    </insert>
+
+    <update id="update" parameterClass="area">
+    <![CDATA[
+
+        update area SET
+            areaid = #areaid#,
+            are_areaid = #area.areaid#,
+            areacode = #areacode#,
+            areaname = #areaname#,
+            orderno = #orderno#,
+            remark = #remark#
+        where areaid = #areaid#
+
+
+        ]]>
+    </update>
+
+    <select id="selectById" resultMap="areaResult">
+    <![CDATA[
+
+        select * from area where areaid=#areaid#
+
+        ]]>
+    </select>
+
+    <select id="selectByName" resultMap="areaResult">
+    <![CDATA[
+
+        select * from area where areaname=#areaname#
+
+        ]]>
+    </select>
+
+    <select id="select" resultMap="areaResult">
+    <![CDATA[
+
+        select * from area ORDER BY UPPER(areaname)
+
+        ]]>
+    </select>
+
+    <delete id="deleteById" parameterClass="java.lang.String">
+    <![CDATA[
+
+        delete from area where areaid = #areaid#
+
+        ]]>
+    </delete>
+
+</sqlMap>

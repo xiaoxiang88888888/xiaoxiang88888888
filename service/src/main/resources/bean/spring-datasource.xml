@@ -63,4 +63,6 @@
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
 
+    <bean id="springContextUtil" class="com.xiaoxiang.util.SpringContextUtil" scope="singleton"/>
+
 </beans>

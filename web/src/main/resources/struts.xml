@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <!--###激活重新载入国际化文件的功能-->
+    <constant name="struts.i18n.reload" value="true"/>
+    <!--###激活开发模式，以提供更全面的调试功能-->
+    <constant name="struts.devMode" value="true"/>
+    <!--###激活重新载入XML配置文件的功能（这是为Action准备的），
+          当文件被修改以后，就不需要重新载入Servlet容器中的整个Web应用了。-->
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <!--###配置服务器运行的端口号（所有生成的URL都会被正确创建）-->
+    <constant name="struts.url.http.port" value="8088"/>
+    <!--###拦截设置的值为结尾的请求-->
+    <constant name="struts.action.extension" value="htm"/>
+    <!--#在开发的过程中，你可能需要移除所有的缓存，以提高开发速度。
+          但是当应用被部署到产品环境以后，被缓存的stylesheet就会提高渲染性能-->
+    <constant name="struts.xslt.nocache" value="true"/>
+    <!--#这个属性设为true以后，action的名字中就可以使用斜杠了。
+          Struts2的默认设置是不允许action的名字中出现斜杠的，需要用package来分割命名空间-->
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <!--###能够拦截.action!method形式的请求-->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <!--###免得struts2自带的标签模板加入一些多余的代码-->
+    <constant name="struts.ui.theme" value="simple"/>
+
+    <!--include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 -->
+    <!--地区-->
+    <include file="/strutsconfig/struts-config-Area.xml"></include>
+
+    <!--package提供了将多个Action组织为一个模块的方式
+       package的名字必须是唯一的 package可以扩展 当一个package扩展自
+       另一个package时该package会在本身配置的基础上加入扩展的package
+       的配置 父package必须在子package前配置
+       name：package名称
+       extends:继承的父package名称
+       abstract:设置package的属性为抽象的 抽象的package不能定义action 值true:false
+       namespace:定义package命名空间 该命名空间影响到url的地址，例如此命名空间为/test那么访问是的地址为http://localhost:8080/struts2/test/XX.action
+    -->
+    <package name="default" extends="struts-default" namespace="/">
+        <!-- 基于paramsPrepareParamsStack,增加store interceptor -->
+        <interceptors>
+            <interceptor-stack name="projectStack">
+                <interceptor-ref name="store">
+                    <param name="operationMode">AUTOMATIC</param>
+                </interceptor-ref>                  
+                <interceptor-ref name="paramsPrepareParamsStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="projectStack"/>
+    </package>
+
+</struts>

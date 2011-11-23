@@ -17,6 +17,11 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <!--需放到前面否则编译不通过-->
+        <dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+			</dependency>
         <dependency>
             <groupId>com.xiaoxiang</groupId>
             <artifactId>service</artifactId>
