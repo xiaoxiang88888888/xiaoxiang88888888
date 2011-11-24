@@ -5,7 +5,7 @@
 <struts>
 <!--Area的struts2配置文件-->
     <package name="area" extends="struts-default" namespace="/area">
-        <action name="showList" class="com.xiaoxiang.area.action.AreaAction" method="showList">
+        <action name="showList" class="area" method="showList">
             <result name="success">/pages/area/area_list.jsp</result>
             <result name="input">/pages/area/area_form.jsp</result>
         </action>

@@ -28,7 +28,7 @@
 
     <!--include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 -->
     <!--地区-->
-    <include file="/strutsconfig/struts-config-Area.xml"></include>
+    <include file="strutsconfig/struts-config-Area.xml"></include>
 
     <!--package提供了将多个Action组织为一个模块的方式
        package的名字必须是唯一的 package可以扩展 当一个package扩展自
