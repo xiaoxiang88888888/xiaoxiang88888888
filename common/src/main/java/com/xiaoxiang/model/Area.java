@@ -19,7 +19,7 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
      * 地区编号
      */
     @LogAnnotation(title = "地区编号", orderNo = 1)
-    private Area area;
+    private String parentAreaId;
     /**
      * 地区编码
      */
@@ -49,9 +49,9 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
         this.areaId = areaId;
     }
 
-    public Area(String areaId, Area area, String areacode, String areaname, Integer orderno, String remark) {
+    public Area(String areaId, String parentAreaId, String areacode, String areaname, Integer orderno, String remark) {
         this.areaId = areaId;
-        this.area = area;
+        this.parentAreaId = parentAreaId;
         this.areacode = areacode;
         this.areaname = areaname;
         this.orderno = orderno;
@@ -67,12 +67,12 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
         this.areaId = areaId;
     }
 
-    public Area getArea() {
-        return this.area;
+    public String getParentAreaId() {
+        return parentAreaId;
     }
 
-    public void setArea(Area area) {
-        this.area = area;
+    public void setParentAreaId(String parentAreaId) {
+        this.parentAreaId = parentAreaId;
     }
 
     public String getAreacode() {

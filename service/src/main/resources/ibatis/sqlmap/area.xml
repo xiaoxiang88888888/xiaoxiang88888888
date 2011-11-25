@@ -6,8 +6,8 @@
 
     <typeAlias alias="area" type="com.xiaoxiang.model.Area"/>
     <resultMap id="areaResult" class="area">
-        <result property="areaid" column="areaid"/>
-        <result property="area.areaid" column="are_areaid"/>
+        <result property="areaId" column="areaId"/>
+        <result property="parentAreaId" column="are_areaId"/>
         <result property="areacode" column="areacode"/>
         <result property="areaname" column="areaname"/>
         <result property="orderno" column="orderno"/>
@@ -18,8 +18,8 @@
         <![CDATA[
 
         insert into
-        area (areaid, are_areaid, areacode, areaname, orderno,remark)
-        values (#areaid#, #area.areaid#, #areacode#, #areaname#,
+        area (areaId, are_areaId, areacode, areaname, orderno,remark)
+        values (#areaId#, #parentAreaId#, #areacode#, #areaname#,
                 #orderno#, #remark#)
 
         ]]>
@@ -29,13 +29,13 @@
     <![CDATA[
 
         update area SET
-            areaid = #areaid#,
-            are_areaid = #area.areaid#,
+            areaId = #areaId#,
+            are_areaId = #parentAreaId#,
             areacode = #areacode#,
             areaname = #areaname#,
             orderno = #orderno#,
             remark = #remark#
-        where areaid = #areaid#
+        where areaId = #areaId#
 
 
         ]]>
@@ -44,7 +44,7 @@
     <select id="com.xiaoxiang.model.Area.selectById" resultMap="areaResult">
     <![CDATA[
 
-        select * from area where areaid=#areaid#
+        select * from area where areaId=#areaId#
 
         ]]>
     </select>
@@ -68,7 +68,7 @@
     <delete id="com.xiaoxiang.model.Area.deleteById" parameterClass="java.lang.String">
     <![CDATA[
 
-        delete from area where areaid = #areaid#
+        delete from area where areaId = #areaId#
 
         ]]>
     </delete>

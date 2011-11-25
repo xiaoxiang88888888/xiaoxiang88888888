@@ -108,13 +108,7 @@ public class AreaAction extends BaseAction<Area, String> {
      * @return
      */
     public String showUpdate() throws Exception {
-        String id = request.getParameter("id");
-        entity = service.findEntityBykey(id);
-        if (entity.getArea() != null) are_areaid = entity.getArea().getAreaId();//地区编号
-        if (entity.getArea() != null) are_areaid_name = entity.getArea().getAreaname();//地区名称
-        request.setAttribute("are_areaid", are_areaid);
-        request.setAttribute("are_areaid_name", are_areaid_name);
-        request.setAttribute("operate", "update");
+
         return SUCCESS;
     }
 
@@ -125,12 +119,7 @@ public class AreaAction extends BaseAction<Area, String> {
      * @return
      */
     public String save() throws Exception {
-        Area area = areaService.findEntityBykey(are_areaid);//地区编号
-        entity.setArea(area);
-        service.addEntity(entity);
-        //optype:   error,windowClose,windowLocation,windowParent,windowParentClose,moduleWindow
-        request.setAttribute("optype", "moduleWindow");
-        request.setAttribute("alert", "保存成功！！");
+
         return SUCCESS;
     }
 
@@ -141,11 +130,7 @@ public class AreaAction extends BaseAction<Area, String> {
      * @return
      */
     public String update() throws Exception {
-        Area area = areaService.findEntityBykey(are_areaid);//地区编号
-        entity.setArea(area);
-        service.saveOrUpdateEntity(entity);
-        request.setAttribute("optype", "moduleWindow");
-        request.setAttribute("alert", "保存成功！！");
+
         return SUCCESS;
     }
 
