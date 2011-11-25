@@ -14,7 +14,7 @@
         <result property="remark" column="remark"/>
     </resultMap>
 
-    <insert id="insert" parameterClass="area">
+    <insert id="com.xiaoxiang.model.Area.insert" parameterClass="area">
         <![CDATA[
 
         insert into
@@ -25,7 +25,7 @@
         ]]>
     </insert>
 
-    <update id="update" parameterClass="area">
+    <update id="com.xiaoxiang.model.Area.update" parameterClass="area">
     <![CDATA[
 
         update area SET
@@ -41,7 +41,7 @@
         ]]>
     </update>
 
-    <select id="selectById" resultMap="areaResult">
+    <select id="com.xiaoxiang.model.Area.selectById" resultMap="areaResult">
     <![CDATA[
 
         select * from area where areaid=#areaid#
@@ -49,7 +49,7 @@
         ]]>
     </select>
 
-    <select id="selectByName" resultMap="areaResult">
+    <select id="com.xiaoxiang.model.Area.selectByName" resultMap="areaResult">
     <![CDATA[
 
         select * from area where areaname=#areaname#
@@ -57,7 +57,7 @@
         ]]>
     </select>
 
-    <select id="select" resultMap="areaResult">
+    <select id="com.xiaoxiang.model.Area.select" resultMap="areaResult">
     <![CDATA[
 
         select * from area ORDER BY UPPER(areaname)
@@ -65,7 +65,7 @@
         ]]>
     </select>
 
-    <delete id="deleteById" parameterClass="java.lang.String">
+    <delete id="com.xiaoxiang.model.Area.deleteById" parameterClass="java.lang.String">
     <![CDATA[
 
         delete from area where areaid = #areaid#
