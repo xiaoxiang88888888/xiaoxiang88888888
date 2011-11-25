@@ -27,7 +27,7 @@
           <property name="url" value="${xiaoxiang.jdbc.url}" />
           <property name="username" value="${xiaoxiang.jdbc.username}" />
           <property name="password" value="${xiaoxiang.jdbc.password}" />
-          <property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
+          <!--<property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
           <property name="maxIdle" value="${xiaoxiang.jdbc.maxIdle}" />
           <property name="maxActive" value="${xiaoxiang.jdbc.maxActive}" />
           <property name="maxWait" value="${xiaoxiang.jdbc.maxWait}" />
@@ -36,7 +36,7 @@
           <property name="testOnBorrow" value="${xiaoxiang.jdbc.testOnBorrow}" />
           <property name="minEvictableIdleTimeMillis" value="${xiaoxiang.jdbc.minEvictableIdleTimeMillis}" />
           <property name="timeBetweenEvictionRunsMillis" value="${xiaoxiang.jdbc.timeBetweenEvictionRunsMillis}" />
-          <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />
+          <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />-->
     </bean>
 
     <bean id="transactionManager"
@@ -62,6 +62,7 @@
     <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
+
 
     <bean id="springContextUtil" class="com.xiaoxiang.util.SpringContextUtil" scope="singleton"/>
 

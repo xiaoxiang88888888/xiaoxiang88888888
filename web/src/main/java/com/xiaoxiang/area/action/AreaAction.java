@@ -58,7 +58,8 @@ public class AreaAction extends BaseAction<Area, String> {
      * return SUCCESS.
      */
     public String showList() throws Exception {
-        entities = getService().getAllEntity();
+        
+    	entities = getService().getAllEntity();
         return SUCCESS;
     }
 

@@ -6,7 +6,43 @@
 <!--Area的struts2配置文件-->
     <package name="area" extends="struts-default" namespace="/area">
         <action name="showList" class="area" method="showList">
+            <result name="success">/area/area_list.jsp</result>
+            <result name="input">/area/area_form.jsp</result>
+        </action>
+        <action name="showDataList" class="area" method="showDataList">
             <result name="success">/pages/area/area_list.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="showOrder" class="area" method="showOrder">
+            <result name="success">/pages/area/area_order.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="showView" class="area" method="showView">
+            <result name="success">/pages/area/area_view.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="showSave" class="area" method="showSave">
+            <result name="success">/pages/area/area_form.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="showUpdate" class="area" method="showUpdate">
+            <result name="success">/pages/area/area_form.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="save" class="area" method="save">
+            <result name="success">/common/opWindow.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="update" class="area" method="update">
+            <result name="success">/common/opWindow.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="delete" class="area" method="delete">
+            <result name="success">/common/opWindow.jsp</result>
+            <result name="input">/pages/area/area_form.jsp</result>
+        </action>
+        <action name="batchDelete" class="area" method="batchDelete">
+            <result name="success">/common/opWindow.jsp</result>
             <result name="input">/pages/area/area_form.jsp</result>
         </action>
     </package>

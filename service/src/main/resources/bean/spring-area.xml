@@ -10,5 +10,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.sprin
     <bean id="areaDAO" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis">
         <property name="sqlMapClientTemplate"><ref bean="sqlMapClientTemplate" /></property>
     </bean>
-    <bean id="areaService" class="com.xiaoxiang.area.service.AreaServiceImpl"></bean>
+    <bean id="areaService" class="com.xiaoxiang.area.service.AreaServiceImpl">
+         <property name="dao"><ref bean="areaDAO" /></property>
+    </bean>
 </beans>
