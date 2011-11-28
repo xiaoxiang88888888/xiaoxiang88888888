@@ -11,7 +11,7 @@ import java.text.Collator;
 import java.util.Locale;
 
 /**
- * 说明
+ * 汉字转拼音,主要用于排序
  *
  * @author xiang.xiaox
  */
@@ -31,7 +31,7 @@ public class PinYinUtil {
     /**
      * 汉字转化为拼音
      * 注意:加入一个unicode符号(FFFFD)确保汉字在其它字符类型后面
-     * 用于通讯录组排序
+     * 用于排序
      *
      * @param inputString
      * @return
