@@ -19,15 +19,13 @@
             </list>
         </property>
     </bean>
-
-
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
           <property name="driverClassName" value="${xiaoxiang.jdbc.driverClassName}" />
           <property name="url" value="${xiaoxiang.jdbc.url}" />
           <property name="username" value="${xiaoxiang.jdbc.username}" />
           <property name="password" value="${xiaoxiang.jdbc.password}" />
-          <!--<property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
+          <property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
           <property name="maxIdle" value="${xiaoxiang.jdbc.maxIdle}" />
           <property name="maxActive" value="${xiaoxiang.jdbc.maxActive}" />
           <property name="maxWait" value="${xiaoxiang.jdbc.maxWait}" />
@@ -36,8 +34,10 @@
           <property name="testOnBorrow" value="${xiaoxiang.jdbc.testOnBorrow}" />
           <property name="minEvictableIdleTimeMillis" value="${xiaoxiang.jdbc.minEvictableIdleTimeMillis}" />
           <property name="timeBetweenEvictionRunsMillis" value="${xiaoxiang.jdbc.timeBetweenEvictionRunsMillis}" />
-          <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />-->
+          <!--开发需要去掉-->
+        <!-- <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />-->
     </bean>
+
 
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
