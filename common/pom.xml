@@ -110,6 +110,11 @@
             <groupId>org.tuckey</groupId>
             <artifactId>urlrewritefilter</artifactId>
         </dependency>
+        <!--汉语转拼音,用于排序-->
+        <dependency>
+            <groupId>net.sourceforge</groupId>
+            <artifactId>pinyin4j</artifactId>
+        </dependency>
 
         <!-- ================================================= -->
         <!-- 测试与编译需要，打包不需要   -->
