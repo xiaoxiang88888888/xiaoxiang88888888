@@ -1,0 +1,13 @@
+http://blog.csdn.net/kivenlee/article/details/6293179
+
+
+http://www.iteye.com/topic/28880
+
+
+注意,spy.properties文件一定要放到应用模块下(一般是war工程),放到其它模块不会调用
+
+下面这个属性要改为
+deregisterdrivers=true
+
+日志文件路径一定个搞清是window下,还是linux下
+logfile     = /home/admin/new_xiaoxiang/spy.log
