@@ -1,0 +1,13 @@
+http://code.google.com/p/java-tester/
+
+需要依赖
+<dbunit-version>2.4.8</dbunit-version>
+<jtester-version>1.0.6</jtester-version>
+<testng-version>5.12.1</testng-version>
+<jmock-version>2.5.1</jmock-version>
+<jmockit-version>0.999.4</jmockit-version>
+<hamcrest-version>1.1</hamcrest-version>
+<dbfit-version>1.1.2.2</dbfit-version>
+
+
+

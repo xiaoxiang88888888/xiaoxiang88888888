@@ -38,6 +38,12 @@
 		<junit-version>4.10</junit-version>
 		<servlet-version>2.5</servlet-version>
 		<dbunit-version>2.4.8</dbunit-version>
+		<jtester-version>1.0.6</jtester-version>
+		<testng-version>5.12.1</testng-version>
+		<jmock-version>2.5.1</jmock-version>
+		<jmockit-version>0.999.4</jmockit-version>
+		<hamcrest-version>1.1</hamcrest-version>
+		<dbfit-version>1.1.2.2</dbfit-version>
 		<!--日志相关-->
 		<slf4j-version>1.5.11</slf4j-version>
 		<jcl-version>1.5.11</jcl-version>
@@ -49,6 +55,7 @@
 		<maven-eclipse-version>2.8</maven-eclipse-version>
 		<maven-war-version>2.1-beta-1</maven-war-version>
 		<maven-resources-version>2.3</maven-resources-version>
+		<maven-surefire-version>2.10</maven-surefire-version>
 		<jetty-version>7.0.1.v20091125</jetty-version>
 		<autoconfig-version>1.0.10</autoconfig-version>
 		<!-- 子模块使用 -->
@@ -64,6 +71,14 @@
 		<module>task</module>
 		<module>web</module>
 	</modules>
+
+    <repositories>
+        <repository>
+            <id>jtester-maven</id>
+            <name>JTester</name>
+            <url>http://java-tester.googlecode.com/svn/maven2/</url>
+        </repository>
+    </repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -198,7 +213,7 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit-version}</version>
-				<scope>provided</scope>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -210,9 +225,54 @@
 				<groupId>org.dbunit</groupId>
 				<artifactId>dbunit</artifactId>
 				<version>${dbunit-version}</version>
-				<scope>provided</scope>
-			</dependency>
-		</dependencies>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jtester</groupId>
+                <artifactId>jtester</artifactId>
+                <version>${jtester-version}</version>
+				<scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testng-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jmock</groupId>
+                <artifactId>jmock</artifactId>
+                <version>${jmock-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jmock</groupId>
+                <artifactId>jmock-legacy</artifactId>
+                <version>${jmock-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>mockit</groupId>
+                <artifactId>jmockit</artifactId>
+                <version>${jmockit-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version>${hamcrest-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.dbfit</groupId>
+                <artifactId>dbfit</artifactId>
+                <version>${dbfit-version}</version>
+            </dependency>
+        </dependencies>
 	</dependencyManagement>
 
 	<!-- Build Settings -->
@@ -257,6 +317,20 @@
                 <version>${maven-resources-version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- surefire插件, 单元测试-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/mockit/jmockit/${jmockit-version}/jmockit-${jmockit-version}.jar"
+                    </argLine>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <suiteXmlFiles>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>

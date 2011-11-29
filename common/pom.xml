@@ -133,6 +133,38 @@
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jtester</groupId>
+            <artifactId>jtester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-legacy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mockit</groupId>
+            <artifactId>jmockit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dbfit</groupId>
+            <artifactId>dbfit</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

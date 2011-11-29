@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-   <!--引入父pom -->
-	<parent>
-		<groupId>com.xiaoxiang</groupId>
-		<artifactId>parent</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
+    <!--引入父pom -->
+    <parent>
+        <groupId>com.xiaoxiang</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <!--模块信息-->
     <groupId>com.xiaoxiang</groupId>
     <artifactId>service</artifactId>
@@ -21,6 +21,50 @@
             <groupId>com.xiaoxiang</groupId>
             <artifactId>common</artifactId>
             <version>${common-version}</version>
+        </dependency>
+        <!-- ================================================= -->
+        <!-- 测试与编译需要，打包不需要   -->
+        <!-- ================================================= -->
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jtester</groupId>
+            <artifactId>jtester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-legacy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mockit</groupId>
+            <artifactId>jmockit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.dbfit</groupId>
+            <artifactId>dbfit</artifactId>
         </dependency>
     </dependencies>
 </project>
