@@ -194,6 +194,23 @@ mvnDebug jetty:run -Djetty.port=8081
 下载源代码
 mvn dependency:sources
 
+加入其它仓库
+在setting.xml
+中加入
+	<mirror>
+      <id>ynzc</id>
+      <mirrorOf>central</mirrorOf>
+      <name>ynzc</name>
+      <url>http://repo.ynzc.cn/nexus/content/groups/public</url>
+    </mirror>
+
+pom.xml中加入
+         <dependency>
+            <groupId>net.sourceforge</groupId>
+            <artifactId>pinyin4j</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
 ///////////////plugin////////////////////////////////
 mvn archetype:create -DgroupId=com.xiaoxiang.maven -DartifactId=maven-xiaoxiang-plugin -DarchetypeArtifactId=maven-archetype-mojo
 
@@ -328,6 +345,7 @@ MavenSession中executionProperties有以下变量,可以引用
 [87] = {java.util.Hashtable$Entry@2988} env.MAIL -> /var/spool/mail/admin
 [88] = {java.util.Hashtable$Entry@2980} file.encoding -> UTF-8
 [89] = {java.util.Hashtable$Entry@2972} java.specification.version -> 1.6
+
 
 
 

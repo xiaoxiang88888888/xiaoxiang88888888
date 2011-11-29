@@ -1,0 +1,58 @@
+  String[] addGroups = groupId.split(",");
+            int times;
+            int pageSize = 10;
+            int addGroupSize = addGroups.length;
+            if (addGroupSize == 0) {
+                times = 0;
+            } else if (addGroupSize <= pageSize) {
+                times = 1;
+            } else if (addGroupSize % pageSize != 0) {
+                times = addGroupSize / pageSize + 1;
+            } else {
+                times = addGroupSize / pageSize;
+            }
+            for (int i = 0; i < times; i++) {
+                int start = i * pageSize;
+                int end = (i + 1) * pageSize;
+                end = end > addGroupSize ? addGroupSize : end;
+                String tempGroupId = "";
+                for (int j = start; j < end; j++) {
+                    tempGroupId += addGroups[j] + ",";
+                }
+                if (!StringUtils.isBlank(tempGroupId)) {
+                    tempGroupId = tempGroupId.substring(0, tempGroupId.length() - 1);
+                    CrmRuleGroupSetRequest req = new CrmRuleGroupSetRequest();
+                    req.setRuleId(ruleId);
+                    req.setAddGroups(tempGroupId);
+                    CrmRuleGroupSetResponse response = (CrmRuleGroupSetResponse) topService.execute(req, sessionKey, errorArray);
+                    if (null != response && response.isSuccess()) {
+                        flag = false;
+                    }
+                }
+            }
+
+	     int times;
+        int pageSize = 20;
+        int memberListSize = memberList.size();
+        if (memberListSize == 0) {
+            times = 0;
+        } else if (memberListSize <= pageSize) {
+            times = 1;
+        } else if (memberListSize % pageSize != 0) {
+            times = memberListSize / pageSize + 1;
+        } else {
+            times = memberListSize / pageSize;
+        }
+
+        for (int i = 0; i < times; i++) {
+            int start = i * pageSize;
+            int end = (i + 1) * pageSize;
+            end = end > memberListSize ? memberListSize : end;
+            List<String> subList = memberList.subList(start, end);
+            Map<String, Integer> years = tpService.getTpExperienceYears(subList);
+            if (years != null) {
+                returnMap.putAll(years);
+            }
+        }
+
+
