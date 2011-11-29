@@ -17,7 +17,7 @@ public class ConfigMojoTest extends AbstractMojoTestCase {
     }
 
     public void testConfigMojo() throws Exception {
-        File testPom = new File(getBasedir(), "src/test/java/resources/plugin-test.xml");
+        File testPom = new File(getBasedir(), "src/test/resources/plugin-test.xml");
         ConfigMojo mojo = (ConfigMojo) lookupMojo("config", testPom);
         mojo.execute();
     }
