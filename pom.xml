@@ -48,6 +48,7 @@
 		<slf4j-version>1.5.11</slf4j-version>
 		<jcl-version>1.5.11</jcl-version>
 		<logback-classic-version>0.9.18</logback-classic-version>
+		<log4j-version>1.2.16</log4j-version>
 		<!--urlrewrite-->
 		<urlrewrite-version>3.2.0</urlrewrite-version>
 		<!-- maven plugins version -->
@@ -193,6 +194,12 @@
 				<artifactId>jcl-over-slf4j</artifactId>
 				<version>${jcl-version}</version>
 			</dependency>
+            <!--JTester需要-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j-version}</version>
+            </dependency>
 			<!--urlrewritefilter-->
 			<dependency>
 				<groupId>org.tuckey</groupId>

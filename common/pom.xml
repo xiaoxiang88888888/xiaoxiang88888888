@@ -110,6 +110,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
+        <!--JTester需要-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
         <!--urlrewritefilter-->
         <dependency>
             <groupId>org.tuckey</groupId>
