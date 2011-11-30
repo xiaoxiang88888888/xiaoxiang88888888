@@ -1,15 +1,65 @@
 package com.xiaoxiang.util;
 
-import org.jtester.core.junit.JTester;
-import org.testng.annotations.Test;
+import org.jtester.testng.JTester;
+import org.testng.annotations.*;
 
 /**
  * 字符功能测试
  *
  * @author xiang.xiaox
  */
-
+@Test(groups = {"stringUtil"})
 public class StringUtilTest extends JTester {
+
+    @BeforeTest
+    public void beforeTest(){
+        System.out.println("在测试方法运行之前运行:BeforeTest");
+    }
+
+    @AfterTest
+    public void afterTest(){
+        System.out.println("在测试方法之后运行:AfterTest");
+    }
+
+    @BeforeGroups
+    public void beforeGroups(){
+        System.out.println("在测试组之前运行:BeforeGroups");
+    }
+
+    @AfterGroups
+    public void afterGroups(){
+        System.out.println("在测试组之后运行:AfterGroups");
+    }
+
+    @BeforeClass
+    public void beforeClass(){
+        System.out.println("在测试类之前运行:BeforeClass");
+    }
+
+    @AfterClass
+    public void afterClass(){
+        System.out.println("在测试类之后运行:AfterClass");
+    }
+
+    @BeforeMethod
+    public void beforeMethod(){
+        System.out.println("在测试方法之前运行:BeforeMethod");
+    }
+
+    @AfterMethod
+    public void afterMethod(){
+        System.out.println("在测试方法之后运行:AfterMethod");
+    }
+
+    @BeforeSuite
+    public void beforeSuite(){
+        System.out.println("在测试套件之前运行:BeforeSuite");
+    }
+
+    @AfterSuite
+    public void afterSuite(){
+        System.out.println("在测试套件之后运行:AfterSuite");
+    }
 
     @Test
     public void isEmptyTest() {
@@ -24,7 +74,7 @@ public class StringUtilTest extends JTester {
         want.string("测试").isEqualTo(StringUtil.toString("测试"));
     }
 
-    @Test
+    @Test(groups = {"regex"})
     public void regexTest() {
         want.bool(StringUtil.regex("", "")).isEqualTo(true);
         want.bool(StringUtil.regex("", "")).isEqualTo(true);
