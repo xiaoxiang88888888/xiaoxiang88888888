@@ -63,8 +63,9 @@ public class StringUtilTest extends JTester {
 
     @Test
     public void isEmptyTest() {
-        assert StringUtil.isEmpty(null);
-        assert StringUtil.isEmpty("");
+        want.bool(StringUtil.isBlank(null)).is(true);
+        want.bool(StringUtil.isBlank("")).is(true);
+        want.bool(true).notEqualTo(StringUtil.isEmpty("测试"));
     }
 
     @Test
