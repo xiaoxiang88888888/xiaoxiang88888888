@@ -14,5 +14,6 @@ public class PinYinUtilTest extends JTester{
     @Test
     public void PinYinUtil(){
         want.string("�xiao�xiang").isEqualTo(PinYinUtil.getPingYin("肖祥"));
+        want.string("�xiao�xiang").isEqualTo(PinYinUtil.getPingYin("肖祥"));
     }
 }
