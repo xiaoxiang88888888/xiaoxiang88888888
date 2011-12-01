@@ -1,7 +1,8 @@
 package com.xiaoxiang.util;
 
-import mockit.Mocked;
+import com.xiaoxiang.model.Area;
 import org.jtester.testng.JTester;
+import org.testng.annotations.Test;
 
 /**
  * 测试JSON
@@ -9,10 +10,16 @@ import org.jtester.testng.JTester;
  * @author xiang.xiaox
  */
 public class JsonUtilTest extends JTester {
-    @Mocked
-    JsonUtil jsonUtil;
+    public final String str = "{" +
+            "\"id\":null," +
+            "\"areaId\":\"1\"," +
+            "\"parentAreaId\":\"0\"," +
+            "\"areacode\":\"sdfsdfwerwer\"," +
+            "\"areaname\":\"测试代码\"," +
+            "\"orderno\":888," +
+            "\"remark\":\"<>@#$%^&*()_+=-}{|\\\\][';\"}";
 
-  /*  //日志测试
+    /*  //日志测试
     @Test
     public void logTest() {
         new Expectations() {
@@ -29,4 +36,30 @@ public class JsonUtilTest extends JTester {
         jsonUtil.ObjectToJson(null);
     }*/
 
+    @Test
+    public void objectToJsonTest() {
+        Area area = new Area();
+        area.setAreaId("1");
+        area.setAreacode("sdfsdfwerwer");
+        area.setAreaname("测试代码");
+        area.setOrderno(888);
+        area.setParentAreaId("0");
+        area.setRemark("<>@#$%^&*()_+=-}{|\\][';");
+        String str = JsonUtil.getInstance().ObjectToJson(area);
+        want.string(str).isEqualTo(str);
+
+    }
+
+    @Test
+    public void jsonToObjectTest() {
+        Area area = (Area) JsonUtil.getInstance().jsonToObject(str, Area.class);
+        want.object(area).notNull();
+        want.string(area.getId()).isNull();
+        want.string(area.getAreaId()).isEqualTo("1");
+        want.string(area.getAreacode()).isEqualTo("sdfsdfwerwer");
+        want.string(area.getAreaname()).isEqualTo("测试代码");
+        want.number(area.getOrderno()).isEqualTo(888);
+        want.string(area.getParentAreaId()).isEqualTo("0");
+        want.string(area.getRemark()).isEqualTo("<>@#$%^&*()_+=-}{|\\][';");
+    }
 }

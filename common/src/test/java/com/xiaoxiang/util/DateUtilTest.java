@@ -16,6 +16,8 @@ import java.util.Date;
  * @author xiang.xiaox
  */
 public class DateUtilTest extends JTester {
+    @Mocked
+    DateUtil dateUtil;
 
     @Test
     public void getCurrentDateTest() throws ParseException {
@@ -45,9 +47,26 @@ public class DateUtilTest extends JTester {
                 )
                 );
         Date date = new Date();
-        System.out.println(DateUtil.getDateStr(date,"yyyy-MM-dd HH:mm:ss"));
+        System.out.println(DateUtil.getDateStr(date, "yyyy-MM-dd HH:mm:ss"));
         System.out.println(date.getYear());//2011-1900
         System.out.println(date.getMonth());//month
         System.out.println(date.getDate());//day
+    }
+
+
+    @Test
+   /* public void getCurrentDate2Test() {
+        new NonStrictExpectations(){
+            DateUtil.getCurrentDate();
+            results(mockCalendar().getTime());
+
+        };
+        want.string("2011").isEqualTo(DateUtil.getDateStr(null, null));
+    }*/
+
+    public static Calendar mockCalendar() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(2011, 11, 11, 11, 11, 11);
+        return cal;
     }
 }
