@@ -24,6 +24,12 @@ public class JsonUtil {
      * @return
      */
     public String ObjectToJson(Object object) {
+        if(object==null){
+          logger.warn("传入的参数为null");
+          return null;
+        }else{
+          logger.info("输出为:"+object.toString());
+        }
         String json = null;
         try {
             json = mapper.writeValueAsString(object);
