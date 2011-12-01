@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+        "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="global">
+    <!-- Oracle 分页  -->
+	<sql id="oracleStart">
+		<![CDATA[ select * from (select row_.*, rownum rownum_ from ( ]]>
+	</sql>
+	<sql id="oracleEnd">
+		<![CDATA[ ) row_ where rownum<=#end#) where rownum_>=#start# ]]>
+	</sql>
+
+	<!-- Mysql 分页  -->
+	<sql id="mysqlEnd">
+		<isNotEmpty property="end" prepend="">
+		<![CDATA[
+			limit #start# , #end#
+		]]>
+		</isNotEmpty>
+	</sql>
+
+</sqlMap>

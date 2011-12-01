@@ -7,4 +7,5 @@
 	<!--至少要有一个文件-->
 	<sqlMap resource="ibatis/sqlmap/test.xml" />
     <sqlMap resource="ibatis/sqlmap/area.xml" />
+    <sqlMap resource="ibatis/sqlmap-global.xml" />
 </sqlMapConfig>
