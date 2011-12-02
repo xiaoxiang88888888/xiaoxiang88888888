@@ -16,7 +16,7 @@ import java.util.Date;
  * @author xiang.xiaox
  */
 public class DateUtilTest extends JTester {
-    @Mocked
+    @Mocked(methods = "getCurrentDate")
     DateUtil dateUtil;
 
     @Test
@@ -55,14 +55,16 @@ public class DateUtilTest extends JTester {
 
 
     @Test
-   /* public void getCurrentDate2Test() {
-        new NonStrictExpectations(){
-            DateUtil.getCurrentDate();
-            results(mockCalendar().getTime());
+    public void getCurrentDate2Test() {
+        new NonStrictExpectations() {
+            {
+                DateUtil.getCurrentDate();
+                result = mockCalendar().getTime();
+            }
 
         };
-        want.string("2011").isEqualTo(DateUtil.getDateStr(null, null));
-    }*/
+        want.string("2011").isEqualTo(DateUtil.getDateStr(DateUtil.getCurrentDate(),"yyyy"));
+    }
 
     public static Calendar mockCalendar() {
         Calendar cal = Calendar.getInstance();
