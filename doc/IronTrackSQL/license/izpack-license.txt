@@ -1,0 +1,10 @@
+This product was packaged using the izPack installer from
+http://www.izForge.com.  izPack is a GNU license product,
+and as such requires that we provide this information to
+users of our software.
+
+More specifically, the source code for the izPack installer
+may be obtained from the following URL:
+
+http://cvsweb.tuxfamily.org/cvs/?cvsroot=izpack2
+
