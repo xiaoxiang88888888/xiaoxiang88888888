@@ -60,6 +60,20 @@ public class AreaAction extends BaseAction<Area, String> {
     public String showList() throws Exception {
         
     	entities = getService().getAllEntity();
+    	for(int i=0;i<10;i++){
+    		getService().exists(""+i);
+    	}  
+    	/*for(int i=1020;i<1030;i++){
+    		Area entity  = new Area();
+    		entity.setId(""+i);
+    		entity.setAreaId(""+i);
+    		entity.setAreacode(""+i);
+            entity.setAreaname("地区"+i);
+            entity.setOrderno(i);
+            entity.setParentAreaId("1");
+            entity.setRemark("标记"+i);
+    		getService().addEntity(entity);
+    	} */
         return SUCCESS;
     }
 

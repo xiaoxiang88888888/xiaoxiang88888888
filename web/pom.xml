@@ -32,6 +32,15 @@
             <artifactId>task</artifactId>
             <version>${task-version}</version>
         </dependency>
+        <!--本地引入 要放到后面,不然common-pool版本会有问题-->
+        <!--用于监控sql性能-->
+        <dependency>
+            <groupId>com.irontracksql</groupId>
+            <artifactId>irontracksql</artifactId>
+            <version>${irontracksql-version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../doc/IronTrackSQL/irontracksql.jar</systemPath>
+        </dependency>
     </dependencies>
 
 		<build>

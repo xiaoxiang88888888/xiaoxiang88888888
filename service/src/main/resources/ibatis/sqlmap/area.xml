@@ -41,7 +41,7 @@
         ]]>
     </update>
 
-    <select id="com.xiaoxiang.model.Area.selectById" resultMap="areaResult">
+    <select id="com.xiaoxiang.model.Area.existsById" resultMap="areaResult">
     <![CDATA[
 
         select * from area where areaId=#areaId#

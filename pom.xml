@@ -19,6 +19,8 @@
 		<project-scm-url>http://xiaoxiang88888888.googlecode.com/svn/branches/new-xiaoxiang/</project-scm-url>
 		<project-scm-connection>scm:svn:http://xiaoxiang88888888.googlecode.com/svn/branches/new-xiaoxiang/</project-scm-connection>
 		<project-site-url>http://mvnrepository.com/</project-site-url>
+        <!--本地依赖,一般相对于项目-->
+        <irontracksql-version>1.0</irontracksql-version>
 		<!-- jar version -->
 		<spring-version>2.5.6.SEC03</spring-version>
 		<struts-version>2.2.3</struts-version>

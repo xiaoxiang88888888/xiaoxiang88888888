@@ -33,7 +33,7 @@ public class BaseDAOIbatis<T extends BaseVO, PK extends Serializable> extends Sq
 
     public static final String POSTFIX_SELECT = ".select";
 
-    public static final String POSTFIX_SELECTBYID = ".selectbyid";
+    public static final String POSTFIX_SELECTBYID = ".existsById";
 
 
     @Override
