@@ -2,6 +2,7 @@ package com.xiaoxiang.area.dao.ibatis;
 
 import com.xiaoxiang.area.dao.AreaDAO;
 import com.xiaoxiang.model.Area;
+import org.jtester.annotations.Transactional;
 import org.jtester.testng.JTester;
 import org.jtester.unitils.dbfit.DbFit;
 import org.testng.annotations.Test;
@@ -36,9 +37,10 @@ public class AreaDAOIbatisTest extends JTester {
 	}
 
     @Test
-    @DbFit(when = "/wiki/area/area-insert-then.wiki",then = "/wiki/area/area-insert-when.wiki")
+    @Transactional(Transactional.TransactionMode.COMMIT)
+    @DbFit(when = "wiki/area/area-insert-then.wiki",then = "wiki/area/area-insert-when.wiki")
 	public void addEntityTest() {
-		boolean isExists = areaDAO.exists("888");
+		boolean isExists = areaDAO.exists("999");
 		System.out.println(isExists);
 	}
 
