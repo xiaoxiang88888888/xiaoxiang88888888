@@ -41,6 +41,11 @@ public class Demo extends BaseVO<String> implements java.io.Serializable {
 
     }
 
+    public Demo(String demoName, String remark) {
+        this.demoName = demoName;
+        this.remark = remark;
+    }
+
 
     public Demo(String demoId) {
         this.demoId = demoId;
