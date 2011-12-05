@@ -281,6 +281,16 @@
                 <artifactId>dbfit</artifactId>
                 <version>${dbfit-version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.fitnesse</groupId>
+                <artifactId>fitnesse</artifactId>
+                <version>20111025</version>
+            </dependency>
+            <dependency>
+                <groupId>org.fitnesse</groupId>
+                <artifactId>fitlibrary</artifactId>
+                <version>20100211-jdk15</version>
+            </dependency>
         </dependencies>
 	</dependencyManagement>
 

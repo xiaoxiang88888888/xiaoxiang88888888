@@ -170,6 +170,14 @@
             <groupId>net.sf.dbfit</groupId>
             <artifactId>dbfit</artifactId>
         </dependency>
+         <dependency>
+            <groupId>org.fitnesse</groupId>
+            <artifactId>fitnesse</artifactId>
+         </dependency>
+        <dependency>
+            <groupId>org.fitnesse</groupId>
+            <artifactId>fitlibrary</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

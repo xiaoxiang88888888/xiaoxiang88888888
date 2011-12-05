@@ -1,0 +1,3 @@
+|connect|
+|execute|delete from area t where t.areaId = '888'|
+|insert|insert into area (areaId, are_areaId, areacode, areaname, orderno,remark) values (888, 0, '888', '888', 1, '888肖祥')|
