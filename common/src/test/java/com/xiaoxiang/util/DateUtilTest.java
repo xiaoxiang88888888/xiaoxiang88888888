@@ -16,6 +16,8 @@ import java.util.Date;
  * @author xiang.xiaox
  */
 public class DateUtilTest extends JTester {
+    //只mocked这个类中的这个方法,其它方法还是可以用,
+    //不然整个都会被mock,而没有实现的方法,将会出现问题
     @Mocked(methods = "getCurrentDate")
     DateUtil dateUtil;
 
