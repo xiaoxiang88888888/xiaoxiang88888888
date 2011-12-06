@@ -38,8 +38,6 @@
             <groupId>com.irontracksql</groupId>
             <artifactId>irontracksql</artifactId>
             <version>${irontracksql-version}</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../doc/IronTrackSQL/irontracksql.jar</systemPath>
         </dependency>
     </dependencies>
 

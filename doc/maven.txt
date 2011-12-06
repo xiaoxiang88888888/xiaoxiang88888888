@@ -347,7 +347,10 @@ MavenSession中executionProperties有以下变量,可以引用
 [89] = {java.util.Hashtable$Entry@2972} java.specification.version -> 1.6
 
 
-
+如果相关仓库中没有,可以在
+如下加入相关库
+http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/
+按照 相应的目录结构上传上去就可以了
 
 
 

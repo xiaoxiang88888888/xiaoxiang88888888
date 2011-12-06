@@ -46,6 +46,8 @@
 		<jmockit-version>0.999.4</jmockit-version>
 		<hamcrest-version>1.1</hamcrest-version>
 		<dbfit-version>1.1.2.2</dbfit-version>
+		<fitnesse-version>20111025</fitnesse-version>
+		<fitlibrary-version>20110301</fitlibrary-version>
 		<!--日志相关-->
 		<slf4j-version>1.5.11</slf4j-version>
 		<jcl-version>1.5.11</jcl-version>
@@ -80,6 +82,11 @@
             <id>jtester-maven</id>
             <name>JTester</name>
             <url>http://java-tester.googlecode.com/svn/maven2/</url>
+        </repository>
+        <repository>
+            <id>xiaoxiang-maven</id>
+            <name>xiaoxiang</name>
+            <url>http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/</url>
         </repository>
     </repositories>
 
@@ -284,12 +291,12 @@
             <dependency>
                 <groupId>org.fitnesse</groupId>
                 <artifactId>fitnesse</artifactId>
-                <version>20111025</version>
+                <version>${fitnesse-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.fitnesse</groupId>
                 <artifactId>fitlibrary</artifactId>
-                <version>20100211-jdk15</version>
+                <version>${fitlibrary-version}</version>
             </dependency>
         </dependencies>
 	</dependencyManagement>
