@@ -21,6 +21,11 @@ public class DateUtilTest extends JTester {
     @Mocked(methods = "getCurrentDate")
     DateUtil dateUtil;
 
+    //mock：有一个参数且为int类型的方法；doInternal（）方法；getValue和setValue方法以及complexOperation(Object o)方法。
+    //Inverse属性默认情况为false，如果为true，表示只有methods中显式列出的方法不被mock，其它方法将会被mock
+    @Mocked({"(int)", "doInternal()", "[gs]etValue", "complexOperation(Object)"})
+    DateUtil dateUtil2;
+
     @Test
     public void getCurrentDateTest() throws ParseException {
         // Mock 掉java.util.Date 类

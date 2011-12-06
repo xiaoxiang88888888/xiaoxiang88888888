@@ -1,4 +1,4 @@
 |connect|
-|execute|DELETE FROM AREA  WHERE areaId='999'|
-|execute|insert into area (areaId, are_areaId, areacode, areaname, orderno,remark) values ('999', '0', '999', '999', 1, '999肖祥')|
-|commit|
+|query|select * FROM AREA  WHERE areaId='999'|
+|areaId|are_areaId|areacode|areaname|orderno|remark|
+|999|0|888|999|1|999肖祥|
