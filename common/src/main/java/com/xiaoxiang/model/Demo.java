@@ -8,6 +8,15 @@ import com.xiaoxiang.base.BaseVO;
  * @author xiaoxiang
  */
 public class Demo extends BaseVO<String> implements java.io.Serializable {
+
+    public static String staticName;
+
+    static {
+        staticName="xiaoxiang";
+    }
+
+
+
     /**
      * 示例编号
      */
@@ -125,5 +134,9 @@ public class Demo extends BaseVO<String> implements java.io.Serializable {
 
     private boolean getPrivateStr(){
         return false;
+    }
+
+    public static String getStaticName() {
+        return staticName;
     }
 }
