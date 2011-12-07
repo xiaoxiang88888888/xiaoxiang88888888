@@ -114,4 +114,16 @@ public class Demo extends BaseVO<String> implements java.io.Serializable {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public String getStr() {
+        if(!getPrivateStr()){
+          return "is null";
+        }else{
+          return "is not null";
+        }
+    }
+
+    private boolean getPrivateStr(){
+        return false;
+    }
 }

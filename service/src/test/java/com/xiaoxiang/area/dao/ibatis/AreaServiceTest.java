@@ -47,6 +47,8 @@ public class AreaServiceTest extends JTester {
                 result = areas;
                 dao.exists(anyString);
                 result = true;
+                dao.findEntityBykey(anyString);
+                result = "reslut";
             }
         };
 
@@ -54,5 +56,6 @@ public class AreaServiceTest extends JTester {
         System.out.println("servcie===" + list.size());
         want.number(10).isEqualTo(list.size());
         System.out.println(areaService.exists("8"));
+        System.out.println(dao.findEntityBykey("999"));
     }
 }

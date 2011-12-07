@@ -56,9 +56,9 @@ public class JMockitTest extends JTester {
          * 声明的Demo行为将会被mock，而那些没有声明的行为将调用原始的业务方法
          */
         new NonStrictExpectations(Demo.class) {//传不传demo,测试了一下,好像没有关系
+
             {
                 //demo.setDemoName(anyString);
-
                 demo.getRemark();
                 result = new Delegate() {
                     @SuppressWarnings("unused")
@@ -73,5 +73,6 @@ public class JMockitTest extends JTester {
         demo.setDemoName("xiao4");
         System.out.println("demo after=" + demo.getRemark());
     }
+
 
 }
