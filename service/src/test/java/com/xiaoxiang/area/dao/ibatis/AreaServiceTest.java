@@ -29,7 +29,8 @@ public class AreaServiceTest extends JTester {
 
     //@Mocked + @SpringBeanFor 注解把id为 areaDAO 的bean对象在替换成Mock出来的实例，
     // 并注入到属性dao中
-    @Mocked
+    //不指定具体的方法，将全部mock
+    @Mocked(methods = {"getAllEntity","exists"})
     @SpringBeanFor(value = "areaDAO")
     private AreaDAO dao;
 
@@ -41,13 +42,17 @@ public class AreaServiceTest extends JTester {
         }
 
         new Expectations() {
-            {
+            {   //这里面的顺序,跟你调用的顺序要一致,不然会报Missing invocation错误
                 dao.getAllEntity();
                 result = areas;
+                dao.exists(anyString);
+                result = true;
             }
         };
+
         List<Area> list = areaService.getAllEntity();
         System.out.println("servcie===" + list.size());
         want.number(10).isEqualTo(list.size());
+        System.out.println(areaService.exists("8"));
     }
 }
