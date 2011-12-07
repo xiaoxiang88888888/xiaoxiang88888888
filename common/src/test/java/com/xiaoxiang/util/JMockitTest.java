@@ -1,6 +1,7 @@
 package com.xiaoxiang.util;
 
 import com.xiaoxiang.model.Demo;
+import mockit.Cascading;
 import mockit.Delegate;
 import mockit.Mocked;
 import mockit.NonStrict;
@@ -14,6 +15,8 @@ import org.testng.annotations.Test;
  */
 
 public class JMockitTest extends JTester {
+    //Cascading 级联mock
+    @Cascading
     @Mocked
     private Demo demo;
 
@@ -27,6 +30,7 @@ public class JMockitTest extends JTester {
         new NonStrictExpectations(demo) {//传不传demo,测试了一下,好像没有关系
 
             {
+
                 demo.getRemark();
                 //在delegate中指定的方法，只需要参数类型跟被代理的函数一致就可以，方法的名称并不强制要求一样。
                 // 但是，如果Delegate中存在2个方法，而且参数类型和被代理函数都一样，
@@ -37,6 +41,10 @@ public class JMockitTest extends JTester {
                         return "remark";
                     }
                 };
+                //被调用1 次
+                times = 1;
+                //被调用1-2 次
+                //maxTimes = 2;minTimes=1;
             }
         };
         System.out.println("demo after=" + demo.getRemark());
@@ -60,6 +68,7 @@ public class JMockitTest extends JTester {
             {
                 //demo.setDemoName(anyString);
                 demo.getRemark();
+                /// Demo的getRemark被代理，不管原来逻辑如何，执行的都是被代理的逻辑
                 result = new Delegate() {
                     @SuppressWarnings("unused")
                     public String getRemark() {
