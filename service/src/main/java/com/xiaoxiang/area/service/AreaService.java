@@ -9,4 +9,11 @@ import com.xiaoxiang.model.Area;
  * @author xiaoxiang
  */
 public interface AreaService extends BaseService<Area, String> {
+
+    /**
+     * id通过外部 如uuid
+     * @param id
+     * @return
+     */
+    public boolean insertAndDeleteArea(String id);
 }

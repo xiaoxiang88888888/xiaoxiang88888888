@@ -1,8 +1,7 @@
-package com.xiaoxiang.area.dao.ibatis;
+package com.xiaoxiang.area.service;
 
 
 import com.xiaoxiang.area.dao.AreaDAO;
-import com.xiaoxiang.area.service.AreaService;
 import com.xiaoxiang.model.Area;
 import mockit.Mocked;
 import org.jtester.testng.JTester;
@@ -58,4 +57,5 @@ public class AreaServiceTest extends JTester {
         System.out.println(areaService.exists("8"));
         System.out.println(dao.findEntityBykey("999"));
     }
+
 }

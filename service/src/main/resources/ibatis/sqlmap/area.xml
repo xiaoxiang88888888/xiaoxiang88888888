@@ -73,4 +73,12 @@
         ]]>
     </delete>
 
+    <delete id="com.xiaoxiang.model.Area.delete" parameterClass="area">
+    <![CDATA[
+
+        delete from area2 where areaId = #areaId#
+
+        ]]>
+    </delete>
+
 </sqlMap>

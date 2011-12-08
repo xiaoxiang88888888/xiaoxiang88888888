@@ -58,7 +58,8 @@ public class AreaAction extends BaseAction<Area, String> {
      * return SUCCESS.
      */
     public String showList() throws Exception {
-        
+        //测试事务
+        areaService.insertAndDeleteArea(StringUtil.getUUID());
     	entities = getService().getAllEntity();
     	for(int i=0;i<10;i++){
     		getService().exists(""+i);
