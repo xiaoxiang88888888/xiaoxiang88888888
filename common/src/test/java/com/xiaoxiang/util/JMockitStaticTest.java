@@ -18,7 +18,7 @@ public class JMockitStaticTest extends JTester {
 
 
 
-    @Test
+   /* @Test
     public void staticTest(){
         //new MockUp<Demo>  不是new MockUp(Demo)
         new MockUp<Demo>(){
@@ -30,5 +30,5 @@ public class JMockitStaticTest extends JTester {
         };
         want.string(Demo.getStaticName()).isEqualTo("test");
     }
-
+*/
 }
