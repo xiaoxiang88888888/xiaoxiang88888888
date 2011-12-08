@@ -65,7 +65,7 @@
 
     <!--抽象service层,主要加入事务控制-->
       <!--Base TransactionProxyed Service Bean 给声明的方法(通过spring aop) ，动态加入事务管理，使得数据真正保存在数据库 注意，
-      需声明为抽象，用于继承，如在需要的bean声明中加入parent="baseTxService"-->
+      需声明为抽象，用于继承，如在需要的bean声明中加入parent="baseService"-->
     <bean id="baseService"
           class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
           abstract="true">
