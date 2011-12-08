@@ -34,23 +34,8 @@
           <property name="testOnBorrow" value="${xiaoxiang.jdbc.testOnBorrow}" />
           <property name="minEvictableIdleTimeMillis" value="${xiaoxiang.jdbc.minEvictableIdleTimeMillis}" />
           <property name="timeBetweenEvictionRunsMillis" value="${xiaoxiang.jdbc.timeBetweenEvictionRunsMillis}" />
-          <!--开发需要去掉-->
+          <!--生产环境需要去掉-->
         <!-- <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />-->
-    </bean>
-
-
-    <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <bean id="transactionTemplate"
-          class="org.springframework.transaction.support.TransactionTemplate">
-        <property name="transactionManager">
-            <ref bean="transactionManager"/>
-        </property>
     </bean>
 
     <!-- iBatis SQL map定义 -->
@@ -61,6 +46,48 @@
 
     <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
         <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+
+    <!--抽象dao层-->
+    <bean id="baseDAO" abstract="true">
+        <property name="sqlMapClientTemplate">
+            <ref local="sqlMapClientTemplate"/>
+        </property>
+    </bean>
+
+    <!--事务相关-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--抽象service层,主要加入事务控制-->
+      <!--Base TransactionProxyed Service Bean 给声明的方法(通过spring aop) ，动态加入事务管理，使得数据真正保存在数据库 注意，
+      需声明为抽象，用于继承，如在需要的bean声明中加入parent="baseTxService"-->
+    <bean id="baseService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+          abstract="true">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="add*">PROPAGATION_REQUIRED</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--抽象action层,主要注入一些常量-->
+    <bean id="baseAction" abstract="true">
+        <!-- 静态资源版本号 -->
+        <property name="staticVersion" value="${server.static.version}"/>
     </bean>
 
 

@@ -45,6 +45,8 @@ public class AreaDAOIbatisTest extends JTester {
      * @Transactional(TransactionMode.ROLLBACK) 最后rollback数据
      * @Transactional(TransactionMode.DISABLED) jtester框架不在使用spring的事务管理，
      * 程序员必须显式的在dbfit文件中自己commit或rollback数据。但spring bean仍然接受spring transaction的管理
+     *
+     * wiki中写的commit优先此处的事务声明
      */
     @Test
     @Transactional(Transactional.TransactionMode.COMMIT)

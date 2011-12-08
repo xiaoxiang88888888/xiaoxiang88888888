@@ -14,7 +14,7 @@
             </list>
         </property>
     </bean>
-    <bean name="area" class="com.xiaoxiang.area.action.AreaAction">
+    <bean name="area" class="com.xiaoxiang.area.action.AreaAction" parent="baseAction">
         <property name="service" ref="areaService"></property>
     </bean>
 </beans>

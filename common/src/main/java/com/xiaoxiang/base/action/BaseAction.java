@@ -31,6 +31,8 @@ public abstract class BaseAction<T, FK extends Serializable> extends SimpleActio
     protected HttpServletRequest request;
     protected HttpServletResponse response;
 
+    protected String staticVersion;
+
 
     public void setServletRequest(HttpServletRequest request) {
         this.request = request;
@@ -241,4 +243,7 @@ public abstract class BaseAction<T, FK extends Serializable> extends SimpleActio
         //nothing
     }
 
+    public void setStaticVersion(String staticVersion) {
+        this.staticVersion = staticVersion;
+    }
 }
