@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<config description="自动配置">
+<config description="common模块(自动配置)">
     <group name="datasource">
         <property name="xiaoxiang.jdbc.driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
                   description="JDBC驱动名称"/>
