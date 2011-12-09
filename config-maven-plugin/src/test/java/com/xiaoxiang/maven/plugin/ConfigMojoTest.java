@@ -16,9 +16,19 @@ public class ConfigMojoTest extends AbstractMojoTestCase {
 
     }
 
-    public void testConfigMojo() throws Exception {
+    public void testConfigMojo() {
         File testPom = new File(getBasedir(), "src/test/resources/plugin-test.xml");
-        ConfigMojo mojo = (ConfigMojo) lookupMojo("config", testPom);
-        mojo.execute();
+        ConfigCompileMojo mojo = null;
+        try {
+            mojo = (ConfigCompileMojo) lookupMojo("config", testPom);
+            mojo.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+
+    /* public static String getBasedir() {
+       return "Z:\\new_xiaoxiang\\config-maven-plugin\\pom.xml";
+    }*/
 }

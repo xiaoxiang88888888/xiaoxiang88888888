@@ -13,7 +13,7 @@ import java.util.Properties;
  * 说明
  *
  * @author xiang.xiaox
- * @goal config
+ * @goal configWar
  */
 
 public class ConfigMojo extends AbstractMojo {

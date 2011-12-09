@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config description="common模块(自动配置)">
     <props name="datasource">
-        <prop name="xiaoxiang.jdbc.7driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
+        <prop name="xiaoxiang.jdbc.driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
                   description="JDBC驱动名称"/>
         <prop name="xiaoxiang.jdbc.url"
                   defaultValue="jdbc:mysql://10.20.168.57:3306/musketeer?useUnicode=true&amp;characterEncoding=UTF-8"

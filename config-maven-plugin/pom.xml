@@ -28,10 +28,9 @@
 		<jtidy-version>4aug2000r7-dev</jtidy-version>
 		<digester-version>3.1</digester-version>
 		<!--日志相关-->
-		<slf4j-version>1.6.0</slf4j-version>
-		<over-slf4j-version>1.5.11</over-slf4j-version>
-		<logback-core-version>0.9.28</logback-core-version>
-		<logback-classic-version>0.9.28</logback-classic-version>
+        <slf4j-version>1.5.11</slf4j-version>
+        <jcl-version>1.5.11</jcl-version>
+        <logback-classic-version>0.9.18</logback-classic-version>
 		<!-- maven plugins version -->
 		<maven-api-version>2.0.6</maven-api-version>
 		<maven-compiler-version>2.3.2</maven-compiler-version>
@@ -98,23 +97,13 @@
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback-core-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic-version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>${over-slf4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-            <version>${slf4j-version}</version>
+            <version>${jcl-version}</version>
         </dependency>
         <!--测试-->
         <dependency>
@@ -155,7 +144,7 @@
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>${maven-eclipse-version}</version>
                 <configuration>
-                    <downloadSources>true</downloadSources>
+                    <downloadSources>false</downloadSources>
                     <!--使用utf-8编码-->
                     <additionalConfig>
                         <file>

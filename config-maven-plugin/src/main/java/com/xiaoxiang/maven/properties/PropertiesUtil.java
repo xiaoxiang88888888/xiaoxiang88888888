@@ -1,5 +1,7 @@
 package com.xiaoxiang.maven.properties;
 
+import com.xiaoxiang.maven.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,7 +102,7 @@ public class PropertiesUtil {
      */
     public String getProps(String key, String defaultValue, String description) {
         boolean storeProperty = false;
-        String value = props.getProperty(key);
+        String value = props.getProperty(StringUtil.replaceOther(key));
 
         if (isBlank(value)) {
             storeProperty = true;
@@ -117,10 +119,11 @@ public class PropertiesUtil {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             try {
                 value = reader.readLine();
-                while (isBlank(value)) {
+                if (StringUtils.isBlank(value)) {
                     value = reader.readLine();
                 }
                 storeProperty = true;
+                reader.close();
             } catch (IOException e) {
                 logger.error("出现异常:", e);
             } finally {
@@ -133,7 +136,6 @@ public class PropertiesUtil {
 
         }
         if (storeProperty) {
-
             props.setProperty(key, value);
         }
 
