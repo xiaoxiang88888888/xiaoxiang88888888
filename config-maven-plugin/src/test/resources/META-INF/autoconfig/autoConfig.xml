@@ -37,7 +37,7 @@
     </props>
 
     <props name="web">
-        <prop name="xiaoxiang.test" defaultValue="xiaoxiang" description="测试"/>
+        <prop name="xiaoxiang.test" defaultValue="sdfsdf" description="测试"/>
         <prop name="xiaoxiang.test2" defaultValue="67682" description="测试2"/>
     </props>
 
