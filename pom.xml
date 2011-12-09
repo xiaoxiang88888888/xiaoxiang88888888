@@ -47,7 +47,7 @@
 		<hamcrest-version>1.1</hamcrest-version>
 		<dbfit-version>1.1.2.2</dbfit-version>
 		<fitnesse-version>20111025</fitnesse-version>
-		<fitlibrary-version>20110301</fitlibrary-version>
+		<fitlibrary-version>20100211-jdk15</fitlibrary-version>
 		<!--日志相关-->
 		<slf4j-version>1.5.11</slf4j-version>
 		<jcl-version>1.5.11</jcl-version>
