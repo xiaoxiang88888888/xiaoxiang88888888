@@ -113,7 +113,7 @@ public class PropertiesUtil {
 
     /**
      * 获取属性值，如果配置文件中不存在，则返回默认的defaultvalue
-     * 如果defaultValue為空，則提示用戶输入
+     * 如果defaultValue为空，则提示用戶输入
      *
      * @param key
      * @param defaultValue
@@ -136,26 +136,10 @@ public class PropertiesUtil {
             } else {
                 System.out.println(key + " value: ");
             }
-            value = null;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            try {
-                value = reader.readLine();
-                while (value != null) {
-                    if ("exit".equalsIgnoreCase(value)) break;
-                    value = reader.readLine();
-                }
-                reader.close();
-                storeProperty = true;
-            } catch (IOException e) {
-                logger.error("出现异常:", e);
-            } finally {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    logger.error("关闭流出现异常:", e);
-                }
-            }
-
+            //jdk1.5以后提供
+            Scanner scanner = new Scanner(System.in);
+            value = scanner.nextLine();
+            storeProperty = true;
         }
         if (storeProperty) {
             props.setProperty(StringUtil.replaceOther(key), value);
