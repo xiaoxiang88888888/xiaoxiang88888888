@@ -1,4 +1,4 @@
-##dataSource
+#dataSource
 xiaoxiang.jdbc.driverClassName=${xiaoxiang_jdbc_driverClassName}
 xiaoxiang.jdbc.url=${xiaoxiang_jdbc_url}
 xiaoxiang.jdbc.username=${xiaoxiang_jdbc_username}
@@ -13,4 +13,7 @@ xiaoxiang.jdbc.testOnBorrow=${xiaoxiang_jdbc_testOnBorrow}
 xiaoxiang.jdbc.minEvictableIdleTimeMillis=${xiaoxiang_jdbc_minEvictableIdleTimeMillis}
 xiaoxiang.jdbc.timeBetweenEvictionRunsMillis=${xiaoxiang_jdbc_timeBetweenEvictionRunsMillis}
 xiaoxiang.jdbc.validationQuery=${xiaoxiang_jdbc_validationQuery}
+
+#server
+xiaoxiang.server.static.version=${xiaoxiang_server_static_version}
 

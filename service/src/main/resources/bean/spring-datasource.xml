@@ -89,7 +89,7 @@
     <!--抽象action层,主要注入一些常量-->
     <bean id="baseAction" abstract="true">
         <!-- 静态资源版本号 -->
-        <property name="staticVersion" value="${server.static.version}"/>
+        <property name="staticVersion" value="${xiaoxiang.server.static.version}"/>
     </bean>
 
 

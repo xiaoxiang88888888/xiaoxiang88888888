@@ -4,28 +4,6 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 
-    <!--###激活重新载入国际化文件的功能-->
-    <constant name="struts.i18n.reload" value="true"/>
-    <!--###激活开发模式，以提供更全面的调试功能-->
-    <constant name="struts.devMode" value="true"/>
-    <!--###激活重新载入XML配置文件的功能（这是为Action准备的），
-          当文件被修改以后，就不需要重新载入Servlet容器中的整个Web应用了。-->
-    <constant name="struts.configuration.xml.reload" value="true"/>
-    <!--###配置服务器运行的端口号（所有生成的URL都会被正确创建）-->
-    <constant name="struts.url.http.port" value="8088"/>
-    <!--###拦截设置的值为结尾的请求-->
-    <constant name="struts.action.extension" value="htm"/>
-    <!--#在开发的过程中，你可能需要移除所有的缓存，以提高开发速度。
-          但是当应用被部署到产品环境以后，被缓存的stylesheet就会提高渲染性能-->
-    <constant name="struts.xslt.nocache" value="true"/>
-    <!--#这个属性设为true以后，action的名字中就可以使用斜杠了。
-          Struts2的默认设置是不允许action的名字中出现斜杠的，需要用package来分割命名空间-->
-    <constant name="struts.enable.SlashesInActionNames" value="true"/>
-    <!--###能够拦截.action!method形式的请求-->
-    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
-    <!--###免得struts2自带的标签模板加入一些多余的代码-->
-    <constant name="struts.ui.theme" value="simple"/>
-
     <!--include节点是struts2中组件化的方式 可以将每个功能模块独立到一个xml配置文件中，然后用include节点引用 -->
     <!--地区-->
     <include file="strutsconfig/struts-config-Area.xml"></include>

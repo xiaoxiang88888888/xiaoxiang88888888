@@ -32,6 +32,9 @@
                   description="心跳检查,验证连接是否成功, SQL SELECT 指令至少要返回一行"/>
     </props>
 
+    <props name="server">
+        <prop name="xiaoxiang.server.static.version" defaultValue="1.0" description="静态版本号"/>
+    </props>
     <gens>
         <gen template="common.properties.vm" destfile="common.properties" encode="UTF-8"/>
     </gens>

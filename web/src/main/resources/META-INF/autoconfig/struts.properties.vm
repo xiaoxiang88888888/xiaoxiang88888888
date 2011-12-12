@@ -1,0 +1,118 @@
+#指定加载struts2配置文件管理器，默认为org.apache.struts2.config.DefaultConfiguration
+#开发者可以自定义配置文件管理器，该类要实现Configuration接口，可以自动加载struts2配置文件。
+#struts.configuration=org.apache.struts2.config.DefaultConfiguration
+
+#设置默认的locale和字符编码
+#struts.locale=en_US
+struts.i18n.encoding=UTF-8
+
+
+#指定struts的工厂类
+#struts.objectFactory = spring
+
+#指定spring框架的装配模式
+#装配方式有: name, type, auto, and constructor (name 是默认装配模式)
+#struts.objectFactory.spring.autoWire = name
+
+#该属性指定整合spring时，是否对bean进行缓存，值为true or false,默认为true.
+#struts.objectFactory.spring.useClassCache = true
+
+#指定类型检查
+#struts.objectTypeDeterminer = tiger
+#struts.objectTypeDeterminer = notiger
+
+#该属性指定处理 MIME-type multipart/form-data，文件上传
+#struts.multipart.parser=cos
+#struts.multipart.parser=pell
+#struts.multipart.parser=jakarta
+#指定上传文件时的临时目录，
+#struts.multipart.saveDir=
+#struts.multipart.maxSize=2097152
+
+#加载自定义属性文件不要写成struts.properties
+#struts.custom.properties=application,org/apache/struts2/extension/custom
+
+#指定请求url与action映射器，默认为org.apache.struts2.dispatcher.mapper.DefaultActionMapper
+#struts.mapper.class=org.apache.struts2.dispatcher.mapper.DefaultActionMapper
+
+#指定action的后缀，默认为action
+struts.action.extension=htm
+
+#被 FilterDispatcher使用
+#如果为 true 则通过jar文件提供静态内容服务.
+#如果为 false 则静态内容必须位于 <context_path>/struts
+#struts.server.static=true
+
+#被 FilterDispatcher使用
+#指定浏览器是否缓存静态内容，测试阶段设置为false，发布阶段设置为true.
+#struts.server.static.browserCache=true
+
+#设置是否支持动态方法调用，true为支持，false不支持.
+struts.enable.DynamicMethodInvocation = true
+
+#设置是否可以在action中使用斜线，默认为false不可以，想使用需设置为true.
+struts.enable.SlashesInActionNames = true
+
+#是否允许使用表达式语法，默认为true.
+#struts.tag.altSyntax=true
+
+
+#设置当struts.xml文件改动时，是否重新加载.
+#- struts.configuration.xml.reload = true
+#设置struts是否为开发模式，默认为false,测试阶段一般设为true.
+struts.devMode = ${struts_devMode}
+
+#设置是否每次请求，都重新加载资源文件，默认值为false.
+struts.i18n.reload=${struts_i18n_reload}
+
+#标准的UI主题
+#默认的UI主题为xhtml,可以为simple,xhtml或ajax
+struts.ui.theme=simple
+#模板目录
+#struts.ui.templateDir=template
+#设置模板类型. 可以为 ftl, vm, or jsp
+#struts.ui.templateSuffix=ftl
+
+#定位velocity.properties 文件.  默认 velocity.properties
+#struts.velocity.configfile = velocity.properties
+
+#设置velocity的context.
+#struts.velocity.contexts =
+
+#定位toolbox.
+#struts.velocity.toolboxlocation=
+
+#指定web应用的端口.
+struts.url.http.port = 8088
+#指定加密端口
+#struts.url.https.port = 443
+#设置生成url时，是否包含参数.值可以为: none, get or all
+#struts.url.includeParams = get
+
+#设置要加载的国际化资源文件，以逗号分隔.
+#struts.custom.i18n.resources=testmessages,testmessages2
+
+#对于一些web应用服务器不能处理HttpServletRequest.getParameterMap()
+#像 WebLogic, Orion, and OC4J等，须设置成true,默认为false.
+#struts.dispatcher.parametersWorkaround = false
+
+#指定freemarker管理器
+#struts.freemarker.manager.classname=org.apache.struts2.views.freemarker.FreemarkerManager
+
+#设置是否对freemarker的模板设置缓存
+#效果相当于把template拷贝到 WEB_APP/templates.
+#struts.freemarker.templatesCache=false
+
+#通常不需要修改此属性.
+#struts.freemarker.wrapper.altMap=true
+
+#指定xslt result是否使用样式表缓存.开发阶段设为true,发布阶段设为false.
+#在开发的过程中，你可能需要移除所有的缓存，以提高开发速度。
+#但是当应用被部署到产品环境以后，被缓存的stylesheet就会提高渲染性能
+struts.xslt.nocache=true
+
+#设置struts自动加载的文件列表.
+#struts.configuration.files=struts-default.xml,struts-plugin.xml,struts.xml
+
+#设定是否一直在最后一个slash之前的任何位置选定namespace.
+#struts.mapper.alwaysSelectFullNamespace=false

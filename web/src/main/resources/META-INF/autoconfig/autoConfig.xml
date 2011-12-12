@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config description="common模块(自动配置)">
+    <props name="struts">
+        <prop name="struts.devMode" defaultValue="true"
+                  description="设置struts是否为开发模式，默认为false,测试阶段一般设为true"/>
+        <prop name="struts.i18n.reload"
+                  defaultValue="true"
+                  description="设置是否每次请求，都重新加载资源文件，默认值为false."/>
+        <prop name="struts.url.http.port" defaultValue="8088"
+                  description="指定web应用的端口"/>
+        <prop name="struts.xslt.nocache" defaultValue="true"
+                  description="指定xslt result是否使用样式表缓存.开发阶段设为true,发布阶段设为false"/>
+    </props>
+
+    <props name="log">
+        <prop name="log.level" defaultValue="DEBUG"
+                  description="日志级别"/>
+    </props>
+
+    <gens>
+        <gen template="struts.properties.vm" destfile="struts.properties" encode="UTF-8"/>
+        <gen template="logback.xml.vm" destfile="logback.xml" encode="UTF-8"/>
+    </gens>
+</config>

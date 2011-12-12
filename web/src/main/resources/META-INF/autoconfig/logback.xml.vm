@@ -48,7 +48,7 @@
 	</logger>
 
 	<!-- 基础控制日志输出 END -->
-	<root level="debug">
+	<root level="${log_level}">
         <!--开发用-->
 		<appender-ref ref="STDOUT" />
         <!--生产用-->
