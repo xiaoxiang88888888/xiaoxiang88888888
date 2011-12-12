@@ -41,6 +41,7 @@
     <!-- iBatis SQL map定义 -->
     <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        
         <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
     </bean>
 

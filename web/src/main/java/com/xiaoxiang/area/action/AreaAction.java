@@ -63,7 +63,9 @@ public class AreaAction extends BaseAction<Area, String> {
     	entities = getService().getAllEntity();
     	for(int i=0;i<10;i++){
     		getService().exists(""+i);
-    	}  
+    	}
+        logger.info("entities size=="+entities.size()+"");
+        logger.info("43534509890888843534599900000");
     	/*for(int i=1020;i<1030;i++){
     		Area entity  = new Area();
     		entity.setId(""+i);

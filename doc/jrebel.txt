@@ -18,3 +18,7 @@ MAVEN_DEBUG_OPTS这个变量定义中加入如下:
 注:suspend=y 为y时,需要IDE开启一个远程端口,应用才会继续运行
              为n时,则不需要
 
+
+-Drebel.spring_plugin=true
+-Drebel.ibatis_plugin=true  -- 改Ibatis配置文件将不用重启服务器，JRebel 会自动 Reloading sql maps.
+
