@@ -19,7 +19,7 @@ import java.util.List;
  * @author xiang.xiaox
  */
 @SpringApplicationContext({"bean/spring-datasource.xml", "classpath:bean/spring-area.xml"})
-public class AreaServiceTest extends JTester {
+public class AreaServiceTest extends JTester {	
     List<Area> areas = new ArrayList<Area>();
 
 

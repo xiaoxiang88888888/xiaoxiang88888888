@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config description="common模块(自动配置)">
     <props name="datasource">
-        <prop name="xiaoxiang.jdbc.driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
+        <prop name="xiaoxiang.jdbc.test" defaultValue="werwer"
+              description="测试"/>
+        <prop name="xiaoxiang.jdbc.driverClassName" defaultValue="com.p6spy.engine.spy.P6SpyDriver"
                   description="JDBC驱动名称"/>
         <prop name="xiaoxiang.jdbc.url"
                   defaultValue="jdbc:mysql://10.19.20.28:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"

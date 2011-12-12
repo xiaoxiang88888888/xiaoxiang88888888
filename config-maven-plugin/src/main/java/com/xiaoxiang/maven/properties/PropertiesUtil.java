@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * 属性文件读取
@@ -75,7 +75,7 @@ public class PropertiesUtil {
             }
             outputStream = new FileOutputStream(file);
             if (null != props) {
-                props.store(outputStream, "");
+                sortProps(props).store(outputStream, "");
             }
         } catch (IOException e) {
             logger.error("出现异常:", e);
@@ -88,6 +88,27 @@ public class PropertiesUtil {
                 logger.error("关闭流出现异常:", e);
             }
         }
+    }
+
+    /**
+     * 对key值进行排序
+     *
+     * @param props
+     * @return
+     */
+    @SuppressWarnings(value = {"deprecation"})
+    public SortProperties sortProps(Map props) {
+        SortProperties prop = new SortProperties();
+        List<String> list = new ArrayList<String>();
+        for (Object o : props.keySet()) {
+            String key = o.toString();
+            list.add(key);
+        }
+        Collections.sort(list);
+        for (String aList : list) {
+            prop.put(aList, props.get(aList).toString());
+        }
+        return prop;
     }
 
     /**
@@ -137,7 +158,7 @@ public class PropertiesUtil {
 
         }
         if (storeProperty) {
-            props.setProperty(key, value);
+            props.setProperty(StringUtil.replaceOther(key), value);
         }
 
         return value;
@@ -158,5 +179,17 @@ public class PropertiesUtil {
 
     public void setPropPath(String propPath) {
         this.propPath = propPath;
+    }
+}
+
+class SortProperties extends Properties {
+    public Enumeration keys() {
+        Enumeration keysEnum = super.keys();
+        Vector<String> keyList = new Vector<String>();
+        while(keysEnum.hasMoreElements()){
+            keyList.add((String)keysEnum.nextElement());
+        }
+        Collections.sort(keyList);
+        return keyList.elements();
     }
 }
