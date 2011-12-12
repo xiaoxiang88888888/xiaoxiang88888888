@@ -105,7 +105,7 @@ public class ConfigCompileMojo extends AbstractMojo {
             logger.error("配置的模板类型 " + templateType + " 不对!");
         }
         //将新的配置项写入autoConfig.properties文件中
-        propertiesUtil.close();
+        propertiesUtil.close(dom4jUtil.getPropDescMap());
     }
 
     public void setProject(MavenProject project) {

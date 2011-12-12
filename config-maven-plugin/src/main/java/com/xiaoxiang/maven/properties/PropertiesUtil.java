@@ -63,7 +63,7 @@ public class PropertiesUtil {
     /**
      * 关闭文件，将新的配置项的值写入到文件中
      */
-    public void close() {
+    public void close(Map<String, String> descMap) {
         File file = new File(propPath);
         FileOutputStream outputStream = null;
         try {
@@ -75,7 +75,7 @@ public class PropertiesUtil {
             }
             outputStream = new FileOutputStream(file);
             if (null != props) {
-                sortProps(props).store(new BufferedWriter(new OutputStreamWriter(outputStream, "8859_1")));
+                sortProps(props).store(new BufferedWriter(new OutputStreamWriter(outputStream)),descMap);
             }
         } catch (IOException e) {
             logger.error("出现异常:", e);
@@ -177,12 +177,14 @@ class SortProperties extends Properties {
         return keyList.elements();
     }
 
-    public void store(BufferedWriter bw)
+    public void store(BufferedWriter bw,Map<String, String> descMap)
             throws IOException    {
         synchronized (this) {
             for (Enumeration e = keys(); e.hasMoreElements();) {
                 String key = (String)e.nextElement();
                 String val = (String)get(key);
+                bw.write("#" + (descMap.get(StringUtil.replace(key))==null?"":descMap.get(StringUtil.replace(key))));
+                bw.newLine();
                 bw.write(key + "=" + val);
                 bw.newLine();
             }
