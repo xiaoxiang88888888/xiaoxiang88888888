@@ -75,7 +75,7 @@ public class PropertiesUtil {
             }
             outputStream = new FileOutputStream(file);
             if (null != props) {
-                sortProps(props).store(outputStream, "");
+                sortProps(props).store(new BufferedWriter(new OutputStreamWriter(outputStream, "8859_1")));
             }
         } catch (IOException e) {
             logger.error("出现异常:", e);
@@ -191,5 +191,18 @@ class SortProperties extends Properties {
         }
         Collections.sort(keyList);
         return keyList.elements();
+    }
+
+    public void store(BufferedWriter bw)
+            throws IOException    {
+        synchronized (this) {
+            for (Enumeration e = keys(); e.hasMoreElements();) {
+                String key = (String)e.nextElement();
+                String val = (String)get(key);
+                bw.write(key + "=" + val);
+                bw.newLine();
+            }
+        }
+        bw.flush();
     }
 }
