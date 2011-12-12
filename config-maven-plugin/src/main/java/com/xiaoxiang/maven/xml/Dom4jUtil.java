@@ -47,27 +47,38 @@ public class Dom4jUtil {
      * @param path
      * @param isClassPath
      */
-    public Dom4jUtil(String path, boolean isClassPath) {
+    public Dom4jUtil(String templatePath, String path, boolean isClassPath) {
         this.configPath = path;
         InputStream inputStream = null;
-
         if (!isClassPath) {
+            String tempDir =templatePath+path;
             try {
-                inputStream = new FileInputStream(new File(path));
+                inputStream = new FileInputStream(new File(tempDir));
+                logger.info("configPath = " + (tempDir));
             } catch (FileNotFoundException e) {
-                logger.error("错误的配置文件路径:" + path, e);
+                logger.error("错误的配置文件路径:" + (tempDir), e);
             }
         } else {
+            logger.info("configPath = " + this.getClass().getResource("/" + configPath).getPath());
             inputStream = this.getClass().getResourceAsStream("/" + configPath);
         }
         parser(inputStream);
     }
 
     /**
+     * 使用绝对路径
+     *
+     * @param prefix
+     */
+    public Dom4jUtil(String prefix) {
+        this(prefix, DEFAULT_CONFIG_PATH, false);
+    }
+
+    /**
      * 默认从classPath加载相关配置文件
      */
     public Dom4jUtil() {
-        this(DEFAULT_CONFIG_PATH, true);
+        this("", DEFAULT_CONFIG_PATH, true);
     }
 
     /**
@@ -80,7 +91,7 @@ public class Dom4jUtil {
             logger.info("autoConfig.xml 文件不存在!");
             return;
         }
-        String templatePath = configPath.substring(0,configPath.lastIndexOf("/")+1);
+        String templatePath = configPath.substring(0, configPath.lastIndexOf("/") + 1);
         SAXReader reader = new SAXReader();
         propDescMap = new LinkedHashMap<String, String>();
         propDefaultMap = new LinkedHashMap<String, String>();
@@ -103,14 +114,13 @@ public class Dom4jUtil {
             Element gens = root.element(TAG_NAME_GENS);
             for (Iterator itr = gens.elementIterator(TAG_NAME_GEN); itr.hasNext(); ) {
                 Element e = (Element) itr.next();
-                templateMap.put(templatePath+e.attributeValue("template"), e.attributeValue("destfile"));
-                templateEncodeMap.put(templatePath+e.attributeValue("template"), e.attributeValue("encode"));
+                templateMap.put(templatePath + e.attributeValue("template"), e.attributeValue("destfile"));
+                templateEncodeMap.put(templatePath + e.attributeValue("template"), e.attributeValue("encode"));
             }
         } catch (DocumentException e) {
             logger.error("解析xml文件出错:", e);
         }
     }
-
 
 
     public String getConfigPath() {

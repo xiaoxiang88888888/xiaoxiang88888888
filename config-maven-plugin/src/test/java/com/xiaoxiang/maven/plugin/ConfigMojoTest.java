@@ -10,7 +10,7 @@ import java.io.File;
  * @author xiang.xiaox
  */
 
-public class ConfigMojoTest extends AbstractMojoTestCase {
+public class ConfigMojoTest extends AbstractMojoTestCase {	
     protected void setUp() throws Exception {
         super.setUp();
 

@@ -79,11 +79,13 @@ public class ConfigCompileMojo extends AbstractMojo {
      * 生成文件
      */
     public void genFiles() {
+        String prefixDir = this.project.getBasedir().getAbsolutePath();
         Dom4jUtil dom4jUtil;
+        String templatePath= prefixDir +"/target/classes/";
         if (StringUtil.isEmpty(configPath)) {
-            dom4jUtil = new Dom4jUtil();
+            dom4jUtil = new Dom4jUtil(prefixDir);
         } else {
-            dom4jUtil = new Dom4jUtil(configPath, true);
+            dom4jUtil = new Dom4jUtil(templatePath,configPath, false);
         }
         PropertiesUtil propertiesUtil;
         if (StringUtil.isEmpty(propertiesPath)) {
@@ -95,11 +97,10 @@ public class ConfigCompileMojo extends AbstractMojo {
             VelocityUtil velocityUtil = new VelocityUtil();
             velocityUtil.setDom4jUtil(dom4jUtil);
             velocityUtil.setPropertiesUtil(propertiesUtil);
-            velocityUtil.setClassPath(true);
-            //String templatePath = getClass().getResource("/")+configPath.substring(0,configPath.lastIndexOf("/")+1);
-            //velocityUtil.setTemplatePath(templatePath);
+            velocityUtil.setClassPath(false);
+            velocityUtil.setTemplatePath(templatePath);
             velocityUtil.init();
-            velocityUtil.mergeTemplate();
+            velocityUtil.mergeTemplate(templatePath);
         } else {
             logger.error("配置的模板类型 " + templateType + " 不对!");
         }

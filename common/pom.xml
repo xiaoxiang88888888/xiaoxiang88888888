@@ -189,8 +189,8 @@
                 <version>1.0</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <templateType>freemarker</templateType>
-                    <propertiesPath>/home/admin/xiaoxiang.properties</propertiesPath>
+                    <templateType>velocity</templateType>
+                   <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
                 </configuration>
                 <executions>
                     <execution>
