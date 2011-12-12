@@ -1,13 +1,11 @@
 package com.xiaoxiang.maven.plugin;
 
+import com.xiaoxiang.maven.war.WarUtil;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.maven.project.MavenProject;
-
-import java.util.Properties;
 
 /**
  * 说明
@@ -16,15 +14,9 @@ import java.util.Properties;
  * @goal configWar
  */
 
-public class ConfigMojo extends AbstractMojo {
-    private final Logger logger = LoggerFactory.getLogger(ConfigMojo.class);
+public class ConfigWarMojo extends AbstractMojo {
+    private final Logger logger = LoggerFactory.getLogger(ConfigWarMojo.class);
 
-    /**
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    MavenProject project;
 
     /**
      * 自定义的属性文件,用于动态生成其它文件的数据源
@@ -56,12 +48,17 @@ public class ConfigMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        Properties propertie = System.getProperties();
-        logger.info("//////////////finalName=" + propertie);
         getLog().info("//////////////propertiesPath=" + propertiesPath);
         getLog().info("//////////////templateType=" + templateType);
         getLog().info("//////////////encoding=" + encoding);
         getLog().info("//////////////finalName=" + finalName);
+        genFiles();
+    }
 
+    /**
+     * 生成文件
+     */
+    private void genFiles() {
+       WarUtil.getFiles();
     }
 }

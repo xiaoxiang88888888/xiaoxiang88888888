@@ -16,7 +16,7 @@ import java.io.File;
  * @author xiang.xiaox
  */
 
-public class ConfigMojoTest extends AbstractMojoTestCase {
+public class ConfigCompileMojoTest extends AbstractMojoTestCase {
 
 
   /*  public void testConfigMojo() throws Exception {
