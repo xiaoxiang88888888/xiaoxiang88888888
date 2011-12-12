@@ -105,4 +105,8 @@ public class ConfigCompileMojo extends AbstractMojo {
             logger.error("配置的模板类型 " + templateType + " 不对!");
         }
     }
+
+    public void setProject(MavenProject project) {
+        this.project = project;
+    }
 }

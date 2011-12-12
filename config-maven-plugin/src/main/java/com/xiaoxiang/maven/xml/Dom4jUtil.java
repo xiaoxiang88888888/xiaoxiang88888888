@@ -51,7 +51,7 @@ public class Dom4jUtil {
         this.configPath = path;
         InputStream inputStream = null;
         if (!isClassPath) {
-            String tempDir =templatePath+path;
+            String tempDir =templatePath+"/"+path;
             try {
                 inputStream = new FileInputStream(new File(tempDir));
                 logger.info("configPath = " + (tempDir));

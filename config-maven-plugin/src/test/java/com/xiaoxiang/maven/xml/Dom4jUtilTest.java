@@ -24,7 +24,7 @@ public class Dom4jUtilTest extends TestCase {
     }
 
     public void testParse2() {
-        Dom4jUtil dom4jUtil = new Dom4jUtil("META-INF" + File.separator + "autoconfig" + File.separator + "autoConfig2.xml",true);
+        Dom4jUtil dom4jUtil = new Dom4jUtil("","META-INF" + File.separator + "autoconfig" + File.separator + "autoConfig2.xml",true);
         System.out.println(dom4jUtil.getPropDefaultMap());
         System.out.println(dom4jUtil.getPropDescMap());
         System.out.println(dom4jUtil.getTemplateMap());
