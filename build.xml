@@ -2,23 +2,35 @@
 <project name="autoConfigWar" default="defalut" basedir=".">
 
     <property name="war.dir" value="target"/>
+    <property name="war.name" value="webapp.war"/>
     <!--模板生成后,打包到release-->
     <property name="war.to.dir" value="release"/>
     <property name="war.temp.dir" value="${war.dir}/temp"/>
-    <property name="lib.dir" value="${war.dir}/WEB-INF/lib"/>
+    <property name="lib.dir" value="${war.temp.dir}/WEB-INF/lib"/>
     <property name="lib.temp.dir" value="${lib.dir}/temp"/>
     <property name="template.dir" value="META-INF/autoconfig"/>
     <property name="config.file" value="${template.dir}/autoConfig.xml"/>
     <property name="properties.file" value="${user.home}/autoConfig.properties"/>
+    <property name="autoConfig.dir" value="config-maven-plugin/"/>
 
     <path id="lib.class.path">
-        <fileset dir="${lib.dir}" includes="*.jar"/>
+        <fileset dir="./lib" includes="*.jar"/>
     </path>
 
     <!-- =================================================================== -->
     <!-- 解压war包到临时目录                                                -->
     <!-- =================================================================== -->
-    <target name="unWar" description="解压war包到临时目录">
+    <target name="unWar" depends="clean" description="解压war包到临时目录">
+        <unwar src="${war.dir}/${war.name}" dest="${war.temp.dir}"/>
+        <!-- 调用相关任务,用于生成模板       -->
+        <taskdef name="autoConfig" classname="com.xiaoxiang.maven.plugin.ConfigWar"
+                 classpathref="lib.class.path">
+
+        </taskdef>
+
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"/>
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/service-1.0-SNAPSHOT.jar"/>
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/task-1.0-SNAPSHOT.jar"/>
 
     </target>
 
