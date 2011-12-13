@@ -11,7 +11,9 @@
     <property name="template.dir" value="META-INF/autoconfig"/>
     <property name="config.file" value="${template.dir}/autoConfig.xml"/>
     <property name="properties.file" value="${user.home}/autoConfig.properties"/>
+
     <property name="autoConfig.dir" value="config-maven-plugin/"/>
+    <property name="template.type" value="velocity"/>
 
     <path id="lib.class.path">
         <fileset dir="./lib" includes="*.jar"/>
@@ -25,12 +27,38 @@
         <!-- 调用相关任务,用于生成模板       -->
         <taskdef name="autoConfig" classname="com.xiaoxiang.maven.plugin.ConfigWar"
                  classpathref="lib.class.path">
-
         </taskdef>
-
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${war.temp.dir}"/>
         <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${lib.temp.dir}"/>
+        <jar destfile="${lib.dir}/common-1.0-SNAPSHOT.jar">
+            <fileset dir="${lib.temp.dir}"/>
+        </jar>
+        <delete dir="${lib.temp.dir}"/>
         <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/service-1.0-SNAPSHOT.jar"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${lib.temp.dir}"/>
+        <jar destfile="${lib.dir}/service-1.0-SNAPSHOT.jar">
+            <fileset dir="${lib.temp.dir}"/>
+        </jar>
+        <delete dir="${lib.temp.dir}"/>
         <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/task-1.0-SNAPSHOT.jar"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${lib.temp.dir}"/>
+        <jar destfile="${lib.dir}/task-1.0-SNAPSHOT.jar">
+            <fileset dir="${lib.temp.dir}"/>
+        </jar>
+        <delete dir="${lib.temp.dir}"/>
 
     </target>
 
