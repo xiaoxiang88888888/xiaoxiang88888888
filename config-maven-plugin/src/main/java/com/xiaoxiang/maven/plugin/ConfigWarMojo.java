@@ -21,14 +21,14 @@ public class ConfigWarMojo extends AbstractMojo {
     /**
      * 自定义的属性文件,用于动态生成其它文件的数据源
      *
-     * @parameter expression="${propertiesPath}" default-value="${user.home}/xiaoxiang.properties"
+     * @parameter expression="${propertiesPath}" default-value="${user.home}/autoConfig.properties"
      */
     String propertiesPath;
 
     /**
      * 模块类型 freemarker 或者 velocity
      *
-     * @parameter expression="${templateType}" default-value="freemarker"
+     * @parameter expression="${templateType}" default-value="velocity"
      */
     String templateType;
 

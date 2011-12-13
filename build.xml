@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="autoConfigWar" default="defalut" basedir=".">
+
+    <property name="war.dir" value="target"/>
+    <!--模板生成后,打包到release-->
+    <property name="war.to.dir" value="release"/>
+    <property name="war.temp.dir" value="${war.dir}/temp"/>
+    <property name="lib.dir" value="${war.dir}/WEB-INF/lib"/>
+    <property name="lib.temp.dir" value="${lib.dir}/temp"/>
+    <property name="template.dir" value="META-INF/autoconfig"/>
+    <property name="config.file" value="${template.dir}/autoConfig.xml"/>
+    <property name="properties.file" value="${user.home}/autoConfig.properties"/>
+
+    <path id="lib.class.path">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- 解压war包到临时目录                                                -->
+    <!-- =================================================================== -->
+    <target name="unWar" description="解压war包到临时目录">
+
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- 清除生成的文件，保持干净                                                   -->
+    <!-- =================================================================== -->
+    <target name="clean" description="清除生成的文件，保持干净">
+        <delete dir="${war.temp.dir}"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 帮助                                                     -->
+    <!-- =================================================================== -->
+    <target name="defalut" description="默认的目标,什么都不干">
+        <echo>help!!!!!!!!!!!</echo>
+    </target>
+
+</project>
