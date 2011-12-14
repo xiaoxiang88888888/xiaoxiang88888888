@@ -31,7 +31,7 @@
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
-                    prefixDir="${basedir}/${war.temp.dir}"/>
+                    prefixDir="${basedir}/${war.temp.dir}/WEB-INF/classes"/>
         <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"

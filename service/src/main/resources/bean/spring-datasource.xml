@@ -73,15 +73,16 @@
         <property name="transactionManager">
             <ref bean="transactionManager"/>
         </property>
+		<!--有异常也回滚-->
         <property name="transactionAttributes">
             <props>
                 <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
-                <prop key="add*">PROPAGATION_REQUIRED</prop>
-                <prop key="insert*">PROPAGATION_REQUIRED</prop>
-                <prop key="save*">PROPAGATION_REQUIRED</prop>
-                <prop key="delete*">PROPAGATION_REQUIRED</prop>
-                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
             </props>
         </property>
     </bean>

@@ -7,6 +7,8 @@ import com.xiaoxiang.maven.xml.Dom4jUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+
 /**
  * 说明
  *
@@ -54,6 +56,12 @@ public class ConfigWar {
         Dom4jUtil dom4jUtil;
         String templatePath = prefixDir;
         logger.info("prefixDir="+prefixDir);
+        String path = prefixDir+"/"+configPath;
+        File file = new File(path);
+        if(!file.exists()){
+            logger.info(path+",文件不存在,跳过");
+           return; 
+        }
         if (StringUtil.isEmpty(configPath)) {
             dom4jUtil = new Dom4jUtil(prefixDir);
         } else {
