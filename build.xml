@@ -22,17 +22,19 @@
     <!-- =================================================================== -->
     <!-- 解压war包到临时目录                                                -->
     <!-- =================================================================== -->
-    <target name="unWar" depends="clean" description="解压war包到临时目录">
+    <target name="genWar" depends="clean" description="解压war包到临时目录">
         <unwar src="${war.dir}/${war.name}" dest="${war.temp.dir}"/>
         <!-- 调用相关任务,用于生成模板       -->
         <taskdef name="autoConfig" classname="com.xiaoxiang.maven.plugin.ConfigWar"
                  classpathref="lib.class.path">
         </taskdef>
+        <!--war包模板生成-->
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${war.temp.dir}/WEB-INF/classes"/>
         <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"/>
+        <!--jar模板生成-->
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
@@ -59,7 +61,10 @@
             <fileset dir="${lib.temp.dir}"/>
         </jar>
         <delete dir="${lib.temp.dir}"/>
-
+        <!--war包生成,并放到相应目录-->
+        <war destfile="${war.to.dir}/${war.name}">
+            <fileset dir="${war.temp.dir}"/>
+        </war>
     </target>
 
 
