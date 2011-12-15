@@ -1,7 +1,7 @@
 http://code.google.com/p/java-tester/
 
-http://b2b-doc.alibaba-inc.com/pages/viewpage.action?pageId=58549420
-http://b2b-doc.alibaba-inc.com/pages/viewpage.action?pageId=58549425
+http://b2b-doc.xxxxxx-inc.com/pages/viewpage.action?pageId=58549420
+http://b2b-doc.xxxxxx-inc.com/pages/viewpage.action?pageId=58549425
 
 http://www.doc88.com/p-28545713210.html
 
