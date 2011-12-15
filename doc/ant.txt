@@ -17,4 +17,8 @@ http://blog.csdn.net/caesarzou/article/details/5672415
 而%ANN_OPTS%这个环境变量在批处理之前并没有得到设置，看来这就是ANT留给我们的操作参数变量，在ant脚 本中加入
 ANT_OPTS="$ANT_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y"
 
+//
+ant -f build-deploy.xml -DappName=webapp
+ant -f build-deploy.xml -DappName=webapp  deploy
+
 
