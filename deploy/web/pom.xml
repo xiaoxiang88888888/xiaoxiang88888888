@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.xiaoxiang</groupId>
+        <artifactId>deploy</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <!--模块信息-->
+    <groupId>com.xiaoxiang</groupId>
+    <artifactId>deploy.web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>deploy.web</name>
+    <url>http://maven.apache.org</url>
+    <!--属性-->
+    <properties>
+        <release-directory>${project.build.directory}/release/target</release-directory>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xiaoxiang</groupId>
+            <artifactId>web</artifactId>
+            <version>${webapp-version}</version>
+            <scope>runtime</scope>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+    	<profile>
+            <id>config</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>!release</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--测试自定义插件-->
+                    <plugin>
+                        <groupId>com.xiaoxiang.maven</groupId>
+                        <artifactId>config-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <templateType>velocity</templateType>
+                            <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>config</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!-- Release profile仅仅把资源文件拷贝到release目录中去，不执行auto-conf -->
+        <!--在部署应用之前会先执行auto-conf -->
+        <!-- 使用 "mvn install -Denv=release" 来激活 release profile -->
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>release</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- 拷贝war包 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-version}</version>
+                        <executions>
+                            <execution>
+                                <id>copy-war</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.xiaoxiang</groupId>
+                                            <artifactId>web</artifactId>
+                                            <version>${webapp-version}</version>
+                                            <type>war</type>
+                                        </artifactItem>
+                                    </artifactItems>
+                                    <outputDirectory>${release-directory}</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>true</overWriteSnapshots>
+                                    <stripVersion>true</stripVersion>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- 把资源文件打到web-deploy.jar中去 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+						<version>${maven-antrun-version}</version>
+                        <executions>
+                            <execution>
+                                <id>deploy-package</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <jar destfile="${release-directory}/web-deploy.jar">
+                                            <zipfileset dir="${project.basedir}/conf/META-INF" prefix="META-INF"/>
+                                            <zipfileset dir="${project.basedir}">
+                                                <include name="conf/**"/>
+                                                <exclude name="conf/META-INF/**"/>
+                                            </zipfileset>
+                                            <zipfileset dir="${project.basedir}" filemode="755">
+                                                <include name="bin/**"/>
+                                            </zipfileset>
+                                        </jar>                                        
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

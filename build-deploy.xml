@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="deploy" default="defalut" basedir=".">
+
+    <property name="target.dir" value="target"/>
+
+    <!-- 判断操作系统-->
+    <condition property="isMac">
+        <os family="mac"/>
+    </condition>
+    <condition property="isWindows">
+        <os family="windows"/>
+    </condition>
+    <condition property="isUnix">
+        <os family="unix"/>
+    </condition>
+
+    <path id="lib.class.path">
+        <fileset dir="./lib" includes="*.jar"/>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- 快捷生成webapp包                                              -->
+    <!-- =================================================================== -->
+    <target name="deploy-webapp">
+        <antcall target="deploy">
+            <param name="appName" value="webapp"/>
+        </antcall>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 快捷生成task包                                              -->
+    <!-- =================================================================== -->
+    <target name="deploy-task">
+        <antcall target="deploy">
+            <param name="appName" value="task"/>
+        </antcall>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 快捷生成webapp包                                              -->
+    <!-- =================================================================== -->
+    <target name="deploy-notify">
+        <antcall target="deploy">
+            <param name="appName" value="notify"/>
+        </antcall>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 生成应用包                                                -->
+    <!-- =================================================================== -->
+    <target name="deploy" depends="clean" description="生成应用包">
+        <!--相关参数 由外部带入的
+            appName 应用名称 如webapp,task,notify
+         -->
+        <!--引用相关包-->
+        <property name="ant-contrib.jar" location="./lib/ant-contrib-1.0b3.jar"/>
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="${ant-contrib.jar}"/>
+        <if>
+            <equals arg1="${appName}" arg2="webapp"/>
+            <then>
+                <echo>${appName} value is webapp</echo>
+                <antcall target="genReleaseApp">
+                    <param name="appName" value="${appName}"/>
+                    <param name="projectDir" value="${basedir}/deploy/web"/>
+                </antcall>
+            </then>
+            <elseif>
+                <equals arg1="${appName}" arg2="task"/>
+                <then>
+                    <echo>${appName} value is task</echo>
+                    <antcall target="genReleaseApp">
+                        <param name="appName" value="${appName}"/>
+                        <param name="projectDir" value="${basedir}/deploy/task"/>
+                    </antcall>
+                </then>
+            </elseif>
+            <elseif>
+                <equals arg1="${appName}" arg2="notify"/>
+                <then>
+                    <echo>${appName} value is notify</echo>
+                    <antcall target="genReleaseApp">
+                        <param name="appName" value="${appName}"/>
+                        <param name="projectDir" value="${basedir}/deploy/notify"/>
+                    </antcall>
+                </then>
+            </elseif>
+            <else>
+                <echo>${appName} 不是有效的部署名,请填写-DappName=webapp,或-DappName=task,或-DappName=notify</echo>
+            </else>
+        </if>
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- 生成具体应用包                                                   -->
+    <!-- =================================================================== -->
+    <target name="genReleaseApp" description="生成具体应用包">
+        <echo message="make project:${appName}"/>
+        <mkdir dir="${target.dir}"/>
+        <!--<antcall target="execCommand"/>-->
+        <echo message="${projectDir}/target/release/target"/>
+        <copy todir="${target.dir}">
+            <fileset dir="${projectDir}/target/release/target"/>
+        </copy>
+        <echo message="生成成功"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 调用相应的操作系统命令                                                   -->
+    <!-- =================================================================== -->
+    <target name="execCommand" description="调用相应的操作系统命令">
+        <if>
+            <equals arg1="${isWindows}" arg2="true"/>
+            <then>
+                <exec executable="cmd.exe">
+                    <arg line="/c mvn clean install -Dmaven.test.skip -Denv=release -B"/>
+                </exec>
+            </then>
+            <elseif>
+                <equals arg1="${isUnix}" arg2="true"/>
+                <then>
+                    <exec command="mvn clean install -Dmaven.test.skip -Denv=release -B"/>
+                </then>
+            </elseif>
+            <else>
+                <echo>暂不支持此操作系统类型:</echo>
+            </else>
+        </if>
+    </target>
+
+
+    <!-- =================================================================== -->
+    <!-- 清除生成的文件，保持干净                                                   -->
+    <!-- =================================================================== -->
+    <target name="clean" description="清除生成的文件，保持干净">
+        <delete dir="${target.dir}"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 帮助                                                     -->
+    <!-- =================================================================== -->
+    <target name="defalut" description="默认的目标,什么都不干">
+        <echo>${isMac}</echo>
+        <echo>${isWindows}</echo>
+        <echo>${isUnix}</echo>
+        <echo>help!!!!!!!!!!!</echo>
+    </target>
+
+</project>
