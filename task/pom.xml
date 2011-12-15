@@ -23,4 +23,48 @@
             <version>${service-version}</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>!release</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--测试自定义插件-->
+                    <plugin>
+                        <groupId>com.xiaoxiang.maven</groupId>
+                        <artifactId>config-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <templateType>velocity</templateType>
+                            <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>config</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>release</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
 </project>
