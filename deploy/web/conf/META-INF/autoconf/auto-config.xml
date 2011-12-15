@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK"?>
+<config>
+	<group name="rpm">
+	</group>
+	<script>
+		<generate template="bin/base_env.sh.vm" destfile="bin/base_env.sh" charset="GBK" />
+		<generate template="conf/httpd/httpd_base.conf.vm" destfile="conf/httpd/httpd_base.conf" charset="GBK" />
+		<generate template="conf/httpd/httpd.conf.vm" destfile="conf/httpd/httpd.conf" charset="GBK" />
+		<generate template="conf/httpd/mod_alibaba.conf.vm" destfile="conf/httpd/mod_alibaba.conf" charset="GBK" />
+		<generate template="conf/jetty/conf/jetty-logging.xml.vm" destfile="conf/jetty/conf/jetty-logging.xml" charset="GBK" />
+		<generate template="conf/jetty/conf/jetty.xml.vm" destfile="conf/jetty/conf/jetty.xml" charset="GBK" />
+		<generate template="conf/jetty/conf/start.ini.vm" destfile="conf/jetty/conf/start.ini" charset="GBK" />
+		<generate template="conf/hummock/hummockclient.conf.vm" destfile="conf/hummock/hummockclient.conf" charset="UTF-8" />
+	</script>
+</config>
