@@ -109,7 +109,7 @@ get_pid() {
 
 check_monitor_ok() {
 	##检查monitor
-	CHECK_STARTUP_URL="http://127.0.0.1:${APP_PORT}/home/ok.htm"
+	CHECK_STARTUP_URL="http://127.0.0.1:${APP_PORT}/index.json"
 	STARTUP_SUCCESS_MSG="ok"
 	
 	if  $production_mode ; then 

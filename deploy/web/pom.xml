@@ -127,6 +127,7 @@
                                             <zipfileset dir="${project.basedir}" filemode="755">
                                                 <include name="bin/**"/>
                                             </zipfileset>
+                                            <zipfileset dir="${project.basedir}/../../static" prefix="static"/>
                                         </jar>                                        
                                     </tasks>
                                 </configuration>
