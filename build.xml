@@ -22,10 +22,21 @@
         <fileset dir="./lib" includes="*.jar"/>
     </path>
 
+    <condition property="deployHome">
+        <!--如果属性deploy.home不存在则返回false-->
+        <isset property="deploy.home"/>
+    </condition>
+
     <!-- =================================================================== -->
     <!-- 解压war包到临时目录                                                -->
     <!-- =================================================================== -->
-    <target name="genWar" depends="clean" description="解压war包到临时目录">
+    <target name="genWar" depends="clean" description="解压war包到临时目录" if="deployHome">
+        <!--引用相关包-->
+        <property name="ant-contrib.jar" location="./lib/ant-contrib-1.0b3.jar"/>
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="${ant-contrib.jar}"/>
+        <if>
+           <equals arg1="${deploy.home}" arg2=""/>
+        </if>
         <!-- 调用相关任务,用于生成模板       -->
         <taskdef name="autoConfig" classname="com.xiaoxiang.maven.plugin.ConfigWar"
                  classpathref="lib.class.path">
@@ -98,6 +109,7 @@
     <target name="clean" description="清除生成的文件，保持干净">
         <delete dir="${war.temp.dir}"/>
         <delete dir="${deploy.home}"/>
+        <echo message="deploy.home=${deploy.home},如果不是具体的路径,将什么事都不干"/>
     </target>
 
     <!-- =================================================================== -->
