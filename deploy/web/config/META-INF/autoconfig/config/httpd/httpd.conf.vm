@@ -55,7 +55,7 @@ MaxRequestsPerChild 20000
 NameVirtualHost *:${deploy_apache_port}
 <VirtualHost *:${deploy_apache_port} >
     #if(${deploy_production} != "true")
-	DocumentRoot /home/admin/musketeer/static/html
+	DocumentRoot ${deploy_web_home}
     #else
     DocumentRoot ${deploy_web_home}
     #end
@@ -76,51 +76,6 @@ NameVirtualHost *:${deploy_apache_port}
     
     RewriteRule ^/$  /index.shtml [L]
     RewriteRule ^/index\.html$ /index.shtml [L]
-    
-    RewriteRule ^/list/(.*)/ /list/index.shtml?category_id=$1 [L]
-    RewriteRule ^/list/(.*)/index\.html /list/index.shtml?category_id=$1 [L]
-
-    RewriteRule ^/detail/(.*)/ /detail/index.shtml?coupons_id=$1 [L]
-    RewriteRule ^/detail/(.*)/index\.html /detail/index.shtml?coupons_id=$1 [L]
-
-    ProxyPassMatch ^/(.*\.html)$ !
-    ProxyPassMatch ^/(.*\.xml)$ !
-    ProxyPassMatch ^/(.*\.ico)$ !
-    ProxyPassMatch ^/(.*\.shtml)$ !
-    ProxyPassMatch ^/(.*/)$ ! 
-    
-    ProxyPass / http://localhost:${deploy_app_port}/ min=5 smax=16 max=64 ttl=600 timeout=30
-</VirtualHost>
-
-<VirtualHost *:${deploy_apache_port} >
-    #if(${deploy_production} != "true")
-	DocumentRoot /home/admin/musketeer/static/html
-    #else
-    DocumentRoot ${deploy_web_home}
-    #end
-    
-    ServerName  ${deploy_taoapp_web_domain}
-    #if(${deploy_production} != "true")
-    LogLevel info
-    #else
-    LogLevel error
-    #end
-    
-    ErrorLog ${deploy_output}/logs/apache-ucs-error.log
-    RewriteEngine on
-    RewriteLogLevel 0
-    RewriteLog ${deploy_output}/logs/rewrite.log
-    ProxyRequests Off
-    ProxyPreserveHost On
-    
-    RewriteRule ^/$  /index.shtml [L]
-    RewriteRule ^/index\.html$ /index.shtml [L]
-    
-    RewriteRule ^/list/(.*)/ /list/index.shtml?category_id=$1 [L]
-    RewriteRule ^/list/(.*)/index\.html /list/index.shtml?category_id=$1 [L]
-
-    RewriteRule ^/detail/(.*)/ /detail/index.shtml?coupons_id=$1 [L]
-    RewriteRule ^/detail/(.*)/index\.html /detail/index.shtml?coupons_id=$1 [L]
 
     ProxyPassMatch ^/(.*\.html)$ !
     ProxyPassMatch ^/(.*\.xml)$ !
@@ -133,7 +88,7 @@ NameVirtualHost *:${deploy_apache_port}
 
 <VirtualHost *:80>
     #if(${deploy_production} != "true")
-    DocumentRoot /home/admin/musketeer/static/assets
+    DocumentRoot ${deploy_static_home}
     #else
     DocumentRoot ${deploy_static_home}
     #end

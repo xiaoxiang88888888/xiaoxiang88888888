@@ -1,7 +1,7 @@
 #=============必须的外界环境配置======================
 
 # 1,JAVA_HOME			JAVA安装目录,例子:/home/admin/xiaoxiang/tools/java
-# 2,HTTPD_HOME			Apache安装目录,例子:/home/admin/xiaoxiang/tools/httpd
+# 2,HTTPD_HOME			Apache安装目录,例子:/home/admin/xiaoxiang/tools/httpd2
 # 3,JETTY_HOME     		Jetty安装目录,例子:/home/admin/xiaoxiang/tools/jetty
 # 4,JETTY_SERVER_HOME	Jetty工作目录,比如tmp,webapps目录
 # 5,OUTPUT_HOME			工程日志输出路径
@@ -20,7 +20,7 @@ PRODUCTION=${deploy_production}
 APACHE_PORT=${deploy_apache_port}
 APP_PORT=${deploy_app_port}
 DEBUG_PORT=${deploy_debug_port}
-APP_NAME=webapp
+APP_NAME=web
 UNIX_USER=${deploy_user}
 
 JAVA_OPTS_EXT=" -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dapplication.codeset=UTF-8 -Dmonitor.enable=true -Dmonitor.exclog.enable=true -Dmonitor.biz.interval=120 -Dmonitor.debug=false -Djava.util.logging.config.file=$DEPLOY_HOME/conf/general/logging.properties"

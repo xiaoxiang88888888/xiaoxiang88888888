@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * velocity渲染
@@ -69,6 +70,13 @@ public class VelocityUtil {
             String description = propDescMap.get(key);
             String value = propertiesUtil.getProps(key, defaultValue, description);
             context.put(StringUtil.replace(key), value);
+        }
+        //加入系统属性
+        Properties properties = System.getProperties();
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            String key = entry.getKey().toString();
+            String defaultValue = entry.getValue().toString();
+            context.put(StringUtil.replace(key), defaultValue);
         }
     }
 

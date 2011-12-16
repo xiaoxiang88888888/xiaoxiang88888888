@@ -12,13 +12,13 @@
         <prop name="deploy.app.port" defaultValue="8088" description="jetty开放的端口" />
         <prop name="deploy.debug.port" defaultValue="8000" description="jettyDebug开放的端口" />
 
-        <prop name="deploy.home" defaultValue="${user.home}/webdeploy" description="打包安装的目的文件夹" />
-        <prop name="deploy.output" defaultValue="${user.home}/webdeploy/output" description="Jetty，apache日志等输入目录" />
+        <prop name="deploy.home" defaultValue="/home/admin/webdeploy" description="打包安装的目的文件夹" />
+        <prop name="deploy.output" defaultValue="/home/admin/webdeploy/output" description="Jetty，apache日志等输入目录" />
 
         <prop name="deploy.web.domain" defaultValue="www.xiaoxiang.com" description="动态资源所启用的域名" />
-        <prop name="deploy.web.home" defaultValue="${user.home}/webdeploy/static" description="静态资源所启在的目录" />
+        <prop name="deploy.web.home" defaultValue="/home/admin/webdeploy/static" description="静态资源所启在的目录" />
         <prop name="deploy.static.domain" defaultValue="static.xiaoxiang.com" description="静态资源所启用的域名" />
-        <prop name="deploy.static.home" defaultValue="${user.home}/webdeploy/static" description="静态资源所在的目录" />
+        <prop name="deploy.static.home" defaultValue="/home/admin/webdeploy/static" description="静态资源所在的目录" />
 
         <prop name="deploy.production" defaultValue="false" description="是否是生产环境" />
     </props>
