@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <props name="deploy">
+        <prop name="deploy.apache.home" defaultValue="/home/admin/xiaoxiang/tools/httpd2" description="apache所在的目录" />
+        <prop name="deploy.java.home" defaultValue="/home/admin/xiaoxiang/tools/java" description="JDK所在的目录 " />
+        <prop name="deploy.jetty.home" defaultValue="/home/admin/xiaoxiang/tools/jetty" description="Jetty所在的目录 " />
+
+        <prop name="deploy.user" defaultValue="admin" description="用户" />
+        <prop name="deploy.user.group" defaultValue="admin" description="用户所在组" />
+
+        <prop name="deploy.apache.port" defaultValue="80" description="apache开放的端口" />
+        <prop name="deploy.app.port" defaultValue="8088" description="jetty开放的端口" />
+        <prop name="deploy.debug.port" defaultValue="8000" description="jettyDebug开放的端口" />
+
+        <prop name="deploy.home" defaultValue="${user.home}/webdeploy" description="打包安装的目的文件夹" />
+        <prop name="deploy.output" defaultValue="${user.home}/webdeploy/output" description="Jetty，apache日志等输入目录" />
+
+        <prop name="deploy.web.domain" defaultValue="www.xiaoxiang.com" description="动态资源所启用的域名" />
+        <prop name="deploy.web.home" defaultValue="${user.home}/webdeploy/static" description="静态资源所启在的目录" />
+        <prop name="deploy.static.domain" defaultValue="static.xiaoxiang.com" description="静态资源所启用的域名" />
+        <prop name="deploy.static.home" defaultValue="${user.home}/webdeploy/static" description="静态资源所在的目录" />
+
+        <prop name="deploy.production" defaultValue="false" description="是否是生产环境" />
+    </props>
+    <gens>
+        <gen template="bin/base_env.sh.vm"
+             destfile="bin/base_env.sh"
+             charset="UTF-8"/>
+        <gen template="config/httpd/httpd_base.conf.vm"
+             destfile="config/httpd/httpd_base.conf"
+             charset="UTF-8"/>
+        <gen template="config/httpd/httpd.conf.vm"
+             destfile="config/httpd/httpd.conf"
+             charset="UTF-8"/>
+        <gen template="config/jetty/conf/jetty-logging.xml.vm"
+             destfile="config/jetty/conf/jetty-logging.xml"
+             charset="UTF-8"/>
+        <gen template="config/jetty/conf/jetty.xml.vm"
+             destfile="config/jetty/conf/jetty.xml"
+             charset="UTF-8"/>
+        <gen template="config/jetty/conf/start.ini.vm"
+             destfile="config/jetty/conf/start.ini"
+             charset="UTF-8"/>
+    </gens>
+</config>
