@@ -21,21 +21,21 @@
     </bean>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-          <property name="driverClassName" value="${xiaoxiang.jdbc.driverClassName}" />
-          <property name="url" value="${xiaoxiang.jdbc.url}" />
-          <property name="username" value="${xiaoxiang.jdbc.username}" />
-          <property name="password" value="${xiaoxiang.jdbc.password}" />
-          <property name="minIdle" value="${xiaoxiang.jdbc.minIdle}" />
-          <property name="maxIdle" value="${xiaoxiang.jdbc.maxIdle}" />
-          <property name="maxActive" value="${xiaoxiang.jdbc.maxActive}" />
-          <property name="maxWait" value="${xiaoxiang.jdbc.maxWait}" />
-          <property name="testWhileIdle" value="${xiaoxiang.jdbc.testWhileIdle}" />
-          <property name="testOnReturn" value="${xiaoxiang.jdbc.testOnReturn}" />
-          <property name="testOnBorrow" value="${xiaoxiang.jdbc.testOnBorrow}" />
-          <property name="minEvictableIdleTimeMillis" value="${xiaoxiang.jdbc.minEvictableIdleTimeMillis}" />
-          <property name="timeBetweenEvictionRunsMillis" value="${xiaoxiang.jdbc.timeBetweenEvictionRunsMillis}" />
+          <property name="driverClassName" value="${jdbc.driverClassName}" />
+          <property name="url" value="${jdbc.url}" />
+          <property name="username" value="${jdbc.username}" />
+          <property name="password" value="${jdbc.password}" />
+          <property name="minIdle" value="${jdbc.minIdle}" />
+          <property name="maxIdle" value="${jdbc.maxIdle}" />
+          <property name="maxActive" value="${jdbc.maxActive}" />
+          <property name="maxWait" value="${jdbc.maxWait}" />
+          <property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+          <property name="testOnReturn" value="${jdbc.testOnReturn}" />
+          <property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+          <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+          <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
           <!--生产环境需要去掉-->
-        <!-- <property name="validationQuery" value="${xiaoxiang.jdbc.validationQuery}" />-->
+        <!-- <property name="validationQuery" value="${jdbc.validationQuery}" />-->
     </bean>
 
     <!-- iBatis SQL map定义 -->
@@ -90,7 +90,7 @@
     <!--抽象action层,主要注入一些常量-->
     <bean id="baseAction" abstract="true">
         <!-- 静态资源版本号 -->
-        <property name="staticVersion" value="${xiaoxiang.server.static.version}"/>
+        <property name="staticVersion" value="${server.static.version}"/>
     </bean>
 
 

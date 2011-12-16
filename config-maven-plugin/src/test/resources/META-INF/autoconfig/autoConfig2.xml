@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config description="common模块(自动配置)">
     <props name="datasource">
-        <prop name="xiaoxiang.jdbc.driverClassName" defaultValue="com.mysql.xiaoxiang.jdbc.Driver"
+        <prop name="jdbc.driverClassName" defaultValue="com.mysql.jdbc.Driver"
               description="JDBC驱动名称"/>
-        <prop name="xiaoxiang.jdbc.url"
+        <prop name="jdbc.url"
               defaultValue="jdbc:mysql://10.19.20.6:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"
               description="数据库连接URL"/>
-        <prop name="xiaoxiang.jdbc.username" defaultValue="root"
+        <prop name="jdbc.username" defaultValue="root"
               description="数据库用户名"/>
-        <prop name="xiaoxiang.jdbc.password" defaultValue="4389758"
+        <prop name="jdbc.password" defaultValue="4389758"
               description="数据库密码"/>
-        <prop name="xiaoxiang.jdbc.minIdle" defaultValue="5"
+        <prop name="jdbc.minIdle" defaultValue="5"
               description="对象池中对象最小个数"/>
-        <prop name="xiaoxiang.jdbc.maxIdle" defaultValue="1000"
+        <prop name="jdbc.maxIdle" defaultValue="1000"
               description="最大等待连接中的数量,设 0 为没有限制 （对象池中对象最大个数）"/>
-        <prop name="xiaoxiang.jdbc.maxActive" defaultValue="100"
+        <prop name="jdbc.maxActive" defaultValue="100"
               description="可以从对象池中取出的对象最大个数，为0则表示没有限制，默认为8"/>
-        <prop name="xiaoxiang.jdbc.maxWait" defaultValue="10000"
+        <prop name="jdbc.maxWait" defaultValue="10000"
               description="最大等待秒数, 单位为 ms, 超过时间会丟出错误信息"/>
-        <prop name="xiaoxiang.jdbc.testWhileIdle" defaultValue="true"
+        <prop name="jdbc.testWhileIdle" defaultValue="true"
               description="空闲时是否进行验证，检查对象是否有效"/>
-        <prop name="xiaoxiang.jdbc.testOnReturn" defaultValue="true"
+        <prop name="jdbc.testOnReturn" defaultValue="true"
               description="返回对象时是否进行验证，检查对象是否有效"/>
-        <prop name="xiaoxiang.jdbc.testOnBorrow" defaultValue="true"
+        <prop name="jdbc.testOnBorrow" defaultValue="true"
               description="取得对象时是否进行验证，检查对象是否有效"/>
-        <prop name="xiaoxiang.jdbc.minEvictableIdleTimeMillis" defaultValue="100"
+        <prop name="jdbc.minEvictableIdleTimeMillis" defaultValue="100"
               description="大于0 ，进行连接空闲时间判断，或为0，对空闲的连接不进行验证；默认30分钟"/>
-        <prop name="xiaoxiang.jdbc.timeBetweenEvictionRunsMillis" defaultValue="1"
+        <prop name="jdbc.timeBetweenEvictionRunsMillis" defaultValue="1"
               description="失效检查线程运行时间间隔，如果小于等于0，不会启动检查线程，默认-1"/>
-        <prop name="xiaoxiang.jdbc.validationQuery" defaultValue="SELECT COUNT(*) FROM DUAL"
+        <prop name="jdbc.validationQuery" defaultValue="SELECT COUNT(*) FROM DUAL"
               description="心跳检查,验证连接是否成功, SQL SELECT 指令至少要返回一行"/>
     </props>
 

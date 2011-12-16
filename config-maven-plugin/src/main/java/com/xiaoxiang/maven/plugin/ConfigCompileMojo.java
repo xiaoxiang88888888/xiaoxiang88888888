@@ -11,6 +11,8 @@ import org.apache.maven.project.MavenProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+
 /**
  * 说明
  *
@@ -82,6 +84,12 @@ public class ConfigCompileMojo extends AbstractMojo {
         String prefixDir = this.project.getBasedir().getAbsolutePath();
         Dom4jUtil dom4jUtil;
         String templatePath= prefixDir +"/target/classes/";
+        String path = templatePath + "/" + configPath;
+        File file = new File(path);
+        if (!file.exists()) {
+            logger.info(path + ",文件不存在,跳过");
+            return;
+        }
         if (StringUtil.isEmpty(configPath)) {
             dom4jUtil = new Dom4jUtil(prefixDir);
         } else {
