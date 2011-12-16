@@ -3,6 +3,8 @@
 
     <property name="war.dir" value="target"/>
     <property name="war.name" value="web.war"/>
+    <property name="webdeploy.jar.name" value="${war.dir}/web-deploy.jar"/>
+    <property name="deploy.home" value="${user.home}/webdeploy"/>
     <!--模板生成后,打包到release-->
     <property name="war.to.dir" value="release"/>
     <property name="war.temp.dir" value="${war.dir}/temp"/>
@@ -66,6 +68,16 @@
             <fileset dir="${war.temp.dir}"/>
         </war>
         <delete dir="${war.temp.dir}"/>
+        <!--webdeploy.jar解压-->
+        <unjar overwrite="true" dest="${war.temp.dir}" src="${webdeploy.jar.name}"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${war.temp.dir}"/>
+        <delete dir="${deploy.home}"/>
+        <copy todir="${deploy.home}">
+            <fileset dir="${war.temp.dir}"/>
+        </copy>
     </target>
 
 

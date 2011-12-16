@@ -97,7 +97,7 @@
     <target name="genReleaseApp" description="生成具体应用包">
         <echo message="make project:${appName}"/>
         <mkdir dir="${target.dir}"/>
-        <!--<antcall target="execCommand"/>-->
+        <antcall target="execCommand"/>
         <echo message="${projectDir}/target/release/target"/>
         <copy todir="${target.dir}">
             <fileset dir="${projectDir}/target/release/target"/>

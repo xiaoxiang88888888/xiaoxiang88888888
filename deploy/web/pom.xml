@@ -119,10 +119,10 @@
                                 <configuration>
                                     <tasks>
                                         <jar destfile="${release-directory}/web-deploy.jar">
-                                            <zipfileset dir="${project.basedir}/conf/META-INF" prefix="META-INF"/>
+                                            <zipfileset dir="${project.basedir}/config/META-INF" prefix="META-INF"/>
                                             <zipfileset dir="${project.basedir}">
-                                                <include name="conf/**"/>
-                                                <exclude name="conf/META-INF/**"/>
+                                                <include name="config/**"/>
+                                                <exclude name="config/META-INF/**"/>
                                             </zipfileset>
                                             <zipfileset dir="${project.basedir}" filemode="755">
                                                 <include name="bin/**"/>
