@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="autoConfigWar" default="defalut" basedir=".">
+    <property file="${user.home}/autoConfig.properties"/>
 
     <property name="war.dir" value="target"/>
+    <property name="war.location.dir" location="target"/>
     <property name="war.name" value="web.war"/>
     <property name="webdeploy.jar.name" value="${war.dir}/web-deploy.jar"/>
-    <property name="deploy.home" value="${user.home}/webdeploy"/>
+    <!--从autoConfig.properties文件中得到-->
+    <!-- <property name="deploy.home" value="${user.home}/webdeploy"/>-->
     <property name="war.temp.dir" value="${war.dir}/temp"/>
     <property name="lib.dir" value="${war.temp.dir}/WEB-INF/lib"/>
     <property name="lib.temp.dir" value="${lib.dir}/temp"/>
@@ -101,6 +104,8 @@
     <!-- 帮助                                                     -->
     <!-- =================================================================== -->
     <target name="defalut" description="默认的目标,什么都不干">
+        <echo>${war.dir}</echo>
+        <echo>${war.location.dir}</echo>
         <echo>help!!!!!!!!!!!</echo>
     </target>
 
