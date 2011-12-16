@@ -19,7 +19,7 @@ DirectoryIndex  index.html index.htm index.shtml
 AddType text/html .shtml
 AddOutputFilter INCLUDES .shtml
 
-Include ${deploy_home}/conf/httpd/httpd_base.conf
+Include ${deploy_home}/config/httpd/httpd_base.conf
 
 #if(${deploy_production} == "true")
 LoadModule include_module ${deploy_apache_home}/modules/mod_include.so

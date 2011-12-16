@@ -52,7 +52,7 @@ fi
 # 取得bin目录和bin目录下的文件
 cd `dirname $0`/..
 BASE=`pwd`
-HTTPD="$HTTPD_HOME/bin/httpd -f $BASE/conf/httpd/httpd.conf"
+HTTPD="$HTTPD_HOME/bin/httpd -f $BASE/config/httpd/httpd.conf"
 #
 # pick up any necessary environment variables
 if test -f $HTTPD_HOME/bin/envvars; then

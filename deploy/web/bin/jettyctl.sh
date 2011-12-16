@@ -33,8 +33,8 @@ prepare() {
 	fi
 	
 	# cp file to jetty server home.
-	cp -r "$DEPLOY_HOME/conf/jetty/conf/" $JETTY_SERVER_HOME/
-	cp -r "$DEPLOY_HOME/conf/jetty/ext/"  $JETTY_SERVER_HOME/
+	cp -r "$DEPLOY_HOME/config/jetty/conf/" $JETTY_SERVER_HOME/
+	cp -r "$DEPLOY_HOME/config/jetty/ext/"  $JETTY_SERVER_HOME/
 	# create dir
 	mkdir -p "$OUTPUT_HOME/logs"
   	mkdir -p "$JETTY_WEBAPPS"
@@ -46,7 +46,7 @@ prepare() {
   	
 	## 通过link方式部署output/web.war
 	rm -rf  "$JETTY_WEBAPPS/root.war" 
-	cp  "$DEPLOY_HOME/webapp.war"  "$JETTY_WEBAPPS/root.war"
+	cp  "$DEPLOY_HOME/web.war"  "$JETTY_WEBAPPS/root.war"
 }
 
 run() {
