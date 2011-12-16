@@ -77,7 +77,7 @@
 		<module>service</module>
 		<module>task</module>
 		<module>web</module>
-		<module>depoly</module>
+		<module>deploy</module>
 	</modules>
 
     <repositories>
