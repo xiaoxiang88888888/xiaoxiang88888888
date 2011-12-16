@@ -1,0 +1,149 @@
+Listen ${deploy_apache_port}
+
+ServerRoot "${deploy_output}"
+ServerName ${deploy_web_domain}
+
+PidFile "${deploy_output}/logs/httpd.pid"
+
+User  ${deploy_user}
+Group ${deploy_user_group}
+
+Timeout 30
+KeepAlive On
+MaxKeepAliveRequests 500
+KeepAliveTimeout 25
+
+DefaultType text/plain
+DirectoryIndex  index.html index.htm index.shtml
+
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+Include ${deploy_home}/conf/httpd/httpd_base.conf
+
+#if(${deploy_production} == "true")
+LoadModule include_module ${deploy_apache_home}/modules/mod_include.so
+#end
+
+<IfModule worker.c>
+     StartServers     5
+     MaxClients       1024
+     MinSpareThreads  25
+     MaxSpareThreads  250
+     ThreadsPerChild  64
+     ThreadLimit      128
+     ServerLimit      16
+</IfModule>
+
+# Assume no memory leaks at all
+MaxRequestsPerChild 20000
+
+<Location /serverstatus>
+    SetHandler server-status
+    Order Deny,Allow
+    Deny from all
+    Allow from localhost
+</Location>
+
+<Directory />
+   Options Indexes FollowSymLinks IncludesNOEXEC 
+   AllowOverride None
+   Order allow,deny
+   Allow from all
+</Directory>
+
+NameVirtualHost *:${deploy_apache_port}
+<VirtualHost *:${deploy_apache_port} >
+    #if(${deploy_production} != "true")
+	DocumentRoot /home/admin/musketeer/static/html
+    #else
+    DocumentRoot ${deploy_web_home}
+    #end
+    
+    ServerName  ${deploy_web_domain}
+    #if(${deploy_production} != "true")
+    LogLevel info
+    #else
+    LogLevel error
+    #end
+    
+    ErrorLog ${deploy_output}/logs/apache-ucs-error.log
+    RewriteEngine on
+    RewriteLogLevel 0
+    RewriteLog ${deploy_output}/logs/rewrite.log
+    ProxyRequests Off
+    ProxyPreserveHost On
+    
+    RewriteRule ^/$  /index.shtml [L]
+    RewriteRule ^/index\.html$ /index.shtml [L]
+    
+    RewriteRule ^/list/(.*)/ /list/index.shtml?category_id=$1 [L]
+    RewriteRule ^/list/(.*)/index\.html /list/index.shtml?category_id=$1 [L]
+
+    RewriteRule ^/detail/(.*)/ /detail/index.shtml?coupons_id=$1 [L]
+    RewriteRule ^/detail/(.*)/index\.html /detail/index.shtml?coupons_id=$1 [L]
+
+    ProxyPassMatch ^/(.*\.html)$ !
+    ProxyPassMatch ^/(.*\.xml)$ !
+    ProxyPassMatch ^/(.*\.ico)$ !
+    ProxyPassMatch ^/(.*\.shtml)$ !
+    ProxyPassMatch ^/(.*/)$ ! 
+    
+    ProxyPass / http://localhost:${deploy_app_port}/ min=5 smax=16 max=64 ttl=600 timeout=30
+</VirtualHost>
+
+<VirtualHost *:${deploy_apache_port} >
+    #if(${deploy_production} != "true")
+	DocumentRoot /home/admin/musketeer/static/html
+    #else
+    DocumentRoot ${deploy_web_home}
+    #end
+    
+    ServerName  ${deploy_taoapp_web_domain}
+    #if(${deploy_production} != "true")
+    LogLevel info
+    #else
+    LogLevel error
+    #end
+    
+    ErrorLog ${deploy_output}/logs/apache-ucs-error.log
+    RewriteEngine on
+    RewriteLogLevel 0
+    RewriteLog ${deploy_output}/logs/rewrite.log
+    ProxyRequests Off
+    ProxyPreserveHost On
+    
+    RewriteRule ^/$  /index.shtml [L]
+    RewriteRule ^/index\.html$ /index.shtml [L]
+    
+    RewriteRule ^/list/(.*)/ /list/index.shtml?category_id=$1 [L]
+    RewriteRule ^/list/(.*)/index\.html /list/index.shtml?category_id=$1 [L]
+
+    RewriteRule ^/detail/(.*)/ /detail/index.shtml?coupons_id=$1 [L]
+    RewriteRule ^/detail/(.*)/index\.html /detail/index.shtml?coupons_id=$1 [L]
+
+    ProxyPassMatch ^/(.*\.html)$ !
+    ProxyPassMatch ^/(.*\.xml)$ !
+    ProxyPassMatch ^/(.*\.ico)$ !
+    ProxyPassMatch ^/(.*\.shtml)$ !
+    ProxyPassMatch ^/(.*/)$ ! 
+    
+    ProxyPass / http://localhost:${deploy_app_port}/ min=5 smax=16 max=64 ttl=600 timeout=30
+</VirtualHost>
+
+<VirtualHost *:80>
+    #if(${deploy_production} != "true")
+    DocumentRoot /home/admin/musketeer/static/assets
+    #else
+    DocumentRoot ${deploy_static_home}
+    #end
+    
+    ServerName ${deploy_static_domain}
+    ErrorLog ${deploy_output}/logs/apache-static-error.log
+    <Directory "${deploy_static_home}">
+        Options FollowSymLinks Includes
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>

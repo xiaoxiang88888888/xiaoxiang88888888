@@ -1,0 +1,26 @@
+DefaultLanguage cn
+DefaultType text/plain
+DirectoryIndex index.html
+#AddDefaultCharset GB2312
+HostnameLookups Off
+ServerSignature Off
+LogLevel error
+
+TypesConfig ${deploy_apache_home}/conf/mime.types
+
+LogFormat "%h %{ORIG_CLIENT_IP}i %l %u %t \"%m /%{HOST}i%U%q %H\" %>s %b %D \"%{Referer}i\" \"%{User-Agent}i\" %{ali_beacon_id}n - \"a=%{ali_apache_track}n; b=%{ali_apache_tracktmp}n; c=%{ali_resin_trace}n\" %{ali_server_name}n"   cookie_log
+ErrorLog  "${deploy_output}/logs/apache_error.log"
+
+SetOutputFilter DEFLATE
+<Location />
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip
+# !gzip-only-text/html
+</Location>
+
+ErrorDocument 404 http://${deploy_static_domain}/404.html
+
+# hide the server info in http header
+ServerTokens Prod
