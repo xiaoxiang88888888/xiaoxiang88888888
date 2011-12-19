@@ -43,13 +43,13 @@
         </taskdef>
 
         <!--webdeploy.jar解压-->
-        <unjar overwrite="true" dest="${war.temp.dir}" src="${webdeploy.jar.name}"/>
+        <unjar overwrite="true" dest="${war.temp.dir}" src="${webdeploy.jar.name}" encoding="UTF-8"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${war.temp.dir}"/>
         <delete dir="${deploy.home}"/>
-        <copy todir="${deploy.home}">
+        <copy todir="${deploy.home}" encoding="UTF-8">
             <fileset dir="${war.temp.dir}" excludes="**/META-INF/**"/>
         </copy>
         <echo message="为${deploy.home}/bin下的文件,授权"/>
@@ -59,43 +59,43 @@
 
         <!--war包模板生成-->
         <delete dir="${war.temp.dir}"/>
-        <unwar src="${war.dir}/${war.name}" dest="${war.temp.dir}"/>
+        <unwar src="${war.dir}/${war.name}" dest="${war.temp.dir}"  encoding="UTF-8"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${war.temp.dir}/WEB-INF/classes"/>
 
         <!--jar模板生成-->
-        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"/>
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/common-1.0-SNAPSHOT.jar"  encoding="UTF-8"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${lib.temp.dir}"/>
-        <jar destfile="${lib.dir}/common-1.0-SNAPSHOT.jar">
+        <jar destfile="${lib.dir}/common-1.0-SNAPSHOT.jar" encoding="UTF-8">
             <fileset dir="${lib.temp.dir}"/>
         </jar>
         <delete dir="${lib.temp.dir}"/>
-        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/service-1.0-SNAPSHOT.jar"/>
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/service-1.0-SNAPSHOT.jar" encoding="UTF-8"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${lib.temp.dir}"/>
-        <jar destfile="${lib.dir}/service-1.0-SNAPSHOT.jar">
+        <jar destfile="${lib.dir}/service-1.0-SNAPSHOT.jar" encoding="UTF-8">
             <fileset dir="${lib.temp.dir}"/>
         </jar>
         <delete dir="${lib.temp.dir}"/>
-        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/task-1.0-SNAPSHOT.jar"/>
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/task-1.0-SNAPSHOT.jar" encoding="UTF-8"/>
         <autoConfig propertiesPath="${properties.file}"
                     configPath="${config.file}"
                     templateType="${template.type}"
                     prefixDir="${basedir}/${lib.temp.dir}"/>
-        <jar destfile="${lib.dir}/task-1.0-SNAPSHOT.jar">
+        <jar destfile="${lib.dir}/task-1.0-SNAPSHOT.jar" encoding="UTF-8">
             <fileset dir="${lib.temp.dir}"/>
         </jar>
         <delete dir="${lib.temp.dir}"/>
 
         <!--war包生成,并放到相应目录-->
-        <war destfile="${deploy.home}/${war.name}">
+        <war destfile="${deploy.home}/${war.name}" encoding="UTF-8">
             <fileset dir="${war.temp.dir}"/>
         </war>
         <delete dir="${war.temp.dir}"/>

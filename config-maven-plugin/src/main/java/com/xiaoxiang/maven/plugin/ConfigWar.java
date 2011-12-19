@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * 说明
@@ -80,7 +81,12 @@ public class ConfigWar {
             velocityUtil.setClassPath(false);
             velocityUtil.setTemplatePath(templatePath);
             velocityUtil.init();
-            velocityUtil.mergeTemplate(templatePath);
+            try {
+                velocityUtil.mergeTemplate(templatePath);
+            } catch (IOException e) {
+                logger.error("发生异常!",e);
+                return;
+            }
         } else {
             logger.error("配置的模板类型 " + templateType + " 不对!");
         }

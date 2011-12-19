@@ -10,10 +10,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Map;
 import java.util.Properties;
 
@@ -49,6 +46,9 @@ public class VelocityUtil {
         } else {
             velocityEngine.setProperty("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         }
+        //设置编码
+        velocityEngine.setProperty(VelocityEngine.INPUT_ENCODING,"UTF-8");
+        velocityEngine.setProperty(VelocityEngine.OUTPUT_ENCODING,"UTF-8");
         initContext();
     }
 
@@ -85,7 +85,7 @@ public class VelocityUtil {
      *
      * @param path
      */
-    public void mergeTemplate(String path) {
+    public void mergeTemplate(String path) throws IOException {
         Map<String, String> genFiles = dom4jUtil.getTemplateMap();
         Map<String, String> templateEncodeMap = dom4jUtil.getTemplateEncodeMap();
 
@@ -93,11 +93,12 @@ public class VelocityUtil {
             return;
         }
         for (Map.Entry<String, String> entry : genFiles.entrySet()) {
-            Template template = velocityEngine.getTemplate(entry.getKey(), getEncode(templateEncodeMap, entry.getKey()));
+            String encoding = getEncode(templateEncodeMap, entry.getKey());
+            Template template = velocityEngine.getTemplate(entry.getKey(), encoding);
             if (null == template) {
                 continue;
             }
-            PrintWriter pw = null;
+            Writer pw = null;
 
             try {
                 File file = new File(path, entry.getValue());
@@ -109,8 +110,9 @@ public class VelocityUtil {
                         logger.info("生成失败:" + file.getAbsolutePath());
                     }
                 }
-                pw = new PrintWriter(new FileOutputStream(file));
+                pw = new OutputStreamWriter(new FileOutputStream(file),encoding);
                 template.merge(context, pw);
+                pw.flush();
             } catch (FileNotFoundException e) {
                 logger.error("模板生成有错", e);
             } finally {

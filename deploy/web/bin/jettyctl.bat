@@ -54,7 +54,7 @@ if not exist "%OUTPUT_HOME%\logs\jetty_stdout.log" (
 )
 @rem  通过复制方式部署output\web.war
 rmdir /s/Q  "%JETTY_WEBAPPS%\root.war"
-xcopy /y/s/Q "%DEPLOY_HOME%\web.war"  "%JETTY_WEBAPPS%\root.war"
+copy /y "%DEPLOY_HOME%\web.war"  "%JETTY_WEBAPPS%\root.war"
 
 goto :eof
 @rem 启动jetty

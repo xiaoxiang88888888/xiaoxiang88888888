@@ -88,7 +88,7 @@ if exist %JETTY_CHECK_LOG% (
 )
 @rem  start jetty
 echo -e "%HOST_NAME%: starting jetty ..."
-%BASE_BIN_DIR%\jettyctl.bat start
+call %BASE_BIN_DIR%\jettyctl.bat start
 
 goto :eof
 @rem 启动jetty
@@ -96,6 +96,6 @@ goto :eof
 call :prepare_env
 JETTY_JAVA_PID=`get_pid "%JETTY_SERVER_HOME%"`
 echo -e "%HOST_NAME%: stopping jetty ... "
-%BASE_BIN_DIR%\jettyctl.bat stop
+call %BASE_BIN_DIR%\jettyctl.bat stop
 
 
