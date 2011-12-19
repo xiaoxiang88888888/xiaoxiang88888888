@@ -1,0 +1,172 @@
+LoadModule actions_module ${deploy_apache_home}/modules/mod_actions.so
+LoadModule alias_module ${deploy_apache_home}/modules/mod_alias.so
+LoadModule asis_module ${deploy_apache_home}/modules/mod_asis.so
+LoadModule auth_basic_module ${deploy_apache_home}/modules/mod_auth_basic.so
+#LoadModule auth_digest_module ${deploy_apache_home}/modules/mod_auth_digest.so
+#LoadModule authn_alias_module ${deploy_apache_home}/modules/mod_authn_alias.so
+#LoadModule authn_anon_module ${deploy_apache_home}/modules/mod_authn_anon.so
+#LoadModule authn_dbd_module ${deploy_apache_home}/modules/mod_authn_dbd.so
+#LoadModule authn_dbm_module ${deploy_apache_home}/modules/mod_authn_dbm.so
+LoadModule authn_default_module ${deploy_apache_home}/modules/mod_authn_default.so
+LoadModule authn_file_module ${deploy_apache_home}/modules/mod_authn_file.so
+#LoadModule authnz_ldap_module ${deploy_apache_home}/modules/mod_authnz_ldap.so
+#LoadModule authz_dbm_module ${deploy_apache_home}/modules/mod_authz_dbm.so
+LoadModule authz_default_module ${deploy_apache_home}/modules/mod_authz_default.so
+LoadModule authz_groupfile_module ${deploy_apache_home}/modules/mod_authz_groupfile.so
+LoadModule authz_host_module ${deploy_apache_home}/modules/mod_authz_host.so
+#LoadModule authz_owner_module ${deploy_apache_home}/modules/mod_authz_owner.so
+LoadModule authz_user_module ${deploy_apache_home}/modules/mod_authz_user.so
+LoadModule autoindex_module ${deploy_apache_home}/modules/mod_autoindex.so
+#LoadModule cache_module ${deploy_apache_home}/modules/mod_cache.so
+#LoadModule cern_meta_module ${deploy_apache_home}/modules/mod_cern_meta.so
+LoadModule cgi_module ${deploy_apache_home}/modules/mod_cgi.so
+#LoadModule charset_lite_module ${deploy_apache_home}/modules/mod_charset_lite.so
+#LoadModule dav_module ${deploy_apache_home}/modules/mod_dav.so
+#LoadModule dav_fs_module ${deploy_apache_home}/modules/mod_dav_fs.so
+#LoadModule dav_lock_module ${deploy_apache_home}/modules/mod_dav_lock.so
+#LoadModule dbd_module ${deploy_apache_home}/modules/mod_dbd.so
+#LoadModule deflate_module ${deploy_apache_home}/modules/mod_deflate.so
+LoadModule dir_module ${deploy_apache_home}/modules/mod_dir.so
+#LoadModule disk_cache_module ${deploy_apache_home}/modules/mod_disk_cache.so
+#LoadModule dumpio_module ${deploy_apache_home}/modules/mod_dumpio.so
+LoadModule env_module ${deploy_apache_home}/modules/mod_env.so
+#LoadModule expires_module ${deploy_apache_home}/modules/mod_expires.so
+#LoadModule ext_filter_module ${deploy_apache_home}/modules/mod_ext_filter.so
+#LoadModule file_cache_module ${deploy_apache_home}/modules/mod_file_cache.so
+#LoadModule filter_module ${deploy_apache_home}/modules/mod_filter.so
+#LoadModule headers_module ${deploy_apache_home}/modules/mod_headers.so
+#LoadModule ident_module ${deploy_apache_home}/modules/mod_ident.so
+#LoadModule imagemap_module ${deploy_apache_home}/modules/mod_imagemap.so
+LoadModule include_module ${deploy_apache_home}/modules/mod_include.so
+#LoadModule info_module ${deploy_apache_home}/modules/mod_info.so
+LoadModule isapi_module ${deploy_apache_home}/modules/mod_isapi.so
+#LoadModule ldap_module ${deploy_apache_home}/modules/mod_ldap.so
+#LoadModule logio_module ${deploy_apache_home}/modules/mod_logio.so
+LoadModule log_config_module ${deploy_apache_home}/modules/mod_log_config.so
+#LoadModule log_forensic_module ${deploy_apache_home}/modules/mod_log_forensic.so
+#LoadModule mem_cache_module ${deploy_apache_home}/modules/mod_mem_cache.so
+LoadModule mime_module ${deploy_apache_home}/modules/mod_mime.so
+#LoadModule mime_magic_module ${deploy_apache_home}/modules/mod_mime_magic.so
+LoadModule negotiation_module ${deploy_apache_home}/modules/mod_negotiation.so
+LoadModule proxy_module ${deploy_apache_home}/modules/mod_proxy.so
+LoadModule proxy_ajp_module ${deploy_apache_home}/modules/mod_proxy_ajp.so
+#LoadModule proxy_balancer_module ${deploy_apache_home}/modules/mod_proxy_balancer.so
+#LoadModule proxy_connect_module ${deploy_apache_home}/modules/mod_proxy_connect.so
+#LoadModule proxy_ftp_module ${deploy_apache_home}/modules/mod_proxy_ftp.so
+#LoadModule proxy_http_module ${deploy_apache_home}/modules/mod_proxy_http.so
+#LoadModule proxy_scgi_module ${deploy_apache_home}/modules/mod_proxy_scgi.so
+#LoadModule reqtimeout_module ${deploy_apache_home}/modules/mod_reqtimeout.so
+LoadModule rewrite_module ${deploy_apache_home}/modules/mod_rewrite.so
+LoadModule setenvif_module ${deploy_apache_home}/modules/mod_setenvif.so
+#LoadModule speling_module ${deploy_apache_home}/modules/mod_speling.so
+#LoadModule ssl_module ${deploy_apache_home}/modules/mod_ssl.so
+#LoadModule status_module ${deploy_apache_home}/modules/mod_status.so
+#LoadModule substitute_module ${deploy_apache_home}/modules/mod_substitute.so
+#LoadModule unique_id_module ${deploy_apache_home}/modules/mod_unique_id.so
+#LoadModule userdir_module ${deploy_apache_home}/modules/mod_userdir.so
+#LoadModule usertrack_module ${deploy_apache_home}/modules/mod_usertrack.so
+#LoadModule version_module ${deploy_apache_home}/modules/mod_version.so
+#LoadModule vhost_alias_module ${deploy_apache_home}/modules/mod_vhost_alias.so
+
+Listen ${deploy_apache_port}
+
+ServerRoot "${deploy_output}"
+ServerName ${deploy_web_domain}
+
+PidFile "${deploy_output}/logs/httpd.pid"
+
+
+Timeout 30
+KeepAlive On
+MaxKeepAliveRequests 500
+KeepAliveTimeout 25
+
+DefaultType text/plain
+DirectoryIndex  index.html index.htm index.shtml
+
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+Include ${deploy_home}/config/httpd/httpd_base.conf
+
+#if(${deploy_production} == "true")
+LoadModule include_module ${deploy_apache_home}/modules/mod_include.so
+#end
+
+<IfModule worker.c>
+     StartServers     5
+     MaxClients       1024
+     MinSpareThreads  25
+     MaxSpareThreads  250
+     ThreadsPerChild  64
+     ThreadLimit      128
+     ServerLimit      16
+</IfModule>
+
+# Assume no memory leaks at all
+MaxRequestsPerChild 20000
+
+<Location /serverstatus>
+    SetHandler server-status
+    Order Deny,Allow
+    Deny from all
+    Allow from localhost
+</Location>
+
+<Directory />
+   Options Indexes FollowSymLinks IncludesNOEXEC 
+   AllowOverride None
+   Order allow,deny
+   Allow from all
+</Directory>
+
+NameVirtualHost *:${deploy_apache_port}
+<VirtualHost *:${deploy_apache_port} >
+    #if(${deploy_production} != "true")
+	DocumentRoot ${deploy_web_home}
+    #else
+    DocumentRoot ${deploy_web_home}
+    #end
+    
+    ServerName  ${deploy_web_domain}
+    #if(${deploy_production} != "true")
+    LogLevel info
+    #else
+    LogLevel error
+    #end
+    
+    ErrorLog ${deploy_output}/logs/apache-ucs-error.log
+    RewriteEngine on
+    RewriteLogLevel 0
+    RewriteLog ${deploy_output}/logs/rewrite.log
+    ProxyRequests Off
+    ProxyPreserveHost On
+    
+    RewriteRule ^/$  /index.shtml [L]
+    RewriteRule ^/index\.html$ /index.shtml [L]
+
+    ProxyPassMatch ^/(.*\.html)$ !
+    ProxyPassMatch ^/(.*\.xml)$ !
+    ProxyPassMatch ^/(.*\.ico)$ !
+    ProxyPassMatch ^/(.*\.shtml)$ !
+    ProxyPassMatch ^/(.*/)$ ! 
+    
+    ProxyPass / http://localhost:${deploy_app_port}/ min=5 smax=16 max=64 ttl=600 timeout=30
+</VirtualHost>
+
+<VirtualHost *:80>
+    #if(${deploy_production} != "true")
+    DocumentRoot ${deploy_static_home}
+    #else
+    DocumentRoot ${deploy_static_home}
+    #end
+    
+    ServerName ${deploy_static_domain}
+    ErrorLog ${deploy_output}/logs/apache-static-error.log
+    <Directory "${deploy_static_home}">
+        Options FollowSymLinks Includes
+        AllowOverride None
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>

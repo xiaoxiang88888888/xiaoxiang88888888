@@ -26,11 +26,17 @@
         <gen template="bin/base_env.sh.vm"
              destfile="bin/base_env.sh"
              charset="UTF-8"/>
+        <gen template="bin/base_env.bat.vm"
+             destfile="bin/base_env.bat"
+             charset="UTF-8"/>
         <gen template="config/httpd/httpd_base.conf.vm"
              destfile="config/httpd/httpd_base.conf"
              charset="UTF-8"/>
         <gen template="config/httpd/httpd.conf.vm"
              destfile="config/httpd/httpd.conf"
+             charset="UTF-8"/>
+        <gen template="config/httpd/httpd.window.conf.vm"
+             destfile="config/httpd/httpd.window.conf"
              charset="UTF-8"/>
         <gen template="config/jetty/conf/jetty-logging.xml.vm"
              destfile="config/jetty/conf/jetty-logging.xml"
