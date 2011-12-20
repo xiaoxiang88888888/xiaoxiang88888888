@@ -18,7 +18,7 @@ public class RedisCache implements Cache {
     private ShardedJedisPool shardedJedisPool;
 
     private ShardedJedis jedis;
-
+    //spring配置中需调用这个方法
     public void init(){
         jedis = shardedJedisPool.getResource();
     }
