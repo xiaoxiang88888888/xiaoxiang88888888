@@ -1,0 +1,39 @@
+#=============必须的外界环境配置======================
+
+# 1,JAVA_HOME			JAVA安装目录,例子:/home/admin/xiaoxiang/tools/java
+# 2,OUTPUT_HOME			工程日志输出路径
+# 3,DEPLOY_HOME			应用deploy目录
+#==================================================
+JAVA_HOME=${deploy_service_java_home}
+OUTPUT_HOME=${deploy_service_output}
+DEPLOY_HOME=${deploy_service_home}
+PRODUCTION=${deploy_service_production}
+APP_PORT=${deploy_service_app_port}
+DEBUG_PORT=${deploy_service_debug_port}
+INSTANCES=${deploy_service_instances}
+LOG_DIR=${deploy_service_output}/logs/sys
+
+JAVA_OPTS_EXT=" -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dapplication.codeset=UTF-8 -Dmonitor.enable=true -Dmonitor.exclog.enable=true -Dmonitor.biz.interval=120 -Dmonitor.debug=false "
+JAVA_DEBUG_OPT=" -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n "
+
+str=`file $JAVA_HOME/bin/java | grep 64-bit`
+if [ -n "$str" ]; then
+    JAVA_MEM_OPTS=" -server -Xmx2g -Xms2g -Xmn512m -XX:PermSize=196m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70"
+else
+    JAVA_MEM_OPTS=" -server -Xms1024m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:MaxPermSize=128m "
+fi
+#if(${deploy_service_production} == 'true')
+JAVA_DEBUG_OPT=" "
+#end
+JAVA_OPTS=" $JAVA_MEM_OPTS $JAVA_OPTS_EXT $JAVA_DEBUG_OPT -XX:ErrorFile=$OUTPUT_HOME/logs/java_error%p.log"
+production_mode=${PRODUCTION};
+
+cygwin=false;
+case "`uname`" in
+    CYGWIN*)
+        cygwin=true
+        ;;
+esac
+
+
+export DEPLOY_HOME JAVA_OPTS JAVA_HOME INSTANCES  OUTPUT_HOME LOG_DIR production_mode cygwin

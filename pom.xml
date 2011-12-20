@@ -57,6 +57,8 @@
 		<urlrewrite-version>3.2.0</urlrewrite-version>
         <!--cache-->
         <redis-version>2.0.0</redis-version>
+        <!--dubbo-->
+        <dubbo-version>2.0.9</dubbo-version>
 		<!-- maven plugins version -->
 		<maven-compiler-version>2.3.2</maven-compiler-version>
 		<maven-eclipse-version>2.8</maven-eclipse-version>
@@ -97,6 +99,18 @@
             <id>ynzc</id>
             <name>ynzc</name>
             <url>http://repo.ynzc.cn/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>alibaba-opensource-releases</id>
+            <url>
+                http://code.alibabatech.com/mvn/releases
+            </url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -237,6 +251,12 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${redis-version}</version>
+            </dependency>
+            <!--dubbo-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo-version}</version>
             </dependency>
             <!-- ================================================= -->
 			<!-- 测试与编译需要，打包不需要   -->

@@ -131,7 +131,11 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
-
+        <!--dubbo-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
         <!-- ================================================= -->
         <!-- 测试与编译需要，打包不需要   -->
         <!-- ================================================= -->

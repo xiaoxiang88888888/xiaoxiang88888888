@@ -1,0 +1,16 @@
+set JAVA_HOME=${deploy_service_java_home}
+set OUTPUT_HOME=${deploy_service_output}
+set DEPLOY_HOME=${deploy_service_home}
+set PRODUCTION=${deploy_service_production}
+set APP_PORT=${deploy_service_app_port}
+set DEBUG_PORT=${deploy_service_debug_port}
+set INSTANCES=${deploy_service_instances}
+set LOG_DIR=${deploy_service_output}/logs/sys
+set JAVA_OPTS_EXT= -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Dapplication.codeset=UTF-8 -Dmonitor.enable=true -Dmonitor.exclog.enable=true -Dmonitor.biz.interval=120 -Dmonitor.debug=false
+set JAVA_DEBUG_OPT= -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=$DEBUG_PORT,server=y,suspend=n
+set JAVA_MEM_OPTS= -server -Xms1024m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:MaxPermSize=128m 
+#if(${deploy_service_production} == 'true')
+set JAVA_DEBUG_OPT= 
+#end
+set JAVA_OPTS= %JAVA_MEM_OPTS%  %JAVA_OPTS_EXT% %JAVA_DEBUG_OPT% -XX:ErrorFile=%OUTPUT_HOME%/logs/java_error%p.log
+set production_mode=${deploy_service_production};

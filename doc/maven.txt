@@ -353,5 +353,8 @@ http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/
 按照 相应的目录结构上传上去就可以了
 
 
+mvn archetype:create -DgroupId=com.xiaoxiang -DartifactId=dubbo -DpackageName=
+
+
 
 

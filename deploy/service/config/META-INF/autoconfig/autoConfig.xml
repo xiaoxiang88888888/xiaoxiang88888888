@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <props name="deployService">
+        <prop name="deploy.service.java.home"
+              defaultValue="/home/admin/xiaoxiang/tools/java"
+              description="JDK所在的目录 "/>
+        <prop name="deploy.service.app.port"
+              defaultValue="8988"
+              description="开放的端口"/>
+        <prop name="deploy.service.debug.port"
+              defaultValue="8900"
+              description="Debug开放的端口"/>
+        <prop name="deploy.service.home"
+              defaultValue="/home/admin/serviceDeploy"
+              description="打包安装的目的文件夹"/>
+        <prop name="deploy.service.output"
+              defaultValue="/home/admin/serviceDeploy/output"
+              description="日志等输入目录"/>
+        <prop name="deploy.service.instances"
+              defaultValue="1"
+              description="实例数"/>
+        <prop name="deploy.service.production"
+              defaultValue="false"
+              description="是否是生产环境"/>
+    </props>
+    <gens>
+        <gen template="bin/base_env.sh.vm"
+             destfile="bin/base_env.sh"
+             charset="UTF-8"/>
+        <gen template="bin/base_env.bat.vm"
+             destfile="bin/base_env.bat"
+             charset="UTF-8"/>
+    </gens>
+</config>
