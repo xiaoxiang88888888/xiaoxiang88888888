@@ -4,7 +4,7 @@
         <prop name="jdbc.driverClassName" defaultValue="com.mysql.jdbc.Driver"
               description="JDBC驱动名称"/>
         <prop name="jdbc.url"
-              defaultValue="jdbc:mysql://10.19.20.6:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"
+              defaultValue="jdbc:mysql://10.19.20.3:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"
               description="数据库连接URL"/>
         <prop name="jdbc.username" defaultValue="root"
               description="数据库用户名"/>

@@ -6,7 +6,7 @@
         <prop name="jdbc.driverClassName" defaultValue="com.p6spy.engine.spy.P6SpyDriver"
                   description="JDBC驱动名称"/>
         <prop name="jdbc.url"
-                  defaultValue="jdbc:mysql://10.19.20.6:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"
+                  defaultValue="jdbc:mysql://10.19.20.3:3306/xiaoxiang88888888?useUnicode=true&amp;characterEncoding=UTF-8"
                   description="数据库连接URL"/>
         <prop name="jdbc.username" defaultValue="root"
                   description="数据库用户名"/>
@@ -36,6 +36,14 @@
 
     <props name="server">
         <prop name="server.static.version" defaultValue="1.0" description="静态版本号"/>
+    </props>
+
+    <props name="cache">
+        <prop name="redis.ip" defaultValue="10.20.147.196" description="服务器地址"/>
+        <prop name="redis.port" defaultValue="6379" description="端口"/>
+        <prop name="redis.maxActive" defaultValue="20" description="可以从对象池中取出的对象最大个数"/>
+        <prop name="redis.maxIdle" defaultValue="10" description="最大等待连接中的数量"/>
+        <prop name="redis.maxWait" defaultValue="1000" description="最大等待秒数, 单位为 ms"/>
     </props>
     <gens>
         <gen template="common.properties.vm" destfile="common.properties" encode="UTF-8"/>

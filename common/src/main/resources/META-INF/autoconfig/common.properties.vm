@@ -16,4 +16,10 @@ jdbc.validationQuery=${jdbc_validationQuery}
 
 #server
 server.static.version=${server_static_version}
+#redis
+redis.ip=${redis_ip}
+redis.port=${redis_port}
+redis.maxActive=${redis_maxActive}
+redis.maxIdle=${redis_maxIdle}
+redis.maxWait=${redis_maxWait}
 

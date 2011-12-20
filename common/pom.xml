@@ -125,6 +125,12 @@
             <groupId>net.sourceforge</groupId>
             <artifactId>pinyin4j</artifactId>
         </dependency>
+        <!--cache-->
+        <!-- java readis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 
         <!-- ================================================= -->
         <!-- 测试与编译需要，打包不需要   -->
