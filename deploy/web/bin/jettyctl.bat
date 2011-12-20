@@ -27,7 +27,6 @@ if "%1"=="stop" (
 
 @rem 退出
 :end
-pause
 if "%OS%"=="Windows_NT" @endlocal
 
 goto :eof
@@ -61,11 +60,10 @@ goto :eof
 :start
 call :prepare
 @rem 启动jetty
-%JAVA% %JAVA_OPTIONS% -Djetty.logs=%JETTY_LOGS% -Djetty.home=%JETTY_HOME% -Djava.io.tmpdir=%TMPDIR% -jar %JETTY_START% --ini=%START_INI%
+%JAVA%  -DSTOP.PORT=8009 -DSTOP.KEY=xiaoxiang %JAVA_OPTIONS% -Djetty.logs=%JETTY_LOGS% -Djetty.home=%JETTY_HOME% -Djava.io.tmpdir=%TMPDIR% -jar %JETTY_START% --ini=%START_INI%
 
 goto :eof
 @rem 停止jetty
 :stop
-call :prepare
-%JAVA% stop
+%JAVA% -DSTOP.PORT=8009 -DSTOP.KEY=xiaoxiang -jar %JETTY_START% --stop
 

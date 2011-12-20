@@ -31,7 +31,6 @@ goto end
 
 @rem 退出
 :end
-pause
 if "%OS%"=="Windows_NT" @endlocal
 
 goto :eof
@@ -61,21 +60,21 @@ call :prepare_env
 @rem 检查日志文件
 set APACHE_LOG="%LOG_DIR%\apache_error.log"
 if exist %APACHE_LOG% (
-move /y %APACHE_LOG% %LOGS_SAVED%/apache_error.log.%TIMESTAMP%
+move /y %APACHE_LOG% "%LOGS_SAVED%/apache_error.log.%TIMESTAMP%
 )
 @rem 启动apache
-echo -e "%HOST_NAME%: starting httpd ..."
+echo  "%HOST_NAME%: starting httpd ..."
 %HTTPD_HOME%\bin\httpd.exe -f %BASE_BIN_DIR%\..\config\httpd\httpd.window.conf -w -n "Apache2.2" -k start
-echo -e "Oook!"
-echo -e "%HOSTNAME%: reloadws_alone done!"
+echo  "Oook!"
+echo  "%HOSTNAME%: reloadws_alone done!"
 
 goto :eof
 @rem 停止apache
 :stop_httpd
 call :prepare_env
-echo -e "%HOST_NAME%: stopping httpd ...\c"
+echo  "%HOST_NAME%: stopping httpd ...\c"
 %HTTPD_HOME%\bin\httpd.exe -f %BASE_BIN_DIR%\..\config\httpd\httpd.window.conf -w -n "Apache2.2" -k stop
-echo -e "success Oook!"
+echo  "success Oook!"
 
 goto :eof
 @rem 启动jetty
@@ -84,18 +83,16 @@ call :prepare_env
 set JETTY_CHECK_LOG="%LOG_DIR%\jetty_stdout.log"
 @rem jetty server
 if exist %JETTY_CHECK_LOG% (
-    move /y %JETTY_CHECK_LOG% %LOGS_SAVED%/jetty_stdout.log.%TIMESTAMP%
+    move /y %JETTY_CHECK_LOG% "%LOGS_SAVED%/jetty_stdout.log.%TIMESTAMP%"
 )
 @rem  start jetty
-echo -e "%HOST_NAME%: starting jetty ..."
+echo  "%HOST_NAME%: starting jetty ..."
 call %BASE_BIN_DIR%\jettyctl.bat start
 
 goto :eof
 @rem 启动jetty
 :stop_jetty
-call :prepare_env
-JETTY_JAVA_PID=`get_pid "%JETTY_SERVER_HOME%"`
-echo -e "%HOST_NAME%: stopping jetty ... "
+echo  "%HOST_NAME%: stopping jetty ... "
 call %BASE_BIN_DIR%\jettyctl.bat stop
 
 
