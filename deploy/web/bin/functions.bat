@@ -92,6 +92,8 @@ call %BASE_BIN_DIR%\jettyctl.bat start
 goto :eof
 @rem 启动jetty
 :stop_jetty
+set BASE_BIN_DIR=%~dp0.
+set HOST_NAME=%USERDNSDOMAIN%
 echo  "%HOST_NAME%: stopping jetty ... "
 call %BASE_BIN_DIR%\jettyctl.bat stop
 
