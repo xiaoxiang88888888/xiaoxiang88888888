@@ -10,7 +10,7 @@ svn st 目录
 
 其它命令
 
-svn switch http://svn.alibaba-inc.com/repos/ali_itu/c2c/dataMarket/branches/20111220_xx_dm
+svn switch url
 
 
 
