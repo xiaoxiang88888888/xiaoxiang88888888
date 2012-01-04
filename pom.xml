@@ -58,7 +58,7 @@
         <!--cache-->
         <redis-version>2.0.0</redis-version>
         <!--dubbo-->
-        <dubbo-version>2.0.9</dubbo-version>
+        <dubbo-version>2.0.10</dubbo-version>
 		<!-- maven plugins version -->
 		<maven-compiler-version>2.3.2</maven-compiler-version>
 		<maven-eclipse-version>2.8</maven-eclipse-version>

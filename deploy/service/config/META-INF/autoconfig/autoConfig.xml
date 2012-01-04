@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <props name="deployService">
-        <prop name="deploy.service.java.home"
-              defaultValue="/home/admin/xiaoxiang/tools/java"
-              description="JDK所在的目录 "/>
-        <prop name="deploy.service.app.port"
-              defaultValue="8988"
-              description="开放的端口"/>
-        <prop name="deploy.service.debug.port"
-              defaultValue="8900"
-              description="Debug开放的端口"/>
-        <prop name="deploy.service.home"
-              defaultValue="/home/admin/serviceDeploy"
-              description="打包安装的目的文件夹"/>
-        <prop name="deploy.service.output"
-              defaultValue="/home/admin/serviceDeploy/output"
-              description="日志等输入目录"/>
-        <prop name="deploy.service.instances"
-              defaultValue="1"
-              description="实例数"/>
-        <prop name="deploy.service.production"
-              defaultValue="false"
-              description="是否是生产环境"/>
+        <prop name="dubbo.application.name"
+              defaultValue="service-provider"
+              description="当前应用名称，用于注册中心计算应用间依赖关系 "/>
+        <prop name="dubbo.registry.address"
+              defaultValue="zookeeper://10.20.147.196:2181"
+              description="注册中心服务器地址，如果地址没有端口缺省为9090"/>
+        <prop name="dubbo.protocol.port"
+              defaultValue="20880"
+              description="dubbo协议缺省端口为20880，rmi协议缺省端口为1099，http和hessian协议缺省端口为80"/>
+        <prop name="dubbo.jetty.port"
+              defaultValue="30880"
+              description="jetty的端口"/>
+        <prop name="dubbo.log4j.file"
+              defaultValue="logs/dubbo-service-provider.log"
+              description="日志输出目录"/>
+        <prop name="dubbo.log4j.level"
+              defaultValue="WARN"
+              description="日志级别"/>
+        <prop name="dubbo.deploy.home"
+              defaultValue="/home/admin/dubbo"
+              description="发布的目录"/>
     </props>
     <gens>
-        <gen template="bin/base_env.sh.vm"
-             destfile="bin/base_env.sh"
-             charset="UTF-8"/>
-        <gen template="bin/base_env.bat.vm"
-             destfile="bin/base_env.bat"
+        <gen template="config/dubbo.properties.vm"
+             destfile="config/dubbo.properties"
              charset="UTF-8"/>
     </gens>
 </config>

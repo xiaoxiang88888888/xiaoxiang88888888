@@ -46,6 +46,15 @@
     </target>
 
     <!-- =================================================================== -->
+    <!-- 快捷生成dubbo service包                                              -->
+    <!-- =================================================================== -->
+    <target name="deploy-dubbo">
+        <antcall target="deploy">
+            <param name="appName" value="dubbo"/>
+        </antcall>
+    </target>
+
+    <!-- =================================================================== -->
     <!-- 生成应用包                                                -->
     <!-- =================================================================== -->
     <target name="deploy" depends="clean" description="生成应用包">
@@ -81,6 +90,16 @@
                     <antcall target="genReleaseApp">
                         <param name="appName" value="${appName}"/>
                         <param name="projectDir" value="${basedir}/deploy/notify"/>
+                    </antcall>
+                </then>
+            </elseif>
+            <elseif>
+                <equals arg1="${appName}" arg2="dubbo"/>
+                <then>
+                    <echo>${appName} value is dubbo</echo>
+                    <antcall target="genReleaseApp">
+                        <param name="appName" value="${appName}"/>
+                        <param name="projectDir" value="${basedir}/deploy/service"/>
                     </antcall>
                 </then>
             </elseif>

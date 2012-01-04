@@ -1,0 +1,55 @@
+1  需要安装注册中心(zookeeper)
+   http://labs.renren.com/apache-mirror//zookeeper/
+
+   wget http://www.apache.org/dist//zookeeper/zookeeper-3.4.2/zookeeper-3.4.2.tar.gz
+   tar zxvf zookeeper-3.4.2.tar.gz
+   cd zookeeper-3.4.2
+   cp conf/zoo_sample.cfg conf/zoo.cfg
+
+   Configure:
+
+   vi conf/zoo.cfg
+   zoo.cfg的内容如下：(其中data目录和server地址需改成你真实部署机器的信息)
+
+   zoo.cfg
+   tickTime=2000
+   initLimit=10
+   syncLimit=5
+   dataDir=/home/admin/xiaoxiang/zookeeper-3.4.2/data
+   clientPort=2181
+   server.1=10.20.147.196:2555:3555
+   server.2=10.20.153.11:2555:3555
+   在data目录下放置myid文件：(上面zoo.cfg中的dataDir)
+
+   mkdir data
+   vi myid
+   myid指明自己的id，对应上面zoo.cfg中server.后的数字，第一台的内容为1，第二台的内容为2，内容如下：
+
+   myid
+   1
+   Start:
+
+   ./bin/zkServer.sh start
+   Stop:
+
+   ./bin/zkServer.sh stop
+   Telnet: (See: http://zookeeper.apache.org/doc/r3.3.3/zookeeperAdmin.html)
+
+   telnet 127.0.0.1 2181
+   dump
+
+   Or:
+
+   echo dump | nc 127.0.0.1 2181
+
+   Usage:
+
+   dubbo.registry.address=zookeeper://10.20.153.10:2181?backup=10.20.153.11:2181
+   Or:
+
+   <dubbo:registry protocol="zookeeper" address="10.20.147.196:2181" />
+
+2 提供者配置
+
+
+
