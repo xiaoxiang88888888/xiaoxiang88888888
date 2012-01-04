@@ -59,6 +59,7 @@
         <redis-version>2.0.0</redis-version>
         <!--dubbo-->
         <dubbo-version>2.0.10</dubbo-version>
+        <zookeeper-version>3.3.3</zookeeper-version>
 		<!-- maven plugins version -->
 		<maven-compiler-version>2.3.2</maven-compiler-version>
 		<maven-eclipse-version>2.8</maven-eclipse-version>
@@ -257,6 +258,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper-version}</version>
             </dependency>
             <!-- ================================================= -->
 			<!-- 测试与编译需要，打包不需要   -->

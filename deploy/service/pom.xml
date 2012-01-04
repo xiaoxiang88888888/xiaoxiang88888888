@@ -18,31 +18,31 @@
     <properties>
         <release-directory>${project.build.directory}/release/target</release-directory>
         <!-- Common libs -->
-        <spring_version>2.5.6.SEC03</spring_version>
-        <javassist_version>3.15.0-GA</javassist_version>
-        <netty_version>3.2.5.Final</netty_version>
-        <mina_version>1.1.7</mina_version>
-        <grizzly_version>2.1.4</grizzly_version>
-        <httpclient_version>4.1.2</httpclient_version>
-        <hessian_lite_version>3.2.1</hessian_lite_version>
-        <xstream_version>1.4.1</xstream_version>
-        <fastjson_version>1.1.8</fastjson_version>
-        <bsf_version>3.1</bsf_version>
-        <zookeeper_version>3.3.3</zookeeper_version>
-        <jfreechart_version>1.0.13</jfreechart_version>
-        <hessian_version>4.0.7</hessian_version>
-        <servlet_version>2.5</servlet_version>
-        <jetty_version>6.1.26</jetty_version>
+        <spring-version>2.5.6.SEC03</spring-version>
+        <javassist-version>3.15.0-GA</javassist-version>
+        <netty-version>3.2.5.Final</netty-version>
+        <mina-version>1.1.7</mina-version>
+        <grizzly-version>2.1.4</grizzly-version>
+        <httpclient-version>4.1.2</httpclient-version>
+        <hessian-lite-version>3.2.1</hessian-lite-version>
+        <xstream-version>1.4.1</xstream-version>
+        <fastjson-version>1.1.8</fastjson-version>
+        <bsf-version>3.1</bsf-version>
+        <zookeeper-version>3.3.3</zookeeper-version>
+        <jfreechart-version>1.0.13</jfreechart-version>
+        <hessian-version>4.0.7</hessian-version>
+        <servlet-version>2.5</servlet-version>
+        <jetty-version>6.1.26</jetty-version>
         <!-- Log libs -->
-        <log4j_version>1.2.16</log4j_version>
-        <slf4j_version>1.6.2</slf4j_version>
+        <log4j-version>1.2.16</log4j-version>
+        <slf4j-version>1.6.2</slf4j-version>
         <!-- Test libs -->
-        <junit_version>4.10</junit_version>
-        <easymock_version>3.0</easymock_version>
-        <jmockit_version>0.999.8</jmockit_version>
+        <junit-version>4.10</junit-version>
+        <easymock-version>3.0</easymock-version>
+        <jmockit-version>0.999.8</jmockit-version>
         <!-- Build args -->
         <argline>-Xms512m -Xmx512m</argline>
-        <skip_maven_deploy>false</skip_maven_deploy>
+        <skip-maven-deploy>false</skip-maven-deploy>
         <updateReleaseInfo>true</updateReleaseInfo>
     </properties>
 
@@ -68,37 +68,37 @@
         <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>jetty</artifactId>
-            <version>${jetty_version}</version>
+            <version>${jetty-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
-            <version>${zookeeper_version}</version>
+            <version>${zookeeper-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.mina</groupId>
             <artifactId>mina-core</artifactId>
-            <version>${mina_version}</version>
+            <version>${mina-version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.grizzly</groupId>
             <artifactId>grizzly-core</artifactId>
-            <version>${grizzly_version}</version>
+            <version>${grizzly-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpclient_version}</version>
+            <version>${httpclient-version}</version>
         </dependency>
         <dependency>
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
-            <version>${hessian_version}</version>
+            <version>${hessian-version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>${fastjson_version}</version>
+            <version>${fastjson-version}</version>
         </dependency>
     </dependencies>
 

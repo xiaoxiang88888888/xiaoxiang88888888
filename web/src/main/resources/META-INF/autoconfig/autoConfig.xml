@@ -17,8 +17,33 @@
                   description="日志级别"/>
     </props>
 
+    <props name="dubbo">
+        <prop name="dubbo.application.name"
+              defaultValue="service-provider"
+              description="当前应用名称，用于注册中心计算应用间依赖关系 "/>
+        <prop name="dubbo.registry.address"
+              defaultValue="zookeeper://10.20.147.196:2181"
+              description="注册中心服务器地址，如果地址没有端口缺省为9090"/>
+        <prop name="dubbo.protocol.port"
+              defaultValue="20880"
+              description="dubbo协议缺省端口为20880，rmi协议缺省端口为1099，http和hessian协议缺省端口为80"/>
+        <prop name="dubbo.jetty.port"
+              defaultValue="30880"
+              description="jetty的端口"/>
+        <prop name="dubbo.log4j.file"
+              defaultValue="logs/dubbo-service-provider.log"
+              description="日志输出目录"/>
+        <prop name="dubbo.log4j.level"
+              defaultValue="WARN"
+              description="日志级别"/>
+        <prop name="dubbo.deploy.home"
+              defaultValue="/home/admin/dubbo"
+              description="发布的目录"/>
+    </props>
+
     <gens>
         <gen template="struts.properties.vm" destfile="struts.properties" encode="UTF-8"/>
         <gen template="logback.xml.vm" destfile="logback.xml" encode="UTF-8"/>
+        <gen template="dubbo.properties.vm" destfile="dubbo.properties" charset="UTF-8"/>
     </gens>
 </config>

@@ -136,6 +136,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
         <!-- ================================================= -->
         <!-- 测试与编译需要，打包不需要   -->
         <!-- ================================================= -->

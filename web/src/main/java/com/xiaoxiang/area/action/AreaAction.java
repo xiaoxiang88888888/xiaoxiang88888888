@@ -21,7 +21,9 @@ public class AreaAction extends BaseAction<Area, String> {
     protected String id;  //实体ID
 
     protected String are_areaid;//地区编号
-    protected String are_areaid_name;//地区编号的显示内容                     
+    protected String are_areaid_name;//地区编号的显示内容
+
+    private AreaService areaServiceDubbo;//远程服务
 
     public void setAre_areaid(String are_areaid) {
         this.are_areaid = are_areaid;
@@ -59,8 +61,10 @@ public class AreaAction extends BaseAction<Area, String> {
      */
     public String showList() throws Exception {
         //测试事务
-        areaService.insertAndDeleteArea(StringUtil.getUUID());
-    	entities = getService().getAllEntity();
+       /* areaService.insertAndDeleteArea(StringUtil.getUUID());
+    	entities = getService().getAllEntity();*/
+        areaServiceDubbo.insertAndDeleteArea(StringUtil.getUUID());
+    	entities = areaServiceDubbo.getAllEntity();
     	for(int i=0;i<10;i++){
     		getService().exists(""+i);
     	}
@@ -172,6 +176,8 @@ public class AreaAction extends BaseAction<Area, String> {
         return SUCCESS;
     }
 
-
+    public void setAreaServiceDubbo(AreaService areaServiceDubbo) {
+        this.areaServiceDubbo = areaServiceDubbo;
+    }
 }
 
