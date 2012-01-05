@@ -355,6 +355,8 @@ http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/
 
 mvn archetype:create -DgroupId=com.xiaoxiang -DartifactId=dubbo -DpackageName=
 
+mvn archetype:generate -DgroupId=com.xiaoxiang -DartifactId=gen -DpackageName=com.xiaoxiang.gen
+
 
 
 
