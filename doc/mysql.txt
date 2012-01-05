@@ -36,3 +36,18 @@ mysql>set  password  for  你要用的用户名@"localhost"=old_password('这个
 原因是因为你使用的mysql服务器版本中使用了新的密码验证机制，这需要客户端的版本要在4.0以上，原来的密码函数被改为old_password();，这样使用password()生成的密码在旧的版本上就可以解决这个问题了.
 
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'10.20.147.196' IDENTIFIED BY 'itbu-123' WITH GRANT OPTION;
+
+
+linux下安装mysql
+1 先下载 (用户名xiaoxiang )
+  http://dev.mysql.com/downloads/mirror.php?id=404392
+
+2 安装
+http://wenson.iteye.com/blog/39066
+注,需要安装service与client两个包
+
+3 设置密码
+mysqladmin -u root password '4389758'
+
+4 window下客户端,连不上linux下的mysql
+  使用上面的改表法,就可以了

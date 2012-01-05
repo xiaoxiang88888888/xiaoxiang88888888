@@ -10,8 +10,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:bean/spring-datasource.xml,
             classpath*:bean/spring-area.xml,
-            classpath*:bean/spring-action.xml,
-            classpath*:bean/dubbo-*.xml</param-value>
+            classpath*:bean/spring-action.xml<!--,
+            classpath*:bean/dubbo-*.xml-->
+        </param-value>
     </context-param>
 
     <!--MDC slf4j中用于在日志文件中插入上下文 保证是第一个filter-->

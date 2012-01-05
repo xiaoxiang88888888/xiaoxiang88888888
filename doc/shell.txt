@@ -17,4 +17,7 @@ rsync优点
 5、可以使用rcp、ssh等方式来传输文件，当然也可以通过直接的socket连接。  
 6、支持匿名传输。
 
+//查看版本
+cat /proc/version
+
 

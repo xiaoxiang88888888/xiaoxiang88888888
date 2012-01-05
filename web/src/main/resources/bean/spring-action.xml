@@ -16,6 +16,6 @@
     </bean>
     <bean name="area" class="com.xiaoxiang.area.action.AreaAction" parent="baseAction">
         <property name="service" ref="areaService"></property>
-        <property name="areaServiceDubbo" ref="areaServiceDubbo"></property>
+        <!--<property name="areaServiceDubbo" ref="areaServiceDubbo"></property>-->
     </bean>
 </beans>

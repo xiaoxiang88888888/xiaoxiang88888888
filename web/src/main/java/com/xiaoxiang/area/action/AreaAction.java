@@ -61,10 +61,10 @@ public class AreaAction extends BaseAction<Area, String> {
      */
     public String showList() throws Exception {
         //测试事务
-       /* areaService.insertAndDeleteArea(StringUtil.getUUID());
-    	entities = getService().getAllEntity();*/
-        areaServiceDubbo.insertAndDeleteArea(StringUtil.getUUID());
-    	entities = areaServiceDubbo.getAllEntity();
+        areaService.insertAndDeleteArea(StringUtil.getUUID());
+    	entities = getService().getAllEntity();
+        /*areaServiceDubbo.insertAndDeleteArea(StringUtil.getUUID());
+    	entities = areaServiceDubbo.getAllEntity();*/
     	for(int i=0;i<10;i++){
     		getService().exists(""+i);
     	}
