@@ -51,3 +51,21 @@ mysqladmin -u root password '4389758'
 
 4 window下客户端,连不上linux下的mysql
   使用上面的改表法,就可以了
+
+5 程序还是访问不了
+  http://hi.baidu.com/qishudong/blog/item/20a61dfb200970819f51460b.html
+
+  INSERT INTO user(host, user, password, select_priv, insert_priv, update_priv) VALUES ('%', 'root', PASSWORD('4389758'), 'Y', 'Y','Y');
+
+  flush privileges;
+
+  CREATE DATABASE `xiaoxiang88888888` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+  grant all PRIVILEGES on xiaoxiang88888888.* to root@'%' identified by '4389758';
+
+6 表名大小写问题
+  为了消除linux环境下大小写敏感问题，笔者的设置如下：
+  1.修改my.cnf配置文件
+  shell>vi /etc/my.cnf
+  [mysqld]
+                          lower_case_table_names=1
