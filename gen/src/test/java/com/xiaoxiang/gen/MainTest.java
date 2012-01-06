@@ -11,12 +11,13 @@ import junit.framework.TestCase;
 public class MainTest extends TestCase {
 
     public void testGen() throws Exception {
+        String baseDir = "d:/gen/";
         String tableName="area";
         String templateDir="vo";
         String templateName="VO.vm";
         String templateType="velocity";
         String encoding="UTF-8";
-        String destDir="temp";
+        String destDir=baseDir+"vo/Area.java";
         String driver="com.mysql.jdbc.Driver";
         String url="jdbc:mysql://10.20.147.196:3306/xiaoxiang88888888";
         String user="root";

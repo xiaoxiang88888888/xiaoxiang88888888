@@ -63,14 +63,13 @@ public class VelocityUtil {
             return;
         }
         if (encoding == null) encoding = "UTF-8";
-        Template template = velocityEngine.getTemplate(path, encoding);
+        Template template = velocityEngine.getTemplate(path+"/"+name, encoding);
         if (null == template) {
             return;
         }
         Writer pw = null;
-
         try {
-            File file = new File(path, name);
+            File file = new File(descPath);
             if (!file.getParentFile().exists()) {
                 boolean result = file.getParentFile().mkdirs();
                 if (result) {

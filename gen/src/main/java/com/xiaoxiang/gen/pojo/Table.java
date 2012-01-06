@@ -11,10 +11,14 @@ import java.util.List;
 public class Table {
 
     private String name; //名称
+    
+    private String className;//用于文件生成类名
 
     private String desc; //描述
 
     private String identifierProperty;//主键名称
+
+    private String pk;//首字母大写的主键名称
 
     private List<Field> fields;//相关属性
 
@@ -48,5 +52,14 @@ public class Table {
 
     public void setFields(List<Field> fields) {
         this.fields = fields;
+    }
+
+    public String getClassName() {
+        return Character.toUpperCase(name.charAt(0)) + name.substring(1, name.length());
+    }
+
+    public String getPk() {
+        if(identifierProperty==null)return "";
+        return Character.toUpperCase(identifierProperty.charAt(0)) + identifierProperty.substring(1, identifierProperty.length());
     }
 }
