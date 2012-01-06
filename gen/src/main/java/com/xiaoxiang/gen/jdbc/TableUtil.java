@@ -31,59 +31,63 @@ public class TableUtil {
         Table table = new Table();
         Class.forName(driver); //"com.mysql.jdbc.Driver"
         //String url = "jdbc:mysql://10.20.147.196:3306/xiaoxiang88888888?user=root&password=4389758";
-        Connection conn = DriverManager.getConnection(url, user, password);
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            DatabaseMetaData databaseMetaData = conn.getMetaData();
 
-        DatabaseMetaData databaseMetaData = conn.getMetaData();
-
-        //获取主键
-        ResultSet primaryRS = databaseMetaData.getPrimaryKeys(null, null, tableName);
-        if (primaryRS.next()) {
-            String identifierProperty = primaryRS.getString("COLUMN_NAME");
-            //System.out.println("identifierProperty="+identifierProperty);
-            table.setIdentifierProperty(StringUtil.underlineToCamel(identifierProperty));
-        }
-
-        // 获取相应表
-        //catalog - 数据库目录名称，可设为null，（具体JDBC驱动的实现不一样在MySQL中指数据库名）。
-        //schemaPattern - 方案名称的样式，可设为null，（ 具体JDBC驱动的实现不一样， 在Oracle中指用户名）。
-        //tableNamePattern - 表名称的样式，可以包含匹配符比如："TEST%"
-        //types - 要包括的表类型组成的列表，可设为null，表示所有的。types的常量值为："TABLE","VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY", "LOCAL TEMPORARY", "ALIAS", "SYNONYM"
-        ResultSet tableSet = databaseMetaData.getTables(null, "%", tableName, new String[]{"TABLE"});
-        if (tableSet.next()) {
-            table.setName(StringUtil.underlineToCamel(tableSet.getString("TABLE_NAME")));
-            table.setDesc(tableSet.getString("REMARKS"));
-
-            // 获取tableName表列信息
-            ResultSet columnSet = databaseMetaData.getColumns(null, "%", table.getName(), "%");
-            List<Field> fields = new ArrayList<Field>();
-            while (columnSet.next()) {
-                Field field = new Field();
-                String columnName = columnSet.getString("COLUMN_NAME");
-                field.setName(StringUtil.underlineToCamel(columnName));
-                field.setDesc(columnSet.getString("REMARKS"));
-                //field.setType(columnSet.getString("DATA_TYPE"));
-                field.setType(columnSet.getString("TYPE_NAME"));
-                //判断主键
-                if (StringUtil.isEmpty(table.getIdentifierProperty())) {
-                    field.setPk(false);
-                } else {
-                    if (columnName.equalsIgnoreCase(table.getIdentifierProperty())) {
-                        field.setPk(true);
-                    } else {
-                        field.setPk(false);
-                    }
-                }
-                fields.add(field);
+            //获取主键
+            ResultSet primaryRS = databaseMetaData.getPrimaryKeys(null, null, tableName);
+            if (primaryRS.next()) {
+                String identifierProperty = primaryRS.getString("COLUMN_NAME");
+                //System.out.println("identifierProperty="+identifierProperty);
+                table.setIdentifierProperty(StringUtil.underlineToCamel(identifierProperty));
             }
-            table.setFields(fields);
-            //break;//只获取第一个符合的表名
-        }
-        //表的注释,因一般jdbc没有把这个值带上
-        //如果是mysql
-        if (driver.contains("mysql")) {
-            table.setDesc(getCommentByTableName(conn, tableName));
-        }
 
+            // 获取相应表
+            //catalog - 数据库目录名称，可设为null，（具体JDBC驱动的实现不一样在MySQL中指数据库名）。
+            //schemaPattern - 方案名称的样式，可设为null，（ 具体JDBC驱动的实现不一样， 在Oracle中指用户名）。
+            //tableNamePattern - 表名称的样式，可以包含匹配符比如："TEST%"
+            //types - 要包括的表类型组成的列表，可设为null，表示所有的。types的常量值为："TABLE","VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY", "LOCAL TEMPORARY", "ALIAS", "SYNONYM"
+            ResultSet tableSet = databaseMetaData.getTables(null, "%", tableName, new String[]{"TABLE"});
+            if (tableSet.next()) {
+                table.setName(StringUtil.underlineToCamel(tableSet.getString("TABLE_NAME")));
+                table.setDesc(tableSet.getString("REMARKS"));
+
+                // 获取tableName表列信息
+                ResultSet columnSet = databaseMetaData.getColumns(null, "%", table.getName(), "%");
+                List<Field> fields = new ArrayList<Field>();
+                while (columnSet.next()) {
+                    Field field = new Field();
+                    String columnName = columnSet.getString("COLUMN_NAME");
+                    field.setName(StringUtil.underlineToCamel(columnName));
+                    field.setDesc(columnSet.getString("REMARKS"));
+                    //field.setType(columnSet.getString("DATA_TYPE"));
+                    field.setType(columnSet.getString("TYPE_NAME"));
+                    //判断主键
+                    if (StringUtil.isEmpty(table.getIdentifierProperty())) {
+                        field.setPk(false);
+                    } else {
+                        if (columnName.equalsIgnoreCase(table.getIdentifierProperty())) {
+                            field.setPk(true);
+                        } else {
+                            field.setPk(false);
+                        }
+                    }
+                    fields.add(field);
+                }
+                table.setFields(fields);
+                //break;//只获取第一个符合的表名
+            }
+            //表的注释,因一般jdbc没有把这个值带上
+            //如果是mysql
+            if (driver.contains("mysql")) {
+                table.setDesc(getCommentByTableName(conn, tableName));
+            }
+
+        } finally {
+            if (conn != null) conn.close();
+        }
 
         return table;
     }

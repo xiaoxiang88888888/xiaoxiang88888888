@@ -75,6 +75,7 @@
                                 <copy todir="${release-directory}">
                                     <fileset dir="${basedir}">
                                         <include name="build.xml"/>
+                                        <include name="**.properties"/>
                                     </fileset>
                                 </copy>
                             </tasks>
