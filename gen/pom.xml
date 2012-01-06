@@ -30,12 +30,11 @@
         <junit-version>4.10</junit-version>
         <!--相关依赖-->
         <jdbc-mysql-version>5.1.18</jdbc-mysql-version>
-        <hibernateTool-version>3.2.1.GA</hibernateTool-version>
-        <hibernate-version>3.2.4.ga</hibernate-version>
         <velocity-version>1.7</velocity-version>
         <velocity-tools-version>2.0</velocity-tools-version>
         <freemarker-version>2.3.18</freemarker-version>
         <ant-version>1.7.1</ant-version>
+        <collections-version>3.2.1</collections-version>
         <!-- maven plugins version -->
         <maven-compiler-version>2.3.2</maven-compiler-version>
         <maven-eclipse-version>2.8</maven-eclipse-version>
@@ -49,16 +48,10 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${jdbc-mysql-version}</version>
         </dependency>
-        <!--hibernate-->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-tools</artifactId>
-            <version>${hibernateTool-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>${hibernate-version}</version>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${collections-version}</version>
         </dependency>
         <!--velocity-->
         <dependency>

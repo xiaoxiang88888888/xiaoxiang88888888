@@ -192,6 +192,53 @@ public class StringUtil extends org.apache.commons.lang.StringUtils {
         return str.substring(0, 8) + str.substring(9, 13) + str.substring(14, 18) + str.substring(19, 23) + str.substring(24);
     }
 
+    /**
+     * 将字符串转为驼峰式. 下划线
+     *
+     * @param str
+     * @return
+     */
+    public static String underlineToCamel(String str) {
+        if (str == null || str.equals("")) {
+            return "";
+        }
+        String[] strArray = str.split("_");
+        if (strArray.length <= 1) return str;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < strArray.length; i++) {
+            String tempStr = strArray[i];
+            if (i == 0) {
+                builder.append(tempStr);
+            } else {
+                builder.append(Character.toUpperCase(tempStr.charAt(0)) + tempStr.substring(1, tempStr.length()));
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 将大写字符串转为下划线.
+     *
+     * @param str
+     * @return
+     */
+    public static String camelToUnderline(String str) {
+        Pattern p = Pattern.compile("[A-Z]");
+        if (str == null || str.equals("")) {
+            return "";
+        }
+        StringBuilder builder = new StringBuilder(str);
+        Matcher mc = p.matcher(str);
+        int i = 0;
+        while (mc.find()) {
+            builder.replace(mc.start() + i, mc.end() + i, "_" + mc.group().toLowerCase());
+            i++;
+        }
+        if ('_' == builder.charAt(0)) {
+            builder.deleteCharAt(0);
+        }
+        return builder.toString();
+    }
 
     public static void main(String[] args) {
         String content = "<b font dfdf><font</b>";
