@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="codegen" default="defalut" basedir=".">
+
+    <property name="class.base" value="com.alibaba.eshop"/>
+    <property name="class.base.model" value="com.alibaba.eshop"/>
+    <property name="dest.dir" value="temp"/>
+
+    <path id="lib.class.path">
+        <fileset dir="../lib" includes="*.jar"/>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- 把模板转成gbk编码，放在相应的temp目录 ，                                                -->
+    <!-- =================================================================== -->
+    <target name="encoding_ftl_utf8togbk" description="encoding_ftl_utf8togbk">
+        <!-- 删除模板文件，防止使用旧文件                        -->
+        <delete dir="../../src/main/java/jsp/temp"/>
+        <delete dir="../../src/main/java/mvc/temp"/>
+        <delete dir="../../src/main/java/config/temp"/>
+        <delete dir="../../src/main/java/other/temp"/>
+        <delete dir="../../src/main/java/vm/temp"/>
+        <!-- 创建目录                        -->
+        <mkdir dir="../../src/main/java/jsp/temp"/>
+        <mkdir dir="../../src/main/java/mvc/temp"/>
+        <mkdir dir="../../src/main/java/config/temp"/>
+        <mkdir dir="../../src/main/java/other/temp"/>
+        <mkdir dir="../../src/main/java/vm/temp"/>
+        <copy todir="../../src/main/java/jsp/temp" outputencoding="GBK" encoding="UTF-8">
+            <fileset dir="../../src/main/java/jsp">
+                <include name="*.ftl"/>
+            </fileset>
+        </copy>
+        <copy todir="../../src/main/java/mvc/temp" outputencoding="GBK" encoding="UTF-8">
+            <fileset dir="../../src/main/java/mvc">
+                <include name="*.ftl"/>
+            </fileset>
+        </copy>
+        <copy todir="../../src/main/java/config/temp" outputencoding="GBK" encoding="UTF-8">
+            <fileset dir="../../src/main/java/config">
+                <include name="*.ftl"/>
+            </fileset>
+        </copy>
+        <copy todir="../../src/main/java/other/temp" outputencoding="GBK" encoding="UTF-8">
+            <fileset dir="../../src/main/java/other">
+                <include name="*.ftl"/>
+            </fileset>
+        </copy>
+        <copy todir="../../src/main/java/vm/temp" outputencoding="GBK" encoding="UTF-8">
+            <fileset dir="../../src/main/java/vm">
+                <include name="*.ftl"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 先把源代码全部用utf-8格式拷贝到e:/output,然后再把output中的所有文件拷贝到原先的地方就可以.
+           outputencoding="UTF-8" encoding="GBK"   从GBK转到UTF-8
+            outputencoding="GBK" encoding="UTF-8"    从UTF-8转到GBK                        -->
+    <!-- =================================================================== -->
+    <target name="encoding_xml_gbk_to_utf-8">
+        <copy todir="src/temp" outputencoding="UTF-8" encoding="GBK">
+            <fileset dir="src">
+                <include name="**/*.hbm.xml"/>
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </copy>
+        <copy todir="src">
+            <fileset dir="src/temp">
+                <include name="**/*.hbm.xml"/>
+                <include name="**/*.hbm.xml"/>
+            </fileset>
+        </copy>
+        <delete dir="src/temp"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 从数据库生成mapping,vo,dao,servcie,e3,action,jsp,springconfig,strutsconfig文件             -->
+    <!-- =================================================================== -->
+    <target name="gen_config_model_mvc_vm" depends="clean"
+            description="从数据库生成mapping,vo,dao,servcie,e3,action,jsp,springconfig,strutsconfig文件 ">
+        <!-- 找config,jsp,mvc下的模板转成gbk                        
+        <antcall target="encoding_ftl_utf8togbk"/>-->
+        <!-- 调用 HibernateToolTask ant 任务，也可以使用java调用，看hibernatetools.HibernateToolsTest.java示例                      -->
+        <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask"
+                 classpathref="lib.class.path">
+            <classpath path="middlegen.dest.dir"/>
+        </taskdef>
+        <!-- 从数据库生成mapping                        -->
+        <hibernatetool destdir="${middlegen.dest.dir}">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base.model}" revengfile="hibernate.reveng.xml"/>
+            <hbm2hbmxml/>
+        </hibernatetool>
+        <!-- 将生成mapping文件转成utf-8，不然下一步会出错-->                       
+        <antcall target="encoding_xml_gbk_to_utf-8"/> 
+        <!-- 从数据库生成vo(model)                       --> 
+        <hibernatetool destdir="${middlegen.dest.dir}/mvc">
+            <configuration>
+                <fileset dir="${middlegen.dest.dir}" includes="**/*.hbm.xml"/>
+            </configuration>
+            <hbm2java jdk5="true"/>
+        </hibernatetool>
+
+        <!-- 从数据库生成ibatis-sqlmap                        -->
+        <hibernatetool destdir="${middlegen.dest.dir}/sqlmap">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaIbatisConfig/>
+        </hibernatetool>
+
+        <!-- 从数据库生成WebworkSpringConfig            -->
+        <hibernatetool destdir="${middlegen.dest.dir}/config">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaWebworkSpringConfig/>
+        </hibernatetool>
+
+        <!-- 从数据库生成dao                        -->
+        <hibernatetool destdir="${middlegen.dest.dir}/mvc">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaDao/>
+        </hibernatetool>
+        <!-- 从数据库生成service                      -->
+        <hibernatetool destdir="${middlegen.dest.dir}/mvc">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaService/>
+        </hibernatetool>
+        <!-- 从数据库生成action                       -->
+        <hibernatetool destdir="${middlegen.dest.dir}/mvc">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaAction/>
+        </hibernatetool>
+        <!-- 从数据库生成form.vm                        -->
+        <hibernatetool destdir="${middlegen.dest.dir}/templates">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaInsertUpdate/>
+        </hibernatetool>
+        <!-- 从数据库生成list.vm                      -->
+        <hibernatetool destdir="${middlegen.dest.dir}/templates">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaList/>
+        </hibernatetool>
+        <!-- 从数据库生成main.vm                      -->
+        <hibernatetool destdir="${middlegen.dest.dir}/templates">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaMain/>
+        </hibernatetool>
+        <!-- 从数据库生成detail.vm                      -->
+        <hibernatetool destdir="${middlegen.dest.dir}/templates">
+            <jdbcconfiguration propertyfile="hibernate.properties" packagename="${class.base}" revengfile="hibernate.reveng.xml"/>
+            <AlibabaDetail/>
+        </hibernatetool>
+
+        <echo>代码生成结束！</echo>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 清除生成的文件，保持干净                                                   -->
+    <!-- =================================================================== -->
+    <target name="clean" description="Clean all generated stuff">
+        <delete dir="${middlegen.dest.dir}"/>
+        <mkdir dir="${middlegen.dest.dir}/temp"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 帮助                                                     -->
+    <!-- =================================================================== -->
+    <target name="defalut" description="Clean all generated stuff">
+        <echo>help!!!!!!!!!!!</echo>
+    </target>
+
+</project>
