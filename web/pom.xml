@@ -72,6 +72,10 @@
                             <name>productionMode</name>
                             <value>false</value>
                         </systemProperty>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.util.URI.charset</name>
+                            <value>GBK</value>
+                        </systemProperty>
                     </systemProperties>
                 </configuration>
             </plugin>
