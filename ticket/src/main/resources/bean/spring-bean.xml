@@ -17,6 +17,11 @@
         </property>
     </bean>
 
+    <!--配置信息  -->
+    <bean id="configProp"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:config.properties"/>
+    </bean>
     <!--获取座位信息  -->
     <bean id="seatProp"
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">

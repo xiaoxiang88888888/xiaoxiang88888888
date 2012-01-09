@@ -11,6 +11,7 @@ import java.util.Properties;
 public class ConstantUtil {
     private Properties seatProp;
     private Properties stationProp;
+    private Properties configProp;
 
     public Properties getSeatProp() {
         return seatProp;
@@ -26,5 +27,13 @@ public class ConstantUtil {
 
     public void setStationProp(Properties stationProp) {
         this.stationProp = stationProp;
+    }
+
+    public Properties getConfigProp() {
+        return configProp;
+    }
+
+    public void setConfigProp(Properties configProp) {
+        this.configProp = configProp;
     }
 }
