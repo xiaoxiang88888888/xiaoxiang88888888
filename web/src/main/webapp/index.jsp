@@ -15,5 +15,7 @@
 <%=JsonUtil.getInstance().ObjectToJson(new Main().toString())%>
 <br/>
 <%=JsonUtil.getInstance().ObjectToJson(new Main().getList())%>
+<br/>
+<%=request.getParameter("name")%>
 </body>
 </html>
