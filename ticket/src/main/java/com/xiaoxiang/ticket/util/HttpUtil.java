@@ -13,9 +13,6 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.cookie.BasicClientCookie;
@@ -158,7 +155,7 @@ public class HttpUtil {
      *
      * @param httpContext
      */
-    public static void printCookies(HttpContext httpContext) {
+    public void printCookies(HttpContext httpContext) {
 //		CookieStore cookieStore = (CookieStore) httpContext.getAttribute(ClientContext.COOKIE_STORE);
 //		List<Cookie> cookies = cookieStore.getCookies();
 //		if (cookies.isEmpty()) {
@@ -173,7 +170,7 @@ public class HttpUtil {
     /**
      * 获取请求URL的网页内容
      */
-    public static HttpClient createHttpClient() {
+    public HttpClient createHttpClient() {
         HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
         DefaultHttpClient httpclient = _threadHttpClient.get("httpclient");
         if (httpclient != null) {
@@ -242,7 +239,7 @@ public class HttpUtil {
         return httpclient;
     }
 
-    private static HttpContext getHttpContext(String urlHost, String cookies) {
+    private HttpContext getHttpContext(String urlHost, String cookies) {
         HttpContext httpContext = _threadHttpContext.get("httpContext");
 
         if (httpContext != null) {
@@ -257,7 +254,7 @@ public class HttpUtil {
         return httpContext;
     }
 
-    public static void shutdownHttpClient() {
+    public void shutdownHttpClient() {
         _threadHttpContext.remove("httpContext");
         DefaultHttpClient httpclient = _threadHttpClient.get("httpclient");
         if (httpclient != null) {
@@ -266,7 +263,7 @@ public class HttpUtil {
         _threadHttpClient.remove("httpclient");
     }
 
-    public static CookieStore createCookieStore(String urlHost, String cookieStr) {
+    public CookieStore createCookieStore(String urlHost, String cookieStr) {
         // Create a local instance of cookie store
         CookieStore cookieStore = new BasicCookieStore();
         if (cookieStr == null || "".equals(cookieStr))
@@ -290,7 +287,7 @@ public class HttpUtil {
         return cookieStore;
     }
 
-    public static List<NameValuePair> createNameValuePair(String params) {
+    public List<NameValuePair> createNameValuePair(String params) {
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         if (null != params && !params.trim().equals("")) {
             String[] _params = params.split("&");
@@ -307,7 +304,7 @@ public class HttpUtil {
         return nvps;
     }
 
-    public static String doGetBody(String url, String cookieStr) {
+    public String doGetBody(String url, String cookieStr) {
         url = url.replaceAll("###(.*)", "");
         try {
             String urlEx = url.substring(0, url.lastIndexOf("/"));
@@ -381,7 +378,7 @@ public class HttpUtil {
         return null;
     }
 
-    public static File doGetFile(String url, String cookieStr) {
+    public File doGetFile(String url, String cookieStr) {
         url = url.replaceAll("###(.*)", "");
         String urlHost = url;
         try {
@@ -432,7 +429,7 @@ public class HttpUtil {
         return null;
     }
 
-    public static String doPostBody(String url, String params, String cookieStr, String encode, boolean redirt) {
+    public String doPostBody(String url, String params, String cookieStr, String encode, boolean redirt) {
         url = url.replaceAll("###(.*)", "");
         String urlEx = url.substring(0, url.lastIndexOf("/"));
         String urlHost = url;
@@ -520,8 +517,8 @@ public class HttpUtil {
         return resultBody;
     }
 
-    public static String doPostBody(String url, byte[] content,
-                                    Header[] headers, String cookieStr, String encode, boolean redirt) {
+    public String doPostBody(String url, byte[] content,
+                             Header[] headers, String cookieStr, String encode, boolean redirt) {
         if (encode == null)
             encode = HTTP.UTF_8;
 
@@ -599,97 +596,6 @@ public class HttpUtil {
         return resultBody;
     }
 
-
-    public static String doPostBody(String url, Map<String, String> stringBody, Map<String, File> fileBody,
-                                    Header[] headers, String cookieStr, String encode, boolean redirt) {
-        if (encode == null)
-            encode = HTTP.UTF_8;
-
-        String urlEx = url.substring(0, url.lastIndexOf("/"));
-        String urlHost = url;
-        try {
-            urlHost = url.substring(0, url.indexOf("/", 9));
-        } catch (Exception e) {
-        }
-        HttpClient httpclient = createHttpClient();
-        HttpContext localContext = getHttpContext(urlHost, cookieStr);
-        int _count = 0;
-        String loadUrl = null;
-        HttpPost httpost = null;
-        String resultBody = null;
-
-        while (_count++ < 5) {
-            try {
-                logger.info("提交(" + _count + "):" + url);
-                httpost = new HttpPost(url);
-                httpost.setHeaders(headers);
-
-                MultipartEntity reqEntity = new MultipartEntity();
-                for (Iterator<Map.Entry<String, File>> it = fileBody.entrySet().iterator(); it.hasNext(); ) {
-                    Map.Entry<String, File> fileEntry = it.next();
-                    FileBody file = new FileBody(fileEntry.getValue());
-                    reqEntity.addPart(fileEntry.getKey(), file);
-                }
-
-                for (Iterator<Map.Entry<String, String>> it = stringBody.entrySet().iterator(); it.hasNext(); ) {
-                    Map.Entry<String, String> stringEntry = it.next();
-                    StringBody str = new StringBody(stringEntry.getValue());
-                    reqEntity.addPart(stringEntry.getKey(), str);
-                }
-                //设置请求
-                httpost.setEntity(reqEntity);
-
-                HttpResponse response = httpclient.execute(httpost,
-                        localContext);
-
-                String locationUrl = checkLocation(response);
-                if (locationUrl != null) {
-                    loadUrl = locationUrl;
-                    if (!loadUrl.startsWith("/")
-                            && loadUrl.indexOf("://") == -1)
-                        loadUrl = urlEx + loadUrl;
-                    else if (loadUrl.indexOf("://") == -1) {
-                        loadUrl = urlHost + loadUrl;
-                    }
-                    break;
-                }
-                if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
-                    continue;
-                }
-                HttpEntity entity = response.getEntity();
-                // Consume response content
-                if (entity != null) {
-                    resultBody = EntityUtils.toString(entity);
-                    entity.consumeContent();
-                    locationUrl = checkLocation(resultBody);
-                    if (resultBody == null) {
-                    } else {
-                        locationUrl = checkLocation(resultBody);
-                        if (locationUrl != null) {
-                            loadUrl = locationUrl;
-                            if (!loadUrl.startsWith("/"))
-                                loadUrl = urlEx + loadUrl;
-                            else if (loadUrl.indexOf("://") == -1) {
-                                loadUrl = urlHost + loadUrl;
-                            }
-                        } else
-                            break;
-                    }
-                }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (httpost != null)
-                    httpost.abort();
-            }
-        }
-        if (loadUrl != null && redirt)
-            resultBody = doGetBody(loadUrl, null);
-        return resultBody;
-    }
-
     /**
      * 检查是否包含链接转向，3种方法<br>
      * <ol>
@@ -697,8 +603,10 @@ public class HttpUtil {
      * <li>内容部分包含“meta http-equiv=refresh content="2;URL=..."”</li>
      * <li>js脚本刷新，正则为："(?s)<script.{0,50}?>\\s*((document)|(window)|(this))\\.location(\\.href)?\\s*="</li>
      * </ol>
+     *
+     * @param response
      */
-    private static String checkLocation(HttpResponse response) {
+    private String checkLocation(HttpResponse response) {
         Header[] headers = response.getAllHeaders();
         for (Header header : headers) {
             if (header.getName().equalsIgnoreCase("location")
@@ -715,8 +623,10 @@ public class HttpUtil {
      * <li>内容部分包含“meta http-equiv=refresh content="2;URL=..."”</li>
      * <li>js脚本刷新，正则为："(?s)<script.{0,50}?>\\s*((document)|(window)|(this))\\.location(\\.href)?\\s*="</li>
      * </ol>
+     *
+     * @param httpBody
      */
-    private static String checkLocation(String httpBody) {
+    private String checkLocation(String httpBody) {
         String locationUrl = null;
         // 2.
         String bodyLocationStr = "";

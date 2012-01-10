@@ -30,6 +30,7 @@ public class SenderMail {
 
         try {
             sender.send(smMessage);
+            logger.info("邮件发送成功");
         } catch (MailException e) {
             logger.error("发送Email失败了....", e);
         }

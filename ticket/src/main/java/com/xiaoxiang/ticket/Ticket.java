@@ -4,7 +4,6 @@ import com.xiaoxiang.ticket.email.SenderMail;
 import com.xiaoxiang.ticket.util.ConstantUtil;
 import com.xiaoxiang.ticket.util.HttpUtil;
 import com.xiaoxiang.ticket.util.StringUtil;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.xpath.XPathAPI;
 import org.slf4j.Logger;
@@ -14,12 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 说明
@@ -30,19 +25,19 @@ import java.util.Map;
 public class Ticket {
     private static final Logger logger = LoggerFactory.getLogger(Ticket.class);
 
-    private ConstantUtil constant;
-    private HttpUtil http;
-    private SenderMail mailSender;
+    private  ConstantUtil constant;
+    private  HttpUtil http;
+    private  SenderMail mailSender;
 
     private static String cookie = null;
     private static String queryUrlTemp = null;
 
     //站点信息映射
-    public Map<String, String> stationNameMap = new HashMap<String, String>();
+    public  Map<String, String> stationNameMap = new HashMap<String, String>();
     //座位在官网提交数据对应的值
-    public Map<String, String> seatNameValueMap = new LinkedHashMap<String, String>();
+    public  Map<String, String> seatNameValueMap = new LinkedHashMap<String, String>();
     //座位在官网搜索数据中所在的序号
-    public Map<String, Integer> seatNameIndexMap = new LinkedHashMap<String, Integer>();
+    public  Map<String, Integer> seatNameIndexMap = new LinkedHashMap<String, Integer>();
 
 
     public void init() {
@@ -71,7 +66,7 @@ public class Ticket {
                         try {
                             String queryBody = "";
                             while (true) {
-                                queryBody = HttpUtil.doGetBody(queryUrl, cookie);
+                                queryBody = http.doGetBody(queryUrl, cookie);
                                 if (queryBody.contains("系统维护中")) {
                                     logger.info("--系统维护中, 一分钟再重新搜索--");
                                     Thread.sleep(60000);
@@ -200,7 +195,7 @@ public class Ticket {
      *
      * @throws Exception
      */
-    private void waitSetSubmitCode() throws Exception {
+    private  void waitSetSubmitCode() throws Exception {
         synchronized (submitCodeLock) {
             if (submitCodeSerialNum == waitSubmitCodeSerialNum.get()) {
                 submitCodeSerialNum++;
@@ -214,21 +209,22 @@ public class Ticket {
             firstPostOrderCode = false;
             submitCode = "reload";
             while (submitCode.equals("reload")) {
-                File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp", cookie);
+                /*File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp", cookie);
                 File codeFile = new File(constant.getVerificationCodeOrderPicPath());
                 if (!codeFile.exists())
-                    codeFile.createNewFile();
-                FileUtils.copyFile(file, codeFile);
+                    codeFile.createNewFile();*/
+                //TODO 暂时屏蔽测试
+                //FileUtils.copyFile(file, codeFile);
                 submitCode = readString("请输入订单验证码");
                 logger.info("--验证码：" + submitCode + "--");
             }
         }
     }
 
-    private static Object loginLock = new Object[0];
-    private static boolean firstLogin = true;//第一次登录输入验证码时，不需要发邮件
-    private static int loginCodeSerialNum = 0;
-    private static ThreadLocal<Integer> waitLoginCodeSerialNum = new ThreadLocal<Integer>() {
+    private  Object loginLock = new Object[0];
+    private  boolean firstLogin = true;//第一次登录输入验证码时，不需要发邮件
+    private  int loginCodeSerialNum = 0;
+    private  ThreadLocal<Integer> waitLoginCodeSerialNum = new ThreadLocal<Integer>() {
         protected synchronized Integer initialValue() {
             return 0;
         }
@@ -239,7 +235,7 @@ public class Ticket {
      *
      * @throws Exception
      */
-    private void login() throws Exception {
+    private  void login() throws Exception {
         synchronized (loginLock) {
             if (loginCodeSerialNum == waitLoginCodeSerialNum.get()) {
                 loginCodeSerialNum++;
@@ -259,11 +255,12 @@ public class Ticket {
             String body = "请输入正确的验证码";
             do {
                 if (body.contains("请输入正确的验证码")) {
-                    File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=lrand", null);
+                    /*File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=lrand", null);
                     File codeFile = new File(constant.getVerificationCodeLoginPicPath());
                     if (!codeFile.exists())
-                        codeFile.createNewFile();
-                    FileUtils.copyFile(file, codeFile);
+                        codeFile.createNewFile();*/
+                    //TODO 暂时屏蔽测试
+                    //FileUtils.copyFile(file, codeFile);
                     if (!firstLogin && !hasSendMail) {
                         mailSender.sendMail("重新输入登录验证码", "请输入登录验证码");
                         hasSendMail = true;
@@ -296,15 +293,19 @@ public class Ticket {
      * @return
      * @throws Exception
      */
-    private String readString(String msg) throws Exception {
+    public String readString(String msg) throws Exception {
+        //jdk1.5以后提供
+      /*  Scanner scanner = new Scanner(System.in);
+        String value = scanner.nextLine();
+        return value;*/
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            logger.info(msg + ": ");
+        try{
+            System.out.print(msg+": ");
             return bufferedReader.readLine();
-        } catch (Exception e) {
-            logger.error("出现问题", e);
+        }catch(Exception e){
         }
-        return "";
+        return "1245";
+
     }
 
     public void setConstant(ConstantUtil constant) {
