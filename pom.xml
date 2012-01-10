@@ -97,11 +97,11 @@
             <name>xiaoxiang</name>
             <url>http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/</url>
         </repository>
-		<repository>
+		<!--<repository>
             <id>ynzc</id>
             <name>ynzc</name>
             <url>http://repo.ynzc.cn/nexus/content/groups/public</url>
-        </repository>
+        </repository>-->
         <repository>
             <id>alibaba-opensource-releases</id>
             <url>
