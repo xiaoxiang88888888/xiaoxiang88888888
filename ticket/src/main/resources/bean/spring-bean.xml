@@ -33,7 +33,85 @@
         <property name="location" value="classpath:stationName.properties"/>
     </bean>
     <!-- 一些常量需要从common.properties中取 -->
-    <bean id="constant" class="com.xiaoxiang.ticket.util.ConstantUtil">
+    <bean id="constant" class="com.xiaoxiang.ticket.util.ConstantUtil" init-method="init">
+        <property name="mailServerHost" value="${mail.server.host}"/>
+        <property name="mailServerPort" value="${mail.server.port}"/>
+        <property name="mailValidate" value="${mail.validate}"/>
+        <property name="mailUsername" value="${mail.username}"/>
+        <property name="mailPassword" value="${mail.password}"/>
+        <property name="mailFromAddress" value="${mail.from.address}"/>
+        <property name="mailToAddress" value="${mail.to.address}"/>
+        <property name="mailSubject" value="${mail.subject}"/>
+        <property name="mailContent" value="${mail.content}"/>
+
+        <property name="trainDate" value="${train.date}"/>
+        <property name="trainUsername" value="${train.username}"/>
+        <property name="trainPassword" value="${train.password}"/>
+        <property name="trainName" value="${train.name}"/>
+        <property name="trainCardId" value="${train.card.id}"/>
+        <property name="trainMobile" value="${train.mobile}"/>
+        <property name="trainUrl" value="${train.url}"/>
+        <property name="trainStart" value="${train.start}"/>
+        <property name="trainEnd" value="${train.end}"/>
+        <property name="trainNumber" value="${train.number}"/>
+        <property name="trainSeatType" value="${train.seat.type}"/>
+
+        <property name="verificationUrl" value="${verification.url}"/>
+        <property name="verificationCodeLoginPicPath" value="${verification.code.login.pic.path}"/>
+        <property name="verificationCodeOrderPicPath" value="${verification.code.order.pic.path}"/>
+
+        <property name="tempFilePath" value="${temp.file.path}"/>
+    </bean>
+    <!-- httpUtil配置 -->
+    <bean id="http" class="com.xiaoxiang.ticket.util.HttpUtil" init-method="init">
+        <property name="constant" ref="constant"/>
+    </bean>
+    <!-- ticket配置 -->
+    <bean id="ticket" class="com.xiaoxiang.ticket.Ticket" init-method="init">
+        <property name="constant" ref="constant"/>
+        <property name="http" ref="http"/>
+        <property name="mailSender" ref="mailSender"/>
     </bean>
 
+    <!--Email-->
+    <bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>${mail.server.host}</value>
+        </property>
+        <property name="javaMailProperties">
+            <props>
+                <!-- 如果要使用用户名和密码验证,这一步需要 -->
+                <prop key="mail.smtp.auth">${mail.validate}</prop>
+            </props>
+        </property>
+        <property name="username">
+            <value>${mail.username}</value>
+        </property>
+        <property name="password">
+            <value>${mail.password}</value>
+        </property>
+    </bean>
+
+    <!-- 简单的message -->
+    <bean id="message" class="org.springframework.mail.SimpleMailMessage">
+        <property name="to">
+            <value>${mail.to.address}</value>
+        </property>
+        <property name="from">
+            <value>${mail.from.address}</value>
+        </property>
+        <property name="subject">
+            <!-- Email 标题 -->
+            <value>${mail.subject}</value>
+        </property>
+    </bean>
+    <!-- 测试发送的类 -->
+    <bean id="mailSender" class="com.xiaoxiang.ticket.email.SenderMail">
+        <property name="message">
+            <ref bean="message"/>
+        </property>
+        <property name="sender">
+            <ref bean="sender"/>
+        </property>
+    </bean>
 </beans>
