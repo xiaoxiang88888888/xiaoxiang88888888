@@ -4,6 +4,7 @@ import com.xiaoxiang.ticket.email.SenderMail;
 import com.xiaoxiang.ticket.util.ConstantUtil;
 import com.xiaoxiang.ticket.util.HttpUtil;
 import com.xiaoxiang.ticket.util.StringUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.xpath.XPathAPI;
 import org.slf4j.Logger;
@@ -13,8 +14,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 说明
@@ -209,12 +214,12 @@ public class Ticket {
             firstPostOrderCode = false;
             submitCode = "reload";
             while (submitCode.equals("reload")) {
-                /*File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp", cookie);
+                File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp", cookie);
                 File codeFile = new File(constant.getVerificationCodeOrderPicPath());
                 if (!codeFile.exists())
-                    codeFile.createNewFile();*/
+                    codeFile.createNewFile();
                 //TODO 暂时屏蔽测试
-                //FileUtils.copyFile(file, codeFile);
+                FileUtils.copyFile(file, codeFile);
                 submitCode = readString("请输入订单验证码");
                 logger.info("--验证码：" + submitCode + "--");
             }
@@ -255,12 +260,12 @@ public class Ticket {
             String body = "请输入正确的验证码";
             do {
                 if (body.contains("请输入正确的验证码")) {
-                    /*File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=lrand", null);
+                    File file = http.doGetFile("https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=lrand", null);
                     File codeFile = new File(constant.getVerificationCodeLoginPicPath());
                     if (!codeFile.exists())
-                        codeFile.createNewFile();*/
+                        codeFile.createNewFile();
                     //TODO 暂时屏蔽测试
-                    //FileUtils.copyFile(file, codeFile);
+                    FileUtils.copyFile(file, codeFile);
                     if (!firstLogin && !hasSendMail) {
                         mailSender.sendMail("重新输入登录验证码", "请输入登录验证码");
                         hasSendMail = true;
@@ -303,9 +308,9 @@ public class Ticket {
        }
        return value;*/
         String value = null;
+        System.out.print(msg + ": ");
         while (StringUtil.isEmpty(value)) {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print(msg + ": ");
             value = bufferedReader.readLine();
         }
         return value;

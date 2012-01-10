@@ -80,6 +80,7 @@
                                         <include name="**.sh"/>
                                     </fileset>
                                 </copy>
+                                <chmod file="${release-directory}/start.sh" perm="755"/>
                             </tasks>
                         </configuration>
                     </execution>
