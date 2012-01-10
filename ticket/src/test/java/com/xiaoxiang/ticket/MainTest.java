@@ -12,9 +12,7 @@ import org.junit.Test;
 public class MainTest extends TestCase {
     @Test
     public void testTicket() throws Exception {
-        Main main = new Main();
-
-        main.getApplication();
+        Main.start();
     }
     /*@Test
     public void testSystemIn() throws Exception {

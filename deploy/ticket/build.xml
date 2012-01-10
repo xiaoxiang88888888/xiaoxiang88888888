@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="ticket" default="defalut" basedir=".">
+    <property name="lib.dir" location="${basedir}/lib"/>
+    <property name="lib.temp.dir" location="${basedir}/lib/temp"/>
+
+    <!--类库路径-->
+    <path id="lib.class.path">
+        <fileset dir="./lib" includes="*.jar"/>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- 加入配置文件                                                   -->
+    <!-- =================================================================== -->
+    <target name="unjar" description="加入配置文件">
+        <!--jar配置替换-->
+        <unjar overwrite="true" dest="${lib.temp.dir}" src="${lib.dir}/ticket-1.0-SNAPSHOT.jar" encoding="UTF-8"/>
+        <copy tofile="${lib.temp.dir}/config.properties" file="config.properties" overwrite="true"/>
+        <jar destfile="${lib.dir}/ticket-1.0-SNAPSHOT.jar" encoding="UTF-8">
+            <fileset dir="${lib.temp.dir}"/>
+        </jar>
+        <delete dir="${lib.temp.dir}"/>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 执行任务                                                  -->
+    <!-- =================================================================== -->
+    <target name="task" description="订票" depends="unjar">
+        <java classname="com.xiaoxiang.ticket.Main" fork="true">
+            <classpath refid="lib.class.path"/>
+        </java>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 帮助                                                     -->
+    <!-- =================================================================== -->
+    <target name="defalut">
+        <echo>help!!!!!!!!!!!</echo>
+    </target>
+
+</project>

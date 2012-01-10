@@ -51,7 +51,6 @@ public class HttpUtil {
         if (constant != null && !StringUtil.isEmpty(constant.getTempFilePath())) {
             tempFilePath = constant.getTempFilePath();
         }
-        tempFilePath = this.getClass().getResource("/").getPath() + tempFilePath;
         File tempFilePathFile = new File(tempFilePath);
         if (!tempFilePathFile.exists())
             tempFilePathFile.mkdirs();

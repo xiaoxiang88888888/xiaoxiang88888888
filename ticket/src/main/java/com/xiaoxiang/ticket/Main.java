@@ -12,7 +12,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 
 public class Main {
-    public void getApplication() throws Exception {
+
+    public static void start() throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean/spring-bean.xml");
         ConstantUtil constant = (ConstantUtil) context.getBean("constant");
         HttpUtil http = (HttpUtil) context.getBean("http");
@@ -22,5 +23,9 @@ public class Main {
         System.out.println(ticket);
         //开始订票
         ticket.task();
+    }
+
+    public static void main(String[] args) throws Exception{
+        start();
     }
 }
