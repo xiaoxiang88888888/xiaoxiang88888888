@@ -25,19 +25,19 @@ import java.util.*;
 public class Ticket {
     private static final Logger logger = LoggerFactory.getLogger(Ticket.class);
 
-    private  ConstantUtil constant;
-    private  HttpUtil http;
-    private  SenderMail mailSender;
+    private ConstantUtil constant;
+    private HttpUtil http;
+    private SenderMail mailSender;
 
     private static String cookie = null;
     private static String queryUrlTemp = null;
 
     //站点信息映射
-    public  Map<String, String> stationNameMap = new HashMap<String, String>();
+    public Map<String, String> stationNameMap = new HashMap<String, String>();
     //座位在官网提交数据对应的值
-    public  Map<String, String> seatNameValueMap = new LinkedHashMap<String, String>();
+    public Map<String, String> seatNameValueMap = new LinkedHashMap<String, String>();
     //座位在官网搜索数据中所在的序号
-    public  Map<String, Integer> seatNameIndexMap = new LinkedHashMap<String, Integer>();
+    public Map<String, Integer> seatNameIndexMap = new LinkedHashMap<String, Integer>();
 
 
     public void init() {
@@ -195,7 +195,7 @@ public class Ticket {
      *
      * @throws Exception
      */
-    private  void waitSetSubmitCode() throws Exception {
+    private void waitSetSubmitCode() throws Exception {
         synchronized (submitCodeLock) {
             if (submitCodeSerialNum == waitSubmitCodeSerialNum.get()) {
                 submitCodeSerialNum++;
@@ -221,10 +221,10 @@ public class Ticket {
         }
     }
 
-    private  Object loginLock = new Object[0];
-    private  boolean firstLogin = true;//第一次登录输入验证码时，不需要发邮件
-    private  int loginCodeSerialNum = 0;
-    private  ThreadLocal<Integer> waitLoginCodeSerialNum = new ThreadLocal<Integer>() {
+    private Object loginLock = new Object[0];
+    private boolean firstLogin = true;//第一次登录输入验证码时，不需要发邮件
+    private int loginCodeSerialNum = 0;
+    private ThreadLocal<Integer> waitLoginCodeSerialNum = new ThreadLocal<Integer>() {
         protected synchronized Integer initialValue() {
             return 0;
         }
@@ -235,7 +235,7 @@ public class Ticket {
      *
      * @throws Exception
      */
-    private  void login() throws Exception {
+    private void login() throws Exception {
         synchronized (loginLock) {
             if (loginCodeSerialNum == waitLoginCodeSerialNum.get()) {
                 loginCodeSerialNum++;
@@ -295,17 +295,20 @@ public class Ticket {
      */
     public String readString(String msg) throws Exception {
         //jdk1.5以后提供
-      /*  Scanner scanner = new Scanner(System.in);
-        String value = scanner.nextLine();
-        return value;*/
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try{
-            System.out.print(msg+": ");
-            return bufferedReader.readLine();
-        }catch(Exception e){
+        /* String value = null;
+       while (StringUtil.isEmpty(value)) {
+           Scanner scanner = new Scanner(System.in);
+           System.out.print(msg+": ");
+           value = scanner.nextLine();
+       }
+       return value;*/
+        String value = null;
+        while (StringUtil.isEmpty(value)) {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print(msg + ": ");
+            value = bufferedReader.readLine();
         }
-        return "1245";
-
+        return value;
     }
 
     public void setConstant(ConstantUtil constant) {
