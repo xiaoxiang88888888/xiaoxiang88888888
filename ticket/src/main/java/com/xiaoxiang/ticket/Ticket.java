@@ -87,8 +87,8 @@ public class Ticket {
                                 }
                                 break;
                             }
-
-                            for (String train : StringUtils.split(queryBody, "\\n")) {
+                            queryBody= queryBody.replace("\\n", "@@@");
+                            for(String train :StringUtils.split(queryBody, "@@@")){
                                 String[] trainInfos = train.split(",");
                                 if (!trainInfos[1].contains(orderMessage[2].toUpperCase())) {
                                     continue;
@@ -100,9 +100,6 @@ public class Ticket {
                                     Map<String, String> orderParam = new HashMap<String, String>();
                                     orderParam.putAll(constant.queryOrderParams);
 
-                                    //设置座位信息
-                                    orderParam.put("passengerTickets", seatValue + ",1," + constant.getTrainName() + ",1," + constant.getTrainCardId() + "," + constant.getTrainMobile() + ",Y");
-                                    orderParam.put("passenger_1_seat", seatValue);
 
                                     for (int i = 0; i < constant.queryOrderParamIndexs.length; i++) {
                                         orderParam.put(constant.queryOrderParamNames[i], orderInfo[constant.queryOrderParamIndexs[i]]);
@@ -130,6 +127,9 @@ public class Ticket {
                                                 }
                                             }
                                             postOrderParam.putAll(constant.submitOrderParams);
+                                            //设置座位信息
+                                            postOrderParam.put("passengerTickets", seatValue + ",1," + constant.getTrainName() + ",1," + constant.getTrainCardId() + "," + constant.getTrainMobile() + ",Y");
+                                            postOrderParam.put("passenger_1_seat", seatValue);
 
                                             String train_date_str_ = StringUtil.match(postOrderBody, "var train_date_str_ = \"(.*?)\"")[1];
                                             String station_train_code_ = StringUtil.match(postOrderBody, "var station_train_code_ = \"(.*?)\"")[1];

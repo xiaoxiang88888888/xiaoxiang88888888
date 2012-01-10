@@ -44,7 +44,7 @@ public class HttpUtil {
 
     private ConstantUtil constant;
     private static String tempFilePath = "/httptemp";
-    private static Map<String, DefaultHttpClient> _threadHttpClient = new HashMap<String, DefaultHttpClient>();
+    private static ThreadLocal<DefaultHttpClient> _threadHttpClient = new ThreadLocal<DefaultHttpClient> ();
     private static Map<String, HttpContext> _threadHttpContext = new HashMap<String, HttpContext>();
 
     public void init() {
@@ -171,12 +171,12 @@ public class HttpUtil {
      */
     public HttpClient createHttpClient() {
         HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
-        DefaultHttpClient httpclient = _threadHttpClient.get("httpclient");
+        DefaultHttpClient httpclient = _threadHttpClient.get();
         if (httpclient != null) {
             return httpclient;
         }
         httpclient = new DefaultHttpClient();
-        _threadHttpClient.put("httpclient", httpclient);
+        _threadHttpClient.set(httpclient);
 
         try {
             TrustManager easyTrustManager = new X509TrustManager() {
@@ -251,15 +251,6 @@ public class HttpUtil {
         _threadHttpContext.put("httpContext", httpContext);
         printCookies(httpContext);
         return httpContext;
-    }
-
-    public void shutdownHttpClient() {
-        _threadHttpContext.remove("httpContext");
-        DefaultHttpClient httpclient = _threadHttpClient.get("httpclient");
-        if (httpclient != null) {
-            httpclient.getConnectionManager().shutdown();
-        }
-        _threadHttpClient.remove("httpclient");
     }
 
     public CookieStore createCookieStore(String urlHost, String cookieStr) {
