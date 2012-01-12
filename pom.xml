@@ -60,6 +60,8 @@
         <!--dubbo-->
         <dubbo-version>2.0.10</dubbo-version>
         <zookeeper-version>3.3.3</zookeeper-version>
+        <!--验证码-->
+        <kaptcha-version>2.3.2</kaptcha-version>
 		<!-- maven plugins version -->
 		<maven-compiler-version>2.3.2</maven-compiler-version>
 		<maven-eclipse-version>2.8</maven-eclipse-version>
@@ -272,6 +274,13 @@
                 <artifactId>zookeeper</artifactId>
                 <version>${zookeeper-version}</version>
             </dependency>
+            <!--验证码-->
+            <dependency>
+                <groupId>kaptcha</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha-version}</version>
+            </dependency>
+
             <!-- ================================================= -->
 			<!-- 测试与编译需要，打包不需要   -->
 			<!-- ================================================= -->

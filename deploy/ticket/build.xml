@@ -34,7 +34,7 @@
     <!-- 帮助                                                     -->
     <!-- =================================================================== -->
     <target name="defalut">
-        <echo>help!!!!!!!!!!!</echo>
+        <echo>http://ily.iteye.com/blog/1340887</echo>
     </target>
 
 </project>
