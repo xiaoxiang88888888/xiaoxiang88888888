@@ -13,13 +13,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 说明
@@ -87,8 +82,8 @@ public class Ticket {
                                 }
                                 break;
                             }
-                            queryBody= queryBody.replace("\\n", "@@@");
-                            for(String train :StringUtils.split(queryBody, "@@@")){
+                            queryBody = queryBody.replace("\\n", "@@@");
+                            for (String train : StringUtils.split(queryBody, "@@@")) {
                                 String[] trainInfos = train.split(",");
                                 if (!trainInfos[1].contains(orderMessage[2].toUpperCase())) {
                                     continue;
@@ -300,20 +295,20 @@ public class Ticket {
      */
     public String readString(String msg) throws Exception {
         //jdk1.5以后提供
-        /* String value = null;
-       while (StringUtil.isEmpty(value)) {
-           Scanner scanner = new Scanner(System.in);
-           System.out.print(msg+": ");
-           value = scanner.nextLine();
-       }
-       return value;*/
         String value = null;
         System.out.print(msg + ": ");
-        while (StringUtil.isEmpty(value)) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-            value = bufferedReader.readLine();
-        }
+        Scanner scanner = new Scanner(System.in);
+        value = scanner.nextLine();
         return value;
+       /* BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.print(msg + ": ");
+            return bufferedReader.readLine();
+        } catch (Exception e) {
+            logger.error("录入出现异常", e);
+        }
+        return "8888";*/
+
     }
 
     public void setConstant(ConstantUtil constant) {

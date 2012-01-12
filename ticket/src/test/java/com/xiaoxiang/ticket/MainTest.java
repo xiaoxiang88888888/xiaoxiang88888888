@@ -1,6 +1,7 @@
 package com.xiaoxiang.ticket;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * 说明
@@ -9,10 +10,10 @@ import junit.framework.TestCase;
  */
 
 public class MainTest extends TestCase {
-   /* @Test
+    @Test
     public void testTicket() throws Exception {
         Main.start();
-    }*/
+    }
     /*@Test
     public void testSystemIn() throws Exception {
     	Ticket ticket = new Ticket();
