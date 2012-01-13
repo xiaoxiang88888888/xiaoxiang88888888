@@ -11,4 +11,7 @@ prepare_env
 start_jetty
 
 ## 启动apache
-start_httpd
+#start_httpd
+
+## 启动nginx
+start_nginx

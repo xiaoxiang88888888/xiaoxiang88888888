@@ -13,6 +13,16 @@ if "%1"=="stop_httpd" (
   call :stop_httpd
   goto end
 )
+
+if "%1"=="start_nginx" (
+  call :start_nginx
+  goto end
+)
+if "%1"=="stop_nginx" (
+  call :stop_nginx
+  goto end
+)
+
 if "%1"=="start_jetty" (
   call :start_jetty
   goto end
@@ -74,6 +84,35 @@ goto :eof
 call :prepare_env
 echo  "%HOST_NAME%: stopping httpd ...\c"
 %HTTPD_HOME%\bin\httpd.exe -f %BASE_BIN_DIR%\..\config\httpd\httpd.window.conf -w -n "Apache2.2" -k stop
+echo  "success Oook!"
+
+goto :eof
+@rem 启动nginx
+:start_nginx
+call :prepare_env
+@rem 检查日志文件
+set NGINX_LOG="%LOG_DIR%\nginx_error.log"
+if exist %NGINX_LOG% (
+move /y %NGINX_LOG% "%LOGS_SAVED%/nginx_error.log.%TIMESTAMP%
+)
+@rem 启动nginx
+echo  "%HOST_NAME%: starting nginx ..."
+set tempdir=%NGINX_HOME%
+cd /d "%tempdir:/=\%"
+set Path=%Path%;%tempdir:/=\%
+nginx.exe -c %BASE_BIN_DIR%\..\config\nginx\nginx.window.conf
+echo  "Oook!"
+echo  "%HOSTNAME%: reloadws_alone done!"
+
+goto :eof
+@rem 停止nginx
+:stop_nginx
+call :prepare_env
+echo  "%HOST_NAME%: stopping nginx ...\c"
+set tempdir=%NGINX_HOME%
+cd /d "%tempdir:/=\%"
+set Path=%Path%;%tempdir:/=\%
+nginx.exe -c %BASE_BIN_DIR%\..\config\nginx\nginx.window.conf -s stop
 echo  "success Oook!"
 
 goto :eof

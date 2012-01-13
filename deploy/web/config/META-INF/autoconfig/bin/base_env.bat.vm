@@ -1,11 +1,13 @@
 set JAVA_HOME=${deploy_java_home}
 set HTTPD_HOME=${deploy_apache_home}
+set NGINX_HOME=${deploy_nginx_home}
 set JETTY_HOME=${deploy_jetty_home}
 set JETTY_SERVER_HOME=${deploy_home}/jetty_server
 set OUTPUT_HOME=${deploy_output}
 set DEPLOY_HOME=${deploy_home}
 set PRODUCTION=${deploy_production}
 set APACHE_PORT=${deploy_apache_port}
+set NGINX_PORT=${deploy_nginx_port}
 set APP_PORT=${deploy_app_port}
 set DEBUG_PORT=${deploy_debug_port}
 set APP_NAME=web

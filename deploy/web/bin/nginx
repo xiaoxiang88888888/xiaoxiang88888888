@@ -1,0 +1,60 @@
+#!/bin/sh
+
+ARGV="$@"
+
+BASE_BIN_DIR=`dirname $0`
+# public env
+. $BASE_BIN_DIR/base_env.sh
+
+# private env
+if [ -f $BASE_BIN_DIR/env.sh ]; then
+	. $BASE_BIN_DIR/env.sh
+fi
+
+# 取得bin目录和bin目录下的文件
+cd `dirname $0`/..
+BASE=`pwd`
+NGINX="$NGINX_HOME/sbin/nginx -c $BASE/config/nginx/nginx.conf"
+
+
+#
+# a command that outputs a formatted text version of the HTML at the
+# url given on the command line.  Designed for lynx, however other
+# programs may work.  
+LYNX="lynx -dump"
+#
+
+# Set this variable to a command that increases the maximum
+# number of file descriptors allowed per child process. This is
+# critical for configurations that use many file descriptors,
+# such as mass vhosting, or a multithreaded server.
+ULIMIT_MAX_FILES="ulimit -S -n `ulimit -H -n`"
+# --------------------                              --------------------
+# ||||||||||||||||||||   END CONFIGURATION SECTION  ||||||||||||||||||||
+
+# Set the maximum number of file descriptors allowed per child process.
+if [ "x$ULIMIT_MAX_FILES" != "x" ] ; then
+    $ULIMIT_MAX_FILES
+fi
+
+ERROR=0
+if [ "x$ARGV" = "x" ] ; then 
+    ARGV="-h"
+fi
+
+case $ARGV in
+start)
+    $NGINX
+    ERROR=$?
+    ;;
+stop|reopen|reload)
+   $NGINX -s $ARGV
+   ERROR=$?
+   ;;
+*)
+    $NGINX $ARGV
+    ERROR=$?
+esac
+
+exit $ERROR
+

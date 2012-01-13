@@ -1,9 +1,11 @@
 @echo off
 if "%OS%"=="Windows_NT" @setlocal
 
-call functions.bat start_httpd
-call functions.bat start_jetty
+@rem call functions.bat start_httpd
 
+call functions.bat start_nginx
+
+call functions.bat start_jetty
 
 @rem 退出
 :end

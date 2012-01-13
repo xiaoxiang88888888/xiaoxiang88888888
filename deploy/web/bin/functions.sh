@@ -257,3 +257,41 @@ stop_httpd() {
 	    warning "$HOST_NAME: httpd not running, who care?"
 	fi
 }
+
+start_nginx() {
+	##检查的日志文件
+	NGINX_LOG="$LOG_DIR/nginx_error.log"
+	
+	if [ -f $NGINX_LOG ]; then
+    	mv -f $NGINX_LOG $LOGS_SAVED/nginx_error.log.$TIMESTAMP
+	fi
+	
+	##启动nginx
+	if ! $cygwin; then
+	    echo -e "$HOST_NAME: starting nginx ..."
+	    chmod +x $BASE_BIN_DIR/nginx
+	    $BASE_BIN_DIR/nginx start > $NGINX_LOG 2>&1 &
+	    success "Oook!"
+	    echo -e "$HOSTNAME: reloadws_alone done!"
+	else
+	    echo -e "$HOSTNAME: Cygwin mode, skip start nginx!"
+	fi
+}
+
+stop_nginx() {
+	NGINX_PID_FILE=$OUTPUT_HOME/logs/nginx.pid
+	if [ -f $NGINX_PID_FILE ] ; then
+		nginx_pid=`cat $NGINX_PID_FILE`
+	    echo -e "$HOST_NAME: stopping nginx ...\c"
+	    chmod +x $BASE_BIN_DIR/nginx
+	    $BASE_BIN_DIR/nginx stop >> $KILLWS_LOG 2>&1
+	    sleep 5
+	    killall -9 nginx >> $KILLWS_LOG 2>&1
+	    killall -9 hummockclient >> $KILLWS_LOG 2>&1
+	    ## 删除共享内存
+	    remove_ipcs $nginx_pid
+	    success "Oook!"
+	else
+	    warning "$HOST_NAME: nginx not running, who care?"
+	fi
+}

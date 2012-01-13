@@ -10,6 +10,7 @@
 #==================================================
 JAVA_HOME=${deploy_java_home}
 HTTPD_HOME=${deploy_apache_home}
+NGINX_HOME=${deploy_nginx_home}
 JETTY_HOME=${deploy_jetty_home}
 JETTY_SERVER_HOME=${deploy_home}/jetty_server
 OUTPUT_HOME=${deploy_output}
@@ -18,6 +19,7 @@ DEPLOY_HOME=${deploy_home}
 PRODUCTION=${deploy_production}
 
 APACHE_PORT=${deploy_apache_port}
+NGINX_PORT=${deploy_nginx_port}
 APP_PORT=${deploy_app_port}
 DEBUG_PORT=${deploy_debug_port}
 APP_NAME=web
@@ -48,4 +50,4 @@ case "`uname`" in
 esac
 
 
-export DEPLOY_HOME JAVA_OPTS JAVA_HOME HTTPD_HOME JETTY_HOME JETTY_SERVER_HOME OUTPUT_HOME APP_NAME UNIX_USER production_mode cygwin
+export DEPLOY_HOME JAVA_OPTS JAVA_HOME HTTPD_HOME NGINX_HOME JETTY_HOME JETTY_SERVER_HOME OUTPUT_HOME APP_NAME UNIX_USER production_mode cygwin

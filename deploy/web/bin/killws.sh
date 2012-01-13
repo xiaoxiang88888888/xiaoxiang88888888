@@ -4,7 +4,12 @@
 
 ##初始化
 prepare_env
+
 ## 关闭apache
-stop_httpd
+#stop_httpd
+
+## 关闭nginx
+stop_nginx
+
 ## 关闭应用容器
 stop_jetty
