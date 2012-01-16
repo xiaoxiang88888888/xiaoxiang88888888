@@ -11,8 +11,14 @@
     <property name="war.temp.dir" value="${war.dir}/temp"/>
     <property name="lib.dir" value="${war.temp.dir}/WEB-INF/lib"/>
     <property name="lib.temp.dir" value="${lib.dir}/temp"/>
+    <!--bubbo服务部署相关设置-->
     <property name="dubbo.lib.dir" value="${war.temp.dir}/lib"/>
     <property name="dubbo.lib.temp.dir" value="${dubbo.lib.dir}/temp"/>
+    <!--task部署相关设置-->
+    <property name="taskdeploy.jar.name" value="${war.dir}/task-deploy.jar"/>
+    <property name="task.lib.dir" value="${war.temp.dir}/lib"/>
+    <property name="task.lib.temp.dir" value="${task.lib.dir}/temp"/>
+
     <property name="template.dir" value="META-INF/autoconfig"/>
     <property name="config.file" value="${template.dir}/autoConfig.xml"/>
     <property name="properties.file" value="${user.home}/autoConfig.properties"/>
@@ -32,6 +38,11 @@
     <condition property="dubboDeployHome">
         <!--如果属性dubbo.deploy.home不存在则返回false-->
         <isset property="dubbo.deploy.home"/>
+    </condition>
+
+    <condition property="taskDeployHome">
+        <!--如果属性task.deploy.home不存在则返回false-->
+        <isset property="task.deploy.home"/>
     </condition>
 
     <!-- =================================================================== -->
@@ -170,6 +181,67 @@
 
     </target>
 
+    <!-- =================================================================== -->
+    <!-- 解压task-deploy包到临时目录,用于发布task应用                                                -->
+    <!-- =================================================================== -->
+    <target name="genTask" depends="clean" description="解压jar包到临时目录" if="taskDeployHome">
+        <!--引用相关包-->
+        <property name="ant-contrib.jar" location="./lib/ant-contrib-1.0b3.jar"/>
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="${ant-contrib.jar}"/>
+        <if>
+           <equals arg1="${task.deploy.home}" arg2=""/>
+        </if>
+        <!-- 调用相关任务,用于生成模板       -->
+        <taskdef name="autoConfig" classname="com.xiaoxiang.maven.plugin.ConfigWar"
+                 classpathref="lib.class.path">
+        </taskdef>
+
+        <!--task-deploy.jar解压-->
+        <unjar overwrite="true" dest="${war.temp.dir}" src="${taskdeploy.jar.name}" encoding="UTF-8"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${war.temp.dir}"/>
+        <delete dir="${task.deploy.home}"/>
+        <copy todir="${task.deploy.home}" encoding="UTF-8">
+            <fileset dir="${war.temp.dir}" excludes="**/META-INF/**"/>
+        </copy>
+        <echo message="为${task.deploy.home}/bin下的文件,授权"/>
+        <chmod perm="755">
+            <fileset dir="${task.deploy.home}/bin"/>
+        </chmod>
+
+        <!--jar模板生成-->
+        <unjar overwrite="true" dest="${task.lib.temp.dir}" src="${task.lib.dir}/common-1.0-SNAPSHOT.jar"  encoding="UTF-8"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${task.lib.temp.dir}"/>
+        <jar destfile="${task.lib.dir}/common-1.0-SNAPSHOT.jar" encoding="UTF-8">
+            <fileset dir="${task.lib.temp.dir}"/>
+        </jar>
+        <delete dir="${task.lib.temp.dir}"/>
+        <unjar overwrite="true" dest="${task.lib.temp.dir}" src="${task.lib.dir}/service-1.0-SNAPSHOT.jar" encoding="UTF-8"/>
+        <autoConfig propertiesPath="${properties.file}"
+                    configPath="${config.file}"
+                    templateType="${template.type}"
+                    prefixDir="${basedir}/${task.lib.temp.dir}"/>
+        <jar destfile="${task.lib.dir}/service-1.0-SNAPSHOT.jar" encoding="UTF-8">
+            <fileset dir="${task.lib.temp.dir}"/>
+        </jar>
+        <delete dir="${task.lib.temp.dir}"/>
+
+        <!--将相应的文件放到相应目录-->
+        <copy todir="${task.deploy.home}" encoding="UTF-8" overwrite="true">
+            <fileset dir="${war.temp.dir}">
+                <exclude name="**/WEB-INF/**"/>
+                <exclude name="**/META-INF/**"/>
+            </fileset>
+        </copy>
+        <delete dir="${war.temp.dir}"/>
+
+    </target>
+
 
     <!-- =================================================================== -->
     <!-- 清除生成的文件，保持干净                                                   -->
@@ -178,8 +250,10 @@
         <delete dir="${war.temp.dir}"/>
         <delete dir="${deploy.home}"/>
         <delete dir="${dubbo.deploy.home}"/>
+        <delete dir="${task.deploy.home}"/>
         <echo message="deploy.home=${deploy.home},如果不是具体的路径,将什么事都不干"/>
         <echo message="dubbo.deploy.home=${dubbo.deploy.home},如果不是具体的路径,将什么事都不干"/>
+        <echo message="task.deploy.home=${task.deploy.home},如果不是具体的路径,将什么事都不干"/>
     </target>
 
     <!-- =================================================================== -->

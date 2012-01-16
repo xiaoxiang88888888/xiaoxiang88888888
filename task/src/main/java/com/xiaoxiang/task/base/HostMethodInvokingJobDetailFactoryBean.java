@@ -98,9 +98,9 @@ public class HostMethodInvokingJobDetailFactoryBean extends MethodInvokingJobDet
 
     //将原方法替换为一个默认的空方法,不执行这个任务
     protected void noExec() {
-        super.setTargetObject(new DefaultTask());
+       /* super.setTargetObject(new DefaultTask());
         super.setTargetMethod(DefaultTask.METHOD_NAME);
-        super.setArguments(null);
+        super.setArguments(null);*/
     }
 
 }

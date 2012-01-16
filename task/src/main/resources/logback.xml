@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
+    <!--日志放置目录,可配置-->
+    <Property name="log.path" value="/home/admin/task/logs" />
     <!-- 仅在开发时使用 -->
    <Property name="log.pattern" value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURL}?%X{queryString} [ip=%X{remoteHost}, ref=%X{xForwardedFor}, ua=%X{userAgent}] %n %-5level %logger{80}[%F:%L] - %m%n" />
     <!-- 仅在开发时使用 -->
@@ -11,6 +13,22 @@
             ]]></pattern>
 		</layout>
 	</appender>
+
+    <!--输出到文件-->
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/xiaoxiang.log</File>
+        <append>false</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.path}/xiaoxiang.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>14</MaxHistory>
+        </rollingPolicy>
+        <encoding>UTF-8</encoding>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern><![CDATA[
+              ${log.pattern}
+            ]]></pattern>
+        </layout>
+    </appender>
 
     <logger name="org.apache" level="ERROR"/>
 
@@ -25,5 +43,6 @@
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="RollingFile"/>
     </root>
 </configuration>

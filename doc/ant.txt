@@ -28,4 +28,7 @@ ant genWar
 ant -f build-deploy.xml -DappName=dubbo deploy
 ant genDubbo
 
+ant -f build-deploy.xml -DappName=task  deploy
+ant genTask
+
 

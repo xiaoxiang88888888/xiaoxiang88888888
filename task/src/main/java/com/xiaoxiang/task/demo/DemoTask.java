@@ -25,10 +25,10 @@ public class DemoTask implements HostTask {
     public void demo() throws Exception {
         String ip = InetAddress.getLocalHost().getHostAddress();
         //再一次确保
-        if (!taskHost.equals(ip)) {
+        /*if (!taskHost.equals(ip)) {
             logger.info("当前机器与配置的任务机不同," + ip + "!=" + taskHost);
             return;
-        }
+        }*/
         Area area = areaService.findEntityBykey("01");
         logger.info("area ", area.toString());
         logger.info("demo" + (i++));

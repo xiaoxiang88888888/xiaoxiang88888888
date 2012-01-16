@@ -86,7 +86,7 @@
         <module>service</module>
         <module>task</module>
         <module>web</module>
-        <!--<module>deploy</module>-->
+        <module>deploy</module>
         <module>tool</module>
     </modules>
 
