@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="task" default="defalut" basedir=".">
+    <property name="lib.dir" location="${basedir}/../lib"/>
+
+    <!--类库路径-->
+    <path id="lib.class.path">
+        <fileset dir="../lib" includes="*.jar"/>
+    </path>
+
+    <!-- =================================================================== -->
+    <!-- 执行任务                                                  -->
+    <!-- =================================================================== -->
+    <target name="task" description="启动任务">
+        <java classname="com.xiaoxiang.task.Main" fork="true" jvmargs="-server -Xmx1048m -Xms1048m -Xmn156m -XX:PermSize=128m -Xss256k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 ">
+            <classpath refid="lib.class.path"/>
+        </java>
+    </target>
+
+    <!-- =================================================================== -->
+    <!-- 帮助                                                     -->
+    <!-- =================================================================== -->
+    <target name="defalut">
+        <echo>nothing</echo>
+    </target>
+
+</project>
