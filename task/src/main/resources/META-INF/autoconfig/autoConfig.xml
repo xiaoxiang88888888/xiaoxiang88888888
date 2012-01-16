@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config description="task(任务运行)">
+
+    <props name="task.demo.ip">
+        <prop name="task.demo.ip" defaultValue="10.20.147.196" description="任务执行的ip"/>
+    </props>
+
+    <gens>
+        <gen template="task.properties.vm" destfile="task.properties" encode="UTF-8"/>
+    </gens>
+</config>

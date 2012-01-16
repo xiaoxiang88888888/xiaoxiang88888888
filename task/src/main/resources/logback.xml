@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!-- 仅在开发时使用 -->
+   <Property name="log.pattern" value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURL}?%X{queryString} [ip=%X{remoteHost}, ref=%X{xForwardedFor}, ua=%X{userAgent}] %n %-5level %logger{80}[%F:%L] - %m%n" />
+    <!-- 仅在开发时使用 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+            <encoding>UTF-8</encoding>
+			<pattern><![CDATA[
+              ${log.pattern}
+            ]]></pattern>
+		</layout>
+	</appender>
+
+    <logger name="org.apache" level="ERROR"/>
+
+    <logger name="org.springframework" level="ERROR"/>
+
+    <logger name="java.sql" level="ERROR"/>
+
+    <!-- 应用的日志 -->
+    <logger name="com.xiaoxinag" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

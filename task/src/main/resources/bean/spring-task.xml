@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+    <bean id="propertyConfigurerTask" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          lazy-init="false">
+        <property name="order" value="4"/>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath*:task.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--全局任务管理,要运行的任务,都要放list中注册才会执行 lazy-init="false" 容器启动就会执行调度程序-->
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
+        <property name="triggers">
+            <list>
+                <!--相关的trigger-->
+                <ref bean="demoTaskJobTrigger"/>
+            </list>
+        </property>
+        <!--可自定义属性覆盖默认的quartz.properties-->
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>
+
+    <!--示例-->
+    <bean id="DemoTask" class="com.xiaoxiang.task.demo.DemoTask">
+        <property name="taskHost">
+            <value>${task.demo.ip}</value>
+        </property>
+        <property name="areaService" ref="areaService"/>
+    </bean>
+    <bean id="demoTaskJob"
+          class="com.xiaoxiang.task.base.HostMethodInvokingJobDetailFactoryBean">
+        <property name="concurrent">
+            <value>false</value>
+        </property>
+        <property name="targetObject">
+            <ref bean="DemoTask"/>
+        </property>
+        <property name="targetMethod">
+            <value>demo</value>
+        </property>
+    </bean>
+    <bean id="demoTaskJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="demoTaskJob"/>
+        </property>
+        <property name="cronExpression">
+            <value>0/5 * * * * ?</value>
+        </property>
+    </bean>
+
+</beans>
