@@ -1,9 +1,6 @@
 package com.xiaoxiang.util;
 
-import com.xiaoxiang.model.Demo;
-import mockit.Mock;
 import org.jtester.testng.JTester;
-import org.testng.annotations.Test;
 
 /**
  * JMockit的构造函数的mock,

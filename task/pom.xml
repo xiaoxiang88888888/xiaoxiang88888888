@@ -17,6 +17,13 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
+        <!--调度-->
+        <dependency>
+            <groupId>org.opensymphony.quartz</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz-version}</version>
+        </dependency>
+        <!--工程依赖-->
         <dependency>
             <groupId>com.xiaoxiang</groupId>
             <artifactId>service</artifactId>

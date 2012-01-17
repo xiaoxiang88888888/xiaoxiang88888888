@@ -23,12 +23,13 @@
         <!--本地依赖,一般相对于项目-->
         <irontracksql-version>1.0</irontracksql-version>
         <!-- jar version -->
-        <spring-version>2.5.6.SEC03</spring-version>
+        <spring-version>3.1.0.RELEASE</spring-version>
         <struts-version>2.2.3</struts-version>
         <struts-spring-version>2.2.3.1</struts-spring-version>
         <velocity-version>1.7</velocity-version>
         <velocity-tools-version>2.0</velocity-tools-version>
         <freemarker-version>2.3.18</freemarker-version>
+        <ibatis-core-version>3.0</ibatis-core-version>
         <ibatis-version>2.3.4.726</ibatis-version>
         <jdbc-mysql-version>5.1.18</jdbc-mysql-version>
         <dbcp-version>1.4</dbcp-version>
@@ -128,9 +129,56 @@
             <!--spring-->
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring</artifactId>
+                <artifactId>spring-core</artifactId>
                 <version>${spring-version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${spring-version}</version>
+            </dependency>
+
+            <!--spring MVC-->
+            <!--<dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring-version}</version>
+            </dependency>-->
             <!--struts2-->
             <dependency>
                 <groupId>org.apache.struts</groupId>
@@ -170,7 +218,7 @@
             <dependency>
                 <groupId>org.apache.ibatis</groupId>
                 <artifactId>ibatis-core</artifactId>
-                <version>3.0</version>
+                <version>${ibatis-core-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.ibatis</groupId>
@@ -210,12 +258,6 @@
                 <groupId>org.codehaus.jackson</groupId>
                 <artifactId>jackson-mapper-asl</artifactId>
                 <version>${jackson-version}</version>
-            </dependency>
-            <!--memcached client-->
-            <dependency>
-                <groupId>com.googlecode.xmemcached</groupId>
-                <artifactId>xmemcached</artifactId>
-                <version>${memcached-version}</version>
             </dependency>
             <!--slf4j and logback-->
             <dependency>
@@ -365,6 +407,24 @@
 
     <!--每个工程都需要的-->
     <dependencies>
+        <!--slf4j and logback-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <!--JTester需要-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
         <!-- ================================================= -->
         <!-- 测试与编译需要，打包不需要   -->
         <!-- ================================================= -->
@@ -374,16 +434,20 @@
             <artifactId>junit</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.jtester</groupId>
             <artifactId>jtester</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jmock</groupId>
@@ -392,6 +456,8 @@
         <dependency>
             <groupId>org.jmock</groupId>
             <artifactId>jmock-legacy</artifactId>
+            <version>${jmock-version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>mockit</groupId>
