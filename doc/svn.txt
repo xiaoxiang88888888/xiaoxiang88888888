@@ -23,7 +23,7 @@ tar xvzf subversion-1.6.11.tar.gz;
 tar xvzf subversion-deps-1.6.11.tar.gz;
 
 然后cd subversion-1.6.11执行
-./configure  --prefix=/XX/subversion-1.6.11  --with-openssl=/XX/openssl-0.9.8k  --with-ssl
+./configure  --prefix=/XX/subversion-1.6.11   --with-ssl
 注意的是openssl是根据环境来的，没有的话需要安装
 再make  再sudo make install
 最后把svn的环境配置到/etc/profile文件中
