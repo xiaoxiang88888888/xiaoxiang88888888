@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--引入父pom -->
+    <parent>
+        <groupId>com.xiaoxiang</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <!--模块信息-->
+    <groupId>com.xiaoxiang</groupId>
+    <artifactId>springMVC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>springMVC</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <!--需放到前面否则编译不通过-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <!--spring MVC-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <!--urlrewritefilter-->
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>${urlrewrite-version}</version>
+        </dependency>
+        <!--其它依赖-->
+        <dependency>
+            <groupId>com.xiaoxiang</groupId>
+            <artifactId>service</artifactId>
+            <version>${service-version}</version>
+        </dependency>       
+        <!--本地引入 要放到后面,不然common-pool版本会有问题-->
+        <!--用于监控sql性能-->
+        <dependency>
+            <groupId>com.irontracksql</groupId>
+            <artifactId>irontracksql</artifactId>
+            <version>${irontracksql-version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>webapp</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-version}</version>
+                <configuration>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8088</port>
+                            <forwarded>true</forwarded>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <requestLog implementation="org.eclipse.jetty.server.NCSARequestLog">
+                        <filename>target/access.log</filename>
+                        <retainDays>90</retainDays>
+                        <append>false</append>
+                        <extended>false</extended>
+                        <logTimeZone>GMT+8:00</logTimeZone>
+                    </requestLog>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>productionMode</name>
+                            <value>false</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.util.URI.charset</name>
+                            <value>GBK</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>develop</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>!release</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!--测试自定义插件-->
+                    <plugin>
+                        <groupId>com.xiaoxiang.maven</groupId>
+                        <artifactId>config-maven-plugin</artifactId>
+                        <version>1.0</version>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <templateType>velocity</templateType>
+                            <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>config</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>release</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+</project>

@@ -88,6 +88,7 @@
         <module>service</module>
         <module>task</module>
         <module>web</module>
+        <module>springMVC</module>
         <module>deploy</module>
         <module>tool</module>
     </modules>
@@ -175,11 +176,11 @@
             </dependency>
 
             <!--spring MVC-->
-            <!--<dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
                 <version>${spring-version}</version>
-            </dependency>-->
+            </dependency>
             <!--struts2-->
             <dependency>
                 <groupId>org.apache.struts</groupId>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config description="common模块(自动配置)">
+
+    <props name="log">
+        <prop name="log.level" defaultValue="DEBUG"
+                  description="日志级别"/>
+    </props>
+
+    <gens>
+        <gen template="logback.xml.vm" destfile="logback.xml" encode="UTF-8"/>
+    </gens>
+</config>
