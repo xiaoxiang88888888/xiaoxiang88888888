@@ -8,6 +8,8 @@
 vm
 <br/>
 ${message}
+<br/>
+loginUser:${loginUser}
 </body>
 
 </html>
