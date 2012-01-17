@@ -47,6 +47,11 @@
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha-version}</version>
         </dependency>
+        <!--apache commons-->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
         <!--查看底层sql-->
         <dependency>
             <groupId>p6spy</groupId>

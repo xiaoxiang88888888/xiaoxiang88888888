@@ -39,6 +39,7 @@
         <memcached-version>1.3.5</memcached-version>
         <pinyin4j-version>2.5.0</pinyin4j-version>
         <httpclient-version>4.1.2</httpclient-version>
+        <commons-lang-version>2.6</commons-lang-version>
         <!--测试相关-->
         <junit-version>4.10</junit-version>
         <servlet-version>2.5</servlet-version>
@@ -324,6 +325,13 @@
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha-version}</version>
             </dependency>
+            <!--apache commons-->
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang-version}</version>
+            </dependency>
+
 
             <!-- ================================================= -->
             <!-- 测试与编译需要，打包不需要   -->
