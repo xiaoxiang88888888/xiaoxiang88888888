@@ -13,4 +13,23 @@ svn st 目录
 svn switch url
 
 
+问题1	Linux中svn安装方法，有时会出现版本客户端太旧，无法使用?
+先查看windows下你使用的TortoiseSVN，会有一个对应的subversion版本号，如TortoiseSVN 1.6.8对应的是Subversion 1.6.11，那么应该在下面的网址：
+http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=10339&expandFolder=10339&folderID=10339
+下载
+subversion-1.6.11.tar.gz与subversion-deps-1.6.11.tar.gz后者是svn的依赖环境。
+然后新建一目录，把这两个包放进去，同时解压到此目录：
+tar xvzf subversion-1.6.11.tar.gz;
+tar xvzf subversion-deps-1.6.11.tar.gz;
+
+然后cd subversion-1.6.11执行
+./configure  --prefix=/XX/subversion-1.6.11  --with-openssl=/XX/openssl-0.9.8k  --with-ssl
+注意的是openssl是根据环境来的，没有的话需要安装
+再make  再sudo make install
+最后把svn的环境配置到/etc/profile文件中
+export SVN_HOME=/XX/subversion-1.6.11
+export PATH=$SVN_HOME/bin:
+
+
+
 
