@@ -5,10 +5,7 @@ import com.xiaoxiang.base.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,10 +48,35 @@ public class AreaController extends AbstractController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public ModelAndView home() {
+        System.out.println(areaService+"=============");
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.setView(new VelocityView());
+        modelAndView.setViewName("/area/areaList.vm");
+        modelAndView.addObject("message", "Hello,Velocity,中文测试  ,home");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/{user}", method = RequestMethod.GET)
     public ModelAndView myMethod(@PathVariable("user") String user, ModelMap modelMap) throws Exception {
         modelMap.put("loginUser", user);
         return new ModelAndView("/area/areaList.vm", modelMap);
+    }
+    
+    @RequestMapping(value = "/sdf", method = RequestMethod.GET)
+    public ModelAndView sdf(ModelMap modelMap) throws Exception {
+        modelMap.put("loginUser", "sdf76767");
+        return new ModelAndView("/area/areaList.vm", modelMap);
+    }
+
+
+    @RequestMapping(value = "/compare", method = RequestMethod.POST)
+    public ModelAndView compare(@RequestParam("input1") String input1) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("output", input1);
+        modelAndView.setViewName("area/compareResult.vm");
+        return modelAndView;
     }
 
 

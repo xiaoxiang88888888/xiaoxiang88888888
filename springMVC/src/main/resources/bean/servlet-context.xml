@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <!-- 自动扫描bean，把作了注解的类转换为bean -->
-    <context:component-scan base-package="com.xiaoxiang.area"/>
+    <!-- 自动扫描bean，把作了注解的类转换为bean 最好分模块加载,见import-->
+    <!--<context:component-scan base-package="com.xiaoxiang.area"/>-->
 
     <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
     <!--<mvc:annotation-driven /> 是一种简写形式，完全可以手动配置替代这种简写形式，
@@ -91,4 +91,7 @@
             <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
         </property>
     </bean>
+
+    <!-- 分模块加载-->
+    <import resource="area-context.xml" />
 </beans>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>xiaoxiang呀</title>
+</head>
+<body>
+<div>
+    <h3>Path variable 'account': ${account}</h3>
+    <h3>Query param 'date': ${date}</h3>
+</div>
+</body>
+
+</html>

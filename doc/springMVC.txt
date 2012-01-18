@@ -100,7 +100,12 @@
    return "forward:/order/add";
    return "redirect:/index.vm";
 
-8
+8  如果有两个相同的请求被配置,后台会出错!
+   请求会先全匹配,找不到,再找/{param}这样的方法
+
+
+
+
 
 
 
