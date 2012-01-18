@@ -2,10 +2,14 @@ package com.xiaoxiang.area;
 
 import com.xiaoxiang.area.service.AreaService;
 import com.xiaoxiang.base.controller.AbstractController;
+import com.xiaoxiang.model.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -80,19 +84,13 @@ public class AreaController extends AbstractController {
 
 
     @ResponseBody
-    @RequestMapping("/ajax5.json")
+    @RequestMapping(value = "/ajax5.json",produces="application/json")
     public Object ajax(){
-        List<String> list=new ArrayList<String>();
-        list.add("电视");
-        list.add("洗衣机");
-        list.add("冰箱");
-        list.add("电脑");
-        list.add("汽车");
-        list.add("空调");
-        list.add("自行车");
-        list.add("饮水机");
-        list.add("热水器");
-        return list;
+        List<Area> areas= areaService.getAllEntity();
+        System.out.println(areas);
+        return areas;
     }
+
+
 
 }
