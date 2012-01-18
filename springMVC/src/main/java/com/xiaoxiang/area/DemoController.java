@@ -1,6 +1,6 @@
 package com.xiaoxiang.area;
 
-import com.xiaoxiang.base.AbstractController;
+import com.xiaoxiang.base.controller.AbstractController;
 import com.xiaoxiang.model.Area;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -135,8 +135,6 @@ public class DemoController extends AbstractController {
 
     @RequestMapping(value = "/redirect/{account}", method = RequestMethod.GET)
     public String show(@PathVariable String account, @RequestParam(required = false) String date,ModelMap modelMap) {
-        System.out.println(date);
-        System.out.println(date);
         //要放入相应的上下文中
         modelMap.put("date", date);
         return "/redirect/redirectResults.vm";

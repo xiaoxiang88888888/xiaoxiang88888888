@@ -1,14 +1,13 @@
 package com.xiaoxiang.area;
 
 import com.xiaoxiang.area.service.AreaService;
-import com.xiaoxiang.base.AbstractController;
+import com.xiaoxiang.base.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class AreaController extends AbstractController {
     @Autowired
     private AreaService areaService;
 
-    @RequestMapping(value = "/hello")
+    @RequestMapping(value = "/hello.htm")
     public ModelAndView helloJsp() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/area/areaList.vm");
@@ -58,11 +57,11 @@ public class AreaController extends AbstractController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/{user}", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/{user}", method = RequestMethod.GET)
     public ModelAndView myMethod(@PathVariable("user") String user, ModelMap modelMap) throws Exception {
         modelMap.put("loginUser", user);
         return new ModelAndView("/area/areaList.vm", modelMap);
-    }
+    }*/
     
     @RequestMapping(value = "/sdf", method = RequestMethod.GET)
     public ModelAndView sdf(ModelMap modelMap) throws Exception {
@@ -81,7 +80,7 @@ public class AreaController extends AbstractController {
 
 
     @ResponseBody
-    @RequestMapping("/ajax")
+    @RequestMapping("/ajax5.json")
     public Object ajax(){
         List<String> list=new ArrayList<String>();
         list.add("电视");

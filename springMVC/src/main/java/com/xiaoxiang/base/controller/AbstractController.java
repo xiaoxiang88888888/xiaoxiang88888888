@@ -1,4 +1,4 @@
-package com.xiaoxiang.base;
+package com.xiaoxiang.base.controller;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,7 +16,7 @@ import java.util.Date;
 public abstract class AbstractController {
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
