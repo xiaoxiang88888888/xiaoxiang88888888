@@ -12,8 +12,32 @@
     <context:component-scan base-package="com.xiaoxiang.area"/>
 
     <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <!--<mvc:annotation-driven /> 是一种简写形式，完全可以手动配置替代这种简写形式，
+    简写形式可以让初学都快速应用默认配置方案。<mvc:annotation-driven />
+    会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,
+    是spring MVC为@Controllers分发请求所必须的。
+     并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，
+     读写XML的支持（JAXB），读写JSON的支持（Jackson）-->
     <mvc:annotation-driven/>
 
+    <!-- 拦截器 -->
+    <!--我们可以配置多个HandlerMapping。<mvc:interceptors/>会为每一个HandlerMapping，
+    注入一个拦截器。其实我们也可以手动配置为每个HandlerMapping注入一个拦截器-->
+    <!--org.springframework.web.servlet.HandlerInterceptor接口，
+      org.springframework.web.servlet.handler.HandlerInterceptorAdapter适配器，-->
+    <!--总有一个HandlerMapping是可以找到处理器的，最多也只找到一个处理器，
+    所以这个拦截器总会被执行的。起到了总拦截器的作用。-->
+    <mvc:interceptors>
+        <bean class="com.xiaoxiang.base.interceptor.LoginInterceptor"/>
+    </mvc:interceptors>
+
+    <!--对相应的url进行控制 如公用,无需登陆-->
+    <mvc:interceptors >
+        <mvc:interceptor>
+            <mvc:mapping path="/public/*" />
+            <bean class="com.xiaoxiang.base.interceptor.PublicInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- velocity视图解析器 -->
     <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
@@ -48,4 +72,23 @@
         </property>
     </bean>
 
+    <!-- 对静态资源文件的访问-->
+    <!-- 匹配URL  /images/**  的URL被当做静态资源，由Spring读出到内存中再响应http-->
+    <mvc:resources mapping="/images/**" location="/images/" cache-period="31556926"/>
+    <mvc:resources mapping="/js/**" location="/js/" cache-period="31556926"/>
+    <mvc:resources mapping="/css/**" location="/css/" cache-period="31556926"/>
+    <mvc:resources mapping="/html/**" location="/html/" cache-period="31556926"/>
+
+    <!-- 总错误处理-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView">
+            <value>/error/error.vm</value>
+        </property>
+        <property name="defaultStatusCode">
+            <value>500</value>
+        </property>
+        <property name="warnLogCategory">
+            <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
+        </property>
+    </bean>
 </beans>

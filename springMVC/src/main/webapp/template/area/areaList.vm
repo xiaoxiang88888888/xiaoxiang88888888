@@ -10,6 +10,11 @@ vm
 ${message}
 <br/>
 loginUser:${loginUser}
+
+<form method="post" action="/area/compare">
+    <input type="text" value="" name="input1">
+    <button type="submit" name="提交" value="提交">提交</button>
+</form>
 </body>
 
 </html>

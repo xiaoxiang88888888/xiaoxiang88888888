@@ -1,0 +1,109 @@
+0 常用类
+  DispatcherServlet   -- 前置控制器
+
+  HandlerMapping接口 -- 处理请求的映射
+  SimpleUrlHandlerMapping  通过配置文件，把一个URL映射到Controller
+  DefaultAnnotationHandlerMapping  通过注解，把一个URL映射到Controller类上
+
+  HandlerAdapter接口 -- 处理请求的映射
+  AnnotationMethodHandlerAdapter类，通过注解，把一个URL映射到Controller类的方法上
+
+  Controller接口 -- 控制器
+  由于我们使用了@Controller注解，添加了@Controller注解注解的类就可以担任控制器（Action）的职责,
+
+  HandlerInterceptor 接口--拦截器
+  需要自己实现这个接口，来完成拦截的器的工作
+
+  ViewResolver接口的实现类
+  UrlBasedViewResolver类 通过配置文件，把一个视图名交给到一个View来处理
+  InternalResourceViewResolver类，比上面的类，加入了JSTL的支持
+
+  View接口
+  JstlView
+  VelocityView
+  FreeMarkerView
+  RedirectView
+
+  LocalResolver接口
+
+  HandlerExceptionResolver接口 --异常处理
+  SimpleMappingExceptionResolver实现类
+
+  ModelAndView类
+
+
+1 发起的请求,post与get分的很清,如果前台与后台不一致,会出现如下错误:
+  Request method 'GET' not supported
+  Request method 'POST' not supported
+
+2 参数获取
+  @RequestMapping(value = "/login/{user}", method = RequestMethod.GET)
+  这样的请求,需要@PathVariable("user") String user,可以取到相应的值
+  @RequestParam("input1") String input1
+  可以获取post与get中传递过来的参数
+
+3 找到相应的页面
+   modelAndView.setViewName("/area/areaList.vm");
+   这个地址,还需要加上配置文件中的基目录resourceLoaderPath
+   <!-- velocity环境配置 -->
+       <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+           <!-- 页面文件的路径,相对于webapp -->
+           <property name="resourceLoaderPath" value="/template"/>
+
+4 填入数据
+    modelAndView.addObject("message", "Hello,Velocity,中文测试");
+    另一种做法
+    new ModelAndView("/area/areaList.vm", modelMap);
+    modelMap是一个LinkedHashMap
+
+5 @Controller  标识此类是一个控制类,相当于struts2 中的action
+
+  @Autowired
+  private AreaService areaService;
+  这样声明不需要写get与set方法
+
+  @RequestMapping(value = "/url" ,method = RequestMethod.GET)
+  放至在一个方法前,表示请求这个如http://www.domain.com:port/url会执行这个方法,很容易实现restful格式的请求
+  支持指定以get或是post方式,需与前台页面相同.
+
+  @Controller 声明Action组件
+  @Service    声明Service组件    @Service("myMovieLister")
+  @Repository 声明Dao组件
+  @Component   泛指组件, 当不好归类时.
+  @RequestMapping("/menu")  请求映射
+  @Resource  用于注入，( j2ee提供的 ) 默认按名称装配，@Resource(name="beanName")
+  @Autowired 用于注入，(srping提供的) 默认按类型装配
+  @Transactional( rollbackFor={Exception.class}) 事务管理
+  @ResponseBody
+  @Scope("prototype")   设定bean的作用域
+
+6  在DispatcherServlet的初始化过程中，框架会在web应用的 WEB-INF文件夹下寻找名为[servlet-name]-servlet.xml 的配置文件，
+   生成文件中定义的bean
+   或者在web.xml中定义好
+    <!--springMVC servlet配置-->
+       <servlet>
+           <servlet-name>appServlet</servlet-name>
+           <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+           <init-param>
+               <param-name>contextConfigLocation</param-name>
+               <param-value>classpath*:bean/servlet-context.xml</param-value>
+           </init-param>
+           <load-on-startup>1</load-on-startup>
+       </servlet>
+       可以classpath*:bean/servlet-context.xml或者WEB-INF/xx.xml
+   1、不写,使用默认值:/WEB-INF/<servlet-name>-servlet.xml
+   2、<param-value>/WEB-INF/classes/springMVC.xml</param-value>
+   3、<param-value>classpath*:springMVC-mvc.xml</param-value>
+   4、多个值用逗号分隔
+
+7  转发与重定向
+   return "forward:/order/add";
+   return "redirect:/index.vm";
+
+8
+
+
+
+
+
+
