@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>文件上传</title>
+    <link rel="stylesheet" type="text/css" href="$!{cssServer}/base.css?version=$!{staticVersion}">
+</head>
+<body>
+<form action="/fileupload" name="uploadForm" id="uploadForm" method="post" enctype="multipart/form-data">
+    <ul>
+        <li>上传文件：</li>
+        <li><input name="file" type="file" id="file"/>
+            <input name="file2" type="file" id="file2"/>
+            <input type="submit" name="upload" id="upload" value="上传"/>
+        </li>
+    </ul>
+</form>
+<div id="data"></div>
+<script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('<input type="hidden" name="ajaxUpload" value="true" />').insertAfter($("#file"));
+/*        $("#upload").click(
+                function () {
+                    $.ajax({
+                        //dataType:'json',
+                        type:'post',
+                        url:'/fileupload',
+                        cache:false,
+                        success:function (message) {
+                            if (message.result) {
+                                alert("上传成功");
+                            } else {
+                                alert("上传失败");
+                            }
+                            $('#data').html("上传成功:<br/>"+message.data);
+                        }
+
+                    });
+                }
+        );*/
+    });
+</script>
+</body>
+</html>

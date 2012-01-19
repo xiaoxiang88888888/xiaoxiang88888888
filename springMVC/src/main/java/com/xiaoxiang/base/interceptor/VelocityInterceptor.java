@@ -25,8 +25,6 @@ public class VelocityInterceptor extends HandlerInterceptorAdapter {
     //生成视图之前执行
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println(commonProp.get(WWW_DOMAIN_WEB));
-        System.out.println(commonProp.get(WWW_DOMAIN_STATIC));
         System.out.println("VelocityInterceptor preHandle");
         modelAndView.addObject("webServer",commonProp.get(WWW_DOMAIN_WEB));
         modelAndView.addObject("staticServer",commonProp.get(WWW_DOMAIN_STATIC));

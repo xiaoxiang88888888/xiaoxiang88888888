@@ -32,17 +32,17 @@
     </mvc:interceptors>
 
     <!--对相应的url进行控制 如公用,无需登陆-->
-    <mvc:interceptors >
+    <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/public/*" />
+            <mvc:mapping path="/public/*"/>
             <bean class="com.xiaoxiang.base.interceptor.PublicInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
     <!--对相应的url进行,控制在模板渲染中加入一些全局变量-->
-    <mvc:interceptors >
+    <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**/*.htm" />
+            <mvc:mapping path="/**/*.htm"/>
             <bean class="com.xiaoxiang.base.interceptor.VelocityInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -100,6 +100,13 @@
         </property>
     </bean>
 
+    <!--上传相关配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置最大上传大小: 1MB -->
+        <property name="maxUploadSize" value="1048576"/>
+    </bean>
+
     <!-- 分模块加载-->
-    <import resource="area-context.xml" />
+    <import resource="area-context.xml"/>
+    <import resource="fileupload-context.xml"/>
 </beans>

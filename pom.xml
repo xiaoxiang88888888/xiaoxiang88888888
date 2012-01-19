@@ -40,6 +40,8 @@
         <pinyin4j-version>2.5.0</pinyin4j-version>
         <httpclient-version>4.1.2</httpclient-version>
         <commons-lang-version>2.6</commons-lang-version>
+        <fileupload-version>1.2.2</fileupload-version>
+        <io-version>2.1</io-version>
         <!--测试相关-->
         <junit-version>4.10</junit-version>
         <servlet-version>2.5</servlet-version>
@@ -331,6 +333,17 @@
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
                 <version>${commons-lang-version}</version>
+            </dependency>
+            <!--上传-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${fileupload-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${io-version}</version>
             </dependency>
 
 
