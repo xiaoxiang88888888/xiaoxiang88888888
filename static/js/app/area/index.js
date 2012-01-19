@@ -46,7 +46,7 @@ var areaIndex = function($) {
         bind:function(){
             //新增地区
             $('#add').click(function() {
-                window.location.href='/area/addArea.htm';
+                window.location.href='/area/add.htm';
             });
             //修改
             $('#data').delegate('button[name="updateArea"]', 'click', function() {
@@ -59,8 +59,9 @@ var areaIndex = function($) {
                 return false;
             });
         },
-        updateArea:function(id){
-
+        updateArea:function (id) {
+            //刷新数据
+            window.location.href='/area/update.htm?areaId='+id;
         },
         deleteArea:function (id) {
             var data = {

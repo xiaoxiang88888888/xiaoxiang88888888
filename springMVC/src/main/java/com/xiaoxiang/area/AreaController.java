@@ -4,9 +4,9 @@ import com.xiaoxiang.area.service.AreaService;
 import com.xiaoxiang.base.controller.AbstractController;
 import com.xiaoxiang.model.Area;
 import com.xiaoxiang.result.JSONResult;
+import com.xiaoxiang.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,6 +38,32 @@ public class AreaController extends AbstractController {
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/area/areaList.vm");
+        return modelAndView;
+    }
+
+    /**
+     * 新增页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
+    public ModelAndView add() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/area/areaAddOrUpdate.vm");
+        return modelAndView;
+    }
+
+    /**
+     * 修改页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/update.htm", method = RequestMethod.GET)
+    public ModelAndView update(@RequestParam String areaId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Area area = areaService.findEntityBykey(areaId);
+        modelAndView.setViewName("/area/areaAddOrUpdate.vm");
+        modelAndView.addObject("area",area);
         return modelAndView;
     }
 
@@ -95,6 +121,10 @@ public class AreaController extends AbstractController {
     public JSONResult addOrUpdate(@PathVariable String id, Area area) {
         JSONResult result = new JSONResult();
         try {
+            area.setAreaname(StringUtil.urlDecode(area.getAreaname()));
+            area.setAreacode(StringUtil.urlDecode(area.getAreacode()));
+            area.setParentAreaId(StringUtil.urlDecode(area.getParentAreaId()));
+            area.setRemark(StringUtil.urlDecode(area.getRemark()));
             if (areaService.exists(id)) { //数据库中已经存在
                 areaService.updateEntity(area);
             } else {

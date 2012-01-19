@@ -1,5 +1,7 @@
 package com.xiaoxiang.util;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -238,6 +240,21 @@ public class StringUtil extends org.apache.commons.lang.StringUtils {
             builder.deleteCharAt(0);
         }
         return builder.toString();
+    }
+
+    /**
+     * 用于后台转码
+     * @param param
+     * @return
+     */
+    public static String urlDecode(String param) {
+        if (isEmpty(param)) return param;
+        try {
+            return URLDecoder.decode(param, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            //可以保证,不会出问题
+        }
+        return param;
     }
 
     public static void main(String[] args) {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>地区增加</title>
+    <link rel="stylesheet" type="text/css" href="$!{cssServer}/base.css?version=$!{staticVersion}">
+</head>
+<body>
+<div class="popupContent">
+    <form class="noteMashterplate">
+        <input type="hidden" name="areaId" id="areaId" value="$!{area.areaId}">
+        <div class="formCont">
+            <div class="formLine">
+                <span class="contTitle">地区名称：</span>
+                <input id="areaname" name="areaname" class="text" type="text" maxlength="16" value="$!{area.areaname}"/>
+            </div>
+            <div class="formLine">
+                <span class="contTitle">上级地区：</span>
+                <input id="parentAreaId" name="parentAreaId" class="text" type="text" maxlength="16" value="$!{area.parentAreaId}"/>
+            </div>
+            <div class="formLine">
+                <span class="contTitle">地区编号：</span>
+                <input id="areacode" name="areacode" class="text" type="text" maxlength="16" value="$!{area.areacode}"/>
+            </div>
+            <div class="formLine">
+                <span class="contTitle">排序号：</span>
+                <input id="orderno" name="orderno" class="text" type="text" maxlength="16" value="$!{area.orderno}"/>
+            </div>
+            <div class="formLine">
+                <span class="contTitle">备注：</span>
+                <input id="remark" name="remark" class="text" type="text" maxlength="16" value="$!{area.remark}"/>
+            </div>
+            <div class="button">
+                <input id="save" type="button" value="确定"/>
+                <input id="close" type="button" value="关闭"/>
+            </div>
+    </form>
+</div>
+    #parse("/global/global.vm")
+<script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
+<script type="text/javascript" src="$!{jsServer}/common/uuid.js?version=$!{staticVersion}"></script>
+<script type="text/javascript" src="$!{jsServer}/app/area/add.js?version=$!{staticVersion}"></script>
+</body>
+</html>

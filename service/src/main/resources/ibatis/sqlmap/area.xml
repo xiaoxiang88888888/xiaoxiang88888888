@@ -73,6 +73,12 @@
         ]]>
     </delete>
 
+    <delete id="com.xiaoxiang.model.Area.deleteByPrimaryKey" parameterClass="java.lang.String">
+    <![CDATA[
+        delete from area where areaId = #areaId#
+        ]]>
+    </delete>
+
     <delete id="com.xiaoxiang.model.Area.delete" parameterClass="area">
     <![CDATA[
 
