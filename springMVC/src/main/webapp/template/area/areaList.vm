@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="$!{cssServer}/base.css?version=$!{staticVersion}">
 </head>
 <body>
+<div><button id="add">添加地区</button></div>
+
 <div id="data"></div>
 #parse("/global/global.vm")
 <script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
