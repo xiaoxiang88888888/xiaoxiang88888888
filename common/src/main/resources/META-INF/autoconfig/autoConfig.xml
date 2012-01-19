@@ -36,6 +36,8 @@
 
     <props name="server">
         <prop name="server.static.version" defaultValue="1.0" description="静态版本号"/>
+        <prop name="www.domain.web" defaultValue="http://www.xiaoxiang.com" description="服务器地址"/>
+        <prop name="www.domain.static" defaultValue="http://static.xiaoxiang.com" description="静态服务器地址"/>
     </props>
 
     <props name="cache">

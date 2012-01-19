@@ -96,4 +96,9 @@
 
     <bean id="springContextUtil" class="com.xiaoxiang.util.SpringContextUtil" scope="singleton"/>
 
+    <!--配置信息  -->
+    <bean id="commonProp"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:common.properties"/>
+    </bean>
 </beans>

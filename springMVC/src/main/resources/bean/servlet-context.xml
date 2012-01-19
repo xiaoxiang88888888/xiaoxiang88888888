@@ -39,6 +39,14 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!--对相应的url进行,控制在模板渲染中加入一些全局变量-->
+    <mvc:interceptors >
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*.htm" />
+            <bean class="com.xiaoxiang.base.interceptor.VelocityInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- velocity视图解析器 -->
     <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityView"/>

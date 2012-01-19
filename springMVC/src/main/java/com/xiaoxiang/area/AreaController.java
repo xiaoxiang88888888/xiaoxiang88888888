@@ -30,6 +30,18 @@ public class AreaController extends AbstractController {
     private AreaService areaService;
 
     /**
+     * 得到地区列表页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/area/areaList.vm");
+        return modelAndView;
+    }
+
+    /**
      * 查询相应的地区
      *
      * @param id

@@ -16,6 +16,8 @@ jdbc.validationQuery=${jdbc_validationQuery}
 
 #server
 server.static.version=${server_static_version}
+www.domain.static=${www_domain_static}
+www.domain.web=${www_domain_web}
 #redis
 redis.ip=${redis_ip}
 redis.port=${redis_port}

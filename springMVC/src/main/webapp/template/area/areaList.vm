@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>地区列表</title>
+    <link rel="stylesheet" type="text/css" href="$!{cssServer}/base.css?version=$!{staticVersion}">
+</head>
+<body>
+<div id="data"></div>
+#parse("/global/global.vm")
+<script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
+<script type="text/javascript" src="$!{jsServer}/app/area/index.js?version=$!{staticVersion}"></script>
+</body>
+</html>
