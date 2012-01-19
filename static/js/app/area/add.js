@@ -33,7 +33,7 @@ var areaAdd = function ($) {
                 'parentAreaId':encodeURIComponent(parentAreaId),
                 'areacode':encodeURIComponent(areacode),
                 'orderno':$.trim(orderno),
-                'remark':encodeURIComponent(remark)
+                'remark':stringUtil.encode(remark)
             };
             $.ajax({
                 //dataType:'json',

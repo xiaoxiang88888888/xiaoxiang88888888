@@ -39,6 +39,7 @@
     #parse("/global/global.vm")
 <script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
 <script type="text/javascript" src="$!{jsServer}/common/uuid.js?version=$!{staticVersion}"></script>
+<script type="text/javascript" src="$!{jsServer}/util/stringUtil.js?version=$!{staticVersion}"></script>
 <script type="text/javascript" src="$!{jsServer}/app/area/add.js?version=$!{staticVersion}"></script>
 </body>
 </html>

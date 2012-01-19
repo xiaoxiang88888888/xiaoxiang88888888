@@ -124,7 +124,7 @@ public class AreaController extends AbstractController {
             area.setAreaname(StringUtil.urlDecode(area.getAreaname()));
             area.setAreacode(StringUtil.urlDecode(area.getAreacode()));
             area.setParentAreaId(StringUtil.urlDecode(area.getParentAreaId()));
-            area.setRemark(StringUtil.urlDecode(area.getRemark()));
+            area.setRemark(StringUtil.decode(area.getRemark()));
             if (areaService.exists(id)) { //数据库中已经存在
                 areaService.updateEntity(area);
             } else {
