@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 说明
@@ -19,8 +22,60 @@ import javax.servlet.http.HttpServletRequest;
  * @author xiang.xiaox
  */
 @Controller
-@RequestMapping(value = "/area")
+@RequestMapping(value = "/demo")
 public class DemoController extends AbstractController {
+
+
+    @RequestMapping(value = "/hello")
+    public ModelAndView helloJsp() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/demo/areaList.vm");
+        modelAndView.addObject("message", "Hello,JSP,中文测试");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/vm",method = RequestMethod.GET)
+    public ModelAndView helloVm() {
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.setView(new VelocityView());
+        modelAndView.setViewName("/demo/areaList.vm");
+        modelAndView.addObject("message", "Hello,Velocity,中文测试");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public ModelAndView home() {
+        ModelAndView modelAndView = new ModelAndView();
+        //modelAndView.setView(new VelocityView());
+        modelAndView.setViewName("/demo/areaList.vm");
+        modelAndView.addObject("message", "Hello,Velocity,中文测试  ,home");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/{user}", method = RequestMethod.GET)
+    public ModelAndView myMethod(@PathVariable("user") String user, ModelMap modelMap) throws Exception {
+        modelMap.put("loginUser", user);
+        return new ModelAndView("/demo/areaList.vm", modelMap);
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/ajax")
+    public Object ajax(){
+        List<String> list=new ArrayList<String>();
+        list.add("电视");
+        list.add("洗衣机");
+        list.add("冰箱");
+        list.add("电脑");
+        list.add("汽车");
+        list.add("空调");
+        list.add("自行车");
+        list.add("饮水机");
+        list.add("热水器");
+        return list;
+    }
+
 
     @RequestMapping("/path")
     @ResponseBody
@@ -122,13 +177,13 @@ public class DemoController extends AbstractController {
     public String uriTemplate(RedirectAttributes redirectAttrs) {
         redirectAttrs.addAttribute("account", "肖sdf");  // Used as URI template variable
         redirectAttrs.addAttribute("date", "2012-01-12");  // Appended as a query parameter
-        return "redirect:/area/redirect/{account}";
+        return "redirect:/demo/redirect/{account}";
     }
 
     @RequestMapping(value = "/redirect/uriComponentsBuilder", method = RequestMethod.GET)
     public String uriComponentsBuilder() {
         String date = "2012-02-12";
-        UriComponents redirectUri = UriComponentsBuilder.fromPath("/area/redirect/{account}").queryParam("date", date)
+        UriComponents redirectUri = UriComponentsBuilder.fromPath("/demo/redirect/{account}").queryParam("date", date)
                 .build().expand("a123").encode();
         return "redirect:" + redirectUri.toUriString();
     }
