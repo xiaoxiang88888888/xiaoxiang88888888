@@ -10,7 +10,8 @@
     <ul>
         <li>上传文件：</li>
         <li><input name="file" type="file" id="file"/>
-            <input name="file2" type="file" id="file2"/>
+            <input name="file" type="file" id="file2"/>
+            <input name="param" type="text" value="测试"/>
             <input type="submit" name="upload" id="upload" value="上传"/>
         </li>
     </ul>
