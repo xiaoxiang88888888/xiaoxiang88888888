@@ -12,5 +12,11 @@
 #parse("/global/global.vm")
 <script type="text/javascript" src="$!{jsServer}/common/jquery-1.7.1.js?version=$!{staticVersion}"></script>
 <script type="text/javascript" src="$!{jsServer}/app/area/index.js?version=$!{staticVersion}"></script>
+#pagination_links_js()
+<script type="text/javascript">
+    function gotoPageNew() {
+        areaIndex.loadData();
+    }
+</script>
 </body>
 </html>

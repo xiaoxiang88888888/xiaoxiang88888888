@@ -95,6 +95,22 @@ public interface BaseDAO<T, PK extends Serializable> {
     public List<T> getAllEntity();
 
     /**
+     * 查询所有实体集合 ,可添加相关参数
+     *
+     * @return 实体集合
+     */
+    public List<T> getAllEntity(Map<String, Object> params);
+
+    /**
+     * 查询所有实体集合数量
+     *
+     * @param params
+     * @return 实体集合
+     */
+    public int getAllEntityCount(Map<String, Object> params);
+
+
+    /**
      * 查询所有实体集合(剔除重复的对象)
      *
      * @return

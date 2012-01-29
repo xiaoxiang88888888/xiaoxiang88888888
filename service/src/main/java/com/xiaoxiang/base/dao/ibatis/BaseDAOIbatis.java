@@ -33,6 +33,10 @@ public class BaseDAOIbatis<T extends BaseVO, PK extends Serializable> extends Sq
 
     public static final String POSTFIX_SELECT = ".select";
 
+    public static final String POSTFIX_SELECT_PAGE = ".selectPage";
+
+    public static final String POSTFIX_SELECT_COUNT = ".selectCount";
+
     public static final String POSTFIX_SELECTBYID = ".existsById";
 
 
@@ -108,6 +112,16 @@ public class BaseDAOIbatis<T extends BaseVO, PK extends Serializable> extends Sq
     public List<T> getAllEntity() {
         //System.out.println(getEntityClass().getName() + POSTFIX_SELECT);
         return getSqlMapClientTemplate().queryForList(getEntityClass().getName() + POSTFIX_SELECT, null);
+    }
+
+    @Override
+    public List<T> getAllEntity(Map<String, Object> params) {
+        return getSqlMapClientTemplate().queryForList(getEntityClass().getName() + POSTFIX_SELECT_PAGE, params);
+    }
+
+    @Override
+    public int getAllEntityCount(Map<String, Object> params) {
+        return (Integer)getSqlMapClientTemplate().queryForObject(getEntityClass().getName() + POSTFIX_SELECT_COUNT, params);
     }
 
     @Override

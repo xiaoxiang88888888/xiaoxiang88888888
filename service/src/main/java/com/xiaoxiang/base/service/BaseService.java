@@ -93,6 +93,21 @@ public interface BaseService<T, PK> {
     public List<T> getAllEntity();
 
     /**
+     * 查询所有实体集合 ,可添加相关参数
+     *
+     * @return 实体集合
+     */
+    public List<T> getAllEntity(Map<String, Object> params);
+
+    /**
+     * 查询所有实体集合数量
+     *
+     * @param params
+     * @return 实体集合
+     */
+    public int getAllEntityCount(Map<String, Object> params);
+
+    /**
      * 查询所有实体集合(剔除重复的对象)
      *
      * @return
@@ -113,7 +128,7 @@ public interface BaseService<T, PK> {
      * @param queryParams
      * @return
      */
-    List<T> findByParamQuery( Map<String, Object> queryParams);
+    List<T> findByParamQuery(Map<String, Object> queryParams);
 
     /**
      * 根据相关参数查询记录大小
@@ -121,7 +136,7 @@ public interface BaseService<T, PK> {
      * @param queryParams
      * @return
      */
-    int findByParamQueryCount( Map<String, Object> queryParams);
+    int findByParamQueryCount(Map<String, Object> queryParams);
 
     /**
      * 获得实体类型

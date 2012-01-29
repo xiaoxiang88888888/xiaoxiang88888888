@@ -53,8 +53,8 @@
         <property name="cache" value="false"/>
         <!--是否缓存模板-->
         <!--下面如果配置,会出问题-->
-        <!--<property name="prefix" value="/template"/>
-        <property name="suffix" value=".vm"/>-->
+        <!--<property name="prefix" value="/template"/>-->
+        <property name="suffix" value=".vm"/>
         <property name="contentType" value="text/html;charset=UTF-8"/>
         <property name="exposeSpringMacroHelpers" value="true"/>
         <!--是否使用spring对宏定义的支持-->
@@ -76,6 +76,24 @@
                 <prop key="output.encoding">UTF-8</prop>
                 <!-- 指定输出流的编码 -->
                 <prop key="contentType">text/html;charset=UTF-8</prop>
+                <!--是一个逗号分隔的所有Velocimacro 模板库的列表。默认情况下，
+              Velocity 搜寻一个单一的库VM_global_library.vm.。预先配置的模板路径用来查找Velocimacro 库。-->
+                <prop key="velocimacro.library">/global/macros.vm</prop>
+                <!--这个属性决定Velocimacros 是否可以在常规模板内定义，取值为逻辑True或者False。
+                默认情况下，设置为true，允许设计者在产规模板内定义宏-->
+                <prop key="velocimacro.permissions.allow.inline">true</prop>
+                <!--逻辑true 或者false，允许标明是否允许在常规模板内定义的Velocimacro
+                代替在模板库中定义并通过velocimacro.library属性在启动时装入的全局宏。默认设置为false-->
+                <prop key="velocimacro.permissions.allow.inline.to.replace.global">false</prop>
+                <!--逻辑true 或者false，默认值为false。 控制是否 在模板内定义的Velocimacros 仅在定义它的模板内可见。
+                换句话说，如果设置为true，一个模板可以定义仅能被他所用的宏。你可以用它来做一些漂亮的宏，如果一个全局调用另一个全局宏，
+                在局部（inline）范围内，当被一个模板调用时，该模板可以定义一个被第一个全局宏调用的第二个全局宏的私有实现。
+                其他所有模板都不受影响-->
+                <prop key="velocimacro.permissions.allow.inline.local.scope">true</prop>
+                <prop key="velocimacro.context.localscope">false</prop>
+                <prop key="velocimacro.library.autoreload">false</prop>
+                <prop key="parser.pool.size">100</prop>
+                <prop key="directive.set.null.allowed">true</prop>
             </props>
         </property>
     </bean>

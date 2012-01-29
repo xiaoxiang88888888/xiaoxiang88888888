@@ -3,14 +3,19 @@ package com.xiaoxiang.area;
 import com.xiaoxiang.area.service.AreaService;
 import com.xiaoxiang.base.controller.AbstractController;
 import com.xiaoxiang.model.Area;
+import com.xiaoxiang.pagination.Pagination;
 import com.xiaoxiang.result.JSONResult;
+import com.xiaoxiang.util.PaginationUtil;
 import com.xiaoxiang.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Spring MVC 3.x是完全支持Restful的，把URI做好规划。
@@ -37,7 +42,7 @@ public class AreaController extends AbstractController {
     @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/area/areaList.vm");
+        modelAndView.setViewName("/area/areaList");
         return modelAndView;
     }
 
@@ -49,7 +54,7 @@ public class AreaController extends AbstractController {
     @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
     public ModelAndView add() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/area/areaAddOrUpdate.vm");
+        modelAndView.setViewName("/area/areaAddOrUpdate");
         return modelAndView;
     }
 
@@ -62,7 +67,7 @@ public class AreaController extends AbstractController {
     public ModelAndView update(@RequestParam String areaId) {
         ModelAndView modelAndView = new ModelAndView();
         Area area = areaService.findEntityBykey(areaId);
-        modelAndView.setViewName("/area/areaAddOrUpdate.vm");
+        modelAndView.setViewName("/area/areaAddOrUpdate");
         modelAndView.addObject("area",area);
         return modelAndView;
     }
@@ -107,6 +112,38 @@ public class AreaController extends AbstractController {
             result.setErrorDesc("出现异常:" + e.getMessage());
         }
         return result;
+    }
+
+    /**
+     * 分页获取地区
+     *
+     * @return
+     */
+    @RequestMapping(value = "/list.htm", method = RequestMethod.POST)
+    public ModelAndView listPagination(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/area/areaData");
+        //分页处理
+        Map<String, Object> params = new HashMap<String, Object>();
+        Pagination p = PaginationUtil.parse(request);
+        params.put("start", (p.getCurPage()-1)*p.getPageSize()+1);
+        //mysql
+        params.put("end", p.getPageSize());
+        //oracle
+        //params.put("end", p.getCurPage()*p.getPageSize());
+        //排序
+        String sort = request.getParameter("sort");//状态
+        String order = request.getParameter("order");//创建 时间
+        params.put("sort", sort);
+        params.put("order", order);//
+        //总数量
+        int total = areaService.getAllEntityCount(params);
+        p = PaginationUtil.parse(request, total);
+        //分页记录集
+        List<Area> areas = areaService.getAllEntity(params);
+        modelAndView.addObject("pagination", p);
+        modelAndView.addObject("datas",areas);
+        return modelAndView;
     }
 
 

@@ -1,0 +1,29 @@
+<table>
+    <tr>
+        <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">地区名称</td>
+        <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">上级地区</td>
+        <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">地区编号</td>
+        <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">排序号</td>
+        <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">备注</td>
+        <td width="66"  align="center" valign="middle">操作</td>
+    </tr>
+    #foreach($data in $datas)
+        <tr class="tableStatisticsCont">
+            <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.areaname}</td>
+            <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.parentAreaId}</td>
+            <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.areacode}</td>
+            <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.orderno}</td>
+            <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.remark}</td>
+            <td width="66"  align="center" valign="middle"><a name="updateArea" data="$!{data.areaId}">修改</a><a name="deleteArea" data="$!{data.areaId}">删除</a></td>
+        </tr>
+    #end
+</table>
+
+#if(0 < $datas.size())
+<div class="tableContrl">
+    <div>
+    #pagination_fields($pagination)
+    #pagination_links_context($pagination,"'a'","false","true")
+    </div>
+</div>
+#end

@@ -96,6 +96,16 @@ public class BaseServiceImpl<T, PK extends Serializable> implements BaseService<
     }
 
     @Override
+    public List<T> getAllEntity(Map<String, Object> params) {
+        return dao.getAllEntity(params);
+    }
+
+    @Override
+    public int getAllEntityCount(Map<String, Object> params) {
+        return dao.getAllEntityCount(params);
+    }
+
+    @Override
     public List<T> getAllEntityDistinct() {
         return dao.getAllEntityDistinct();
     }

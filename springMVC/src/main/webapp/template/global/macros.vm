@@ -1,0 +1,127 @@
+####分页器js
+#macro(pagination_links_js)
+<script language="javascript">
+    function navigate(formname, page, total) {
+        if (page == "") {
+            alert("请输入页码！");
+            return;
+        }
+
+        var pageStr = page + "";
+
+        if (pageStr.length == 0 || isNaN(page) || pageStr.indexOf('.') >= 0 || page < 1 || page > total) {
+            alert("输入的页码必须为整数且在1与" + total + "之间！");
+            return;
+        }
+
+        document.getElementById('_CUR_PAGE').value = page;
+
+        if (window.gotoPageNew) {
+            gotoPageNew(formname);
+        } else {
+            alert("你没有编写gotoPageNew函数！");
+        }
+    }
+
+    function navigateShortcut(formname, page, total) {
+        if (event.keyCode == 13) {
+            navigate(formname, page, total);
+        }
+    }
+    function changeNumPerPage(pageSize, formname) {
+        document.getElementById('_PAGE_SIZE').value = pageSize;
+        document.getElementById('_CUR_PAGE').value = 1;
+        var imageServer = '$imageServer/icon/';
+        if (window.gotoPageNew) {
+            gotoPageNew(formname);
+        } else {
+            alert("你没有编写gotoPageNew函数！");
+        }
+    }
+
+    function gotoPageNew(formname) {
+        try {
+            document.getElementById('_IS_REPLY_SELECT_COUNT').value = "N";
+            document.getElementById(formname).submit();
+        } catch (e) {
+        }
+    }
+</script>
+#end
+
+####分页器和排序的隐藏域 在表单form下面添加
+#macro(pagination_fields $pagination)
+<input type="hidden" name="_TOTAL_SIZE" id="_TOTAL_SIZE" value="$!{pagination.totalSize}">
+<input type="hidden" name="_PAGE_SIZE" id="_PAGE_SIZE" value="$!{pagination.pageSize}">
+<input type="hidden" name="_CUR_PAGE" id="_CUR_PAGE" value="$!{pagination.curPage}">
+<input type="hidden" name="_ORDER_COLUMN" id="_ORDER_COLUMN" value="$!{pagination.column}">
+<input type="hidden" name="_ORDER_BY" id="_ORDER_BY" value="$!{pagination.order}">
+<input type="hidden" name="_IS_REPLY_SELECT_COUNT" id="_IS_REPLY_SELECT_COUNT" value="n">
+<input type="hidden" name="_IS_REPLY_SELECT_COUNT_CHANGE_NUM_PRE_PAGE" id="_IS_REPLY_SELECT_COUNT_CHANGE_NUM_PRE_PAGE"
+       value="N">
+#end
+
+#####分页器的实现调用,pagination分页器对象 formname表单的名称
+#macro(pagination_links_context $pagination $formname $isIncludeJS $isIncludePageSize)
+    #if("$!PAGINATION_INDEX"=="")
+        #set($PAGINATION_INDEX="")
+    #end
+    #if("false" != "$isIncludeJS")
+        #pagination_links_js()
+    #end
+
+<div  style="color: gray; font-size: 12px;  float: right;padding-right: 9px;">
+
+    #if ($pagination)
+        <span>共 $pagination.totalSize 条记录</span>
+        #set($img="$imageServer/icon/")
+
+        #if("true" == "$isIncludePageSize")
+            <span>本页显示:</span><a href="javascript:;" onclick="changeNumPerPage(10,$!{formname});return false;"><img id="tenImg" align="absmiddle" tabindex="10001" src="
+			#if("$!pagination.pageSize"=="10")
+				${img}item_amount_10_act.gif
+			#else
+			    ${img}item_amount_10.gif
+			#end
+			"/></a> <a href="javascript:;" onclick="changeNumPerPage(20,$!{formname});return false;"><img id="tweImg" align="absmiddle" tabindex="10002" src="
+			#if("$!pagination.pageSize"=="20")${img}item_amount_20_act.gif
+			#else
+				${img}item_amount_20.gif
+			#end
+			"/></a> <a href="javascript:;" onclick="changeNumPerPage(40,$!{formname});return false;"><img id="thrImg" align="absmiddle" tabindex="10003" src="
+			#if("$!pagination.pageSize"=="40")
+				${img}item_amount_40_act.gif
+			#else
+				    ${img}item_amount_40.gif
+			#end
+			"/></a>
+        #end
+
+        #if($pagination.hasPrePage)
+            <a href="javascript:;" onclick="navigate($!{formname},1,$pagination.totalPage);return false;"><img height=16 alt="首页" align="absmiddle" src="$imageServer/icon/shouye.gif" width=16 border=0></a>
+            <a href="javascript:;" onclick="navigate($!{formname},$!{pagination.prePage},$!{pagination.totalPage});return false;"><img height=16 alt="前页" align="absmiddle" src="$imageServer/icon/qianye.gif" width=16 border=0></a>
+        #else
+            <span><img height=16 alt="首页" src="$imageServer/icon/shouye.gif" align="absmiddle" width=16 border=0　tabindex="10001"></span>
+            <span><img height=16 alt="前页" src="$imageServer/icon/qianye.gif" align="absmiddle" width=16 border=0></span>
+        #end
+
+        <span>$pagination.curPage / $pagination.totalPage</span>
+        #if($pagination.hasNextPage)
+            <a href="javascript:;" onclick="navigate($formname,$pagination.nextPage,$pagination.totalPage);return false;"><img style="top:1px" height=16 alt="下页" align="absmiddle" src="$imageServer/icon/houye.gif" width=16 border=0></a>
+            <a href="javascript:;" onclick="navigate($formname,$pagination.totalPage,$pagination.totalPage);return false;"><img style="top:1px" height=16 alt="末页" align="absmiddle" src="$imageServer/icon/moye.gif" width=16 border=0></a>
+        #else
+            <span><img style="top:1px"  height=16 alt="下页" src="$imageServer/icon/houye.gif" width=16 border=0 align="absmiddle"></span>
+            <span><img style="top:1px" height=16 alt="末页" src="$imageServer/icon/moye.gif" width=16 border=0 align="absmiddle"></span>
+        #end
+        <span>
+    		转到
+    		<input class=text1 size=3  id="pageno" name="pageno" tabindex="10000" onkeydown="navigateShortcut($formname,this.value,$pagination.totalPage);">
+    		页
+        </span>
+    			<span style="CURSOR: hand; margin-left:7px; " onclick="navigate($formname,document.getElementById('pageno').value,$pagination.totalPage);">
+    				<img alt=转到.. src="$imageServer/customer/enterbtn.jpg" border=0 align="absmiddle">
+    			</span>
+
+    #end
+</div>
+#end

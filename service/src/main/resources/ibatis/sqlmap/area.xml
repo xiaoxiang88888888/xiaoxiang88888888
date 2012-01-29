@@ -5,6 +5,7 @@
 <sqlMap namespace="area">
 
     <typeAlias alias="area" type="com.xiaoxiang.model.Area"/>
+
     <resultMap id="areaResult" class="area">
         <result property="areaId" column="areaId"/>
         <result property="parentAreaId" column="are_areaId"/>
@@ -14,19 +15,60 @@
         <result property="remark" column="remark"/>
     </resultMap>
 
+    <sql id="condition">
+        <isNotNull prepend="and" property="areaId">
+            areaId=#areaId#
+        </isNotNull>
+
+        <isNotNull prepend="and" property="parentAreaId">
+            <![CDATA[
+				are_areaId=#parentAreaId#
+			]]>
+        </isNotNull>
+        <isNotNull prepend="and" property="areacode">
+            <![CDATA[
+				areacode = #areacode#
+			]]>
+        </isNotNull>
+
+        <isNotNull prepend="and" property="areaname">
+            <![CDATA[
+				areaname=#areaname#
+			]]>
+        </isNotNull>
+
+        <isNotNull prepend="and" property="orderno">
+            <![CDATA[
+				orderno=#orderno#
+			]]>
+        </isNotNull>
+
+        <isNotNull prepend="and" property="remark">
+            <![CDATA[
+				remark=#remark#
+			]]>
+        </isNotNull>
+    </sql>
+
     <insert id="com.xiaoxiang.model.Area.insert" parameterClass="area">
         <![CDATA[
+
+
 
         insert into
         area (areaId, are_areaId, areacode, areaname, orderno,remark)
         values (#areaId#, #parentAreaId#, #areacode#, #areaname#,
                 #orderno#, #remark#)
 
+
+
         ]]>
     </insert>
 
     <update id="com.xiaoxiang.model.Area.update" parameterClass="area">
     <![CDATA[
+
+
 
         update area SET
             areaId = #areaId#,
@@ -38,13 +80,19 @@
         where areaId = #areaId#
 
 
+
+
         ]]>
     </update>
 
     <select id="com.xiaoxiang.model.Area.existsById" resultMap="areaResult">
     <![CDATA[
 
+
+
         select * from area where areaId=#areaId#
+
+
 
         ]]>
     </select>
@@ -52,7 +100,11 @@
     <select id="com.xiaoxiang.model.Area.selectByName" resultMap="areaResult">
     <![CDATA[
 
+
+
         select * from area where areaname=#areaname#
+
+
 
         ]]>
     </select>
@@ -60,29 +112,75 @@
     <select id="com.xiaoxiang.model.Area.select" resultMap="areaResult">
     <![CDATA[
 
+
+
         select * from area ORDER BY UPPER(areaname)
 
+
+
         ]]>
+    </select>
+
+    <select id="com.xiaoxiang.model.Area.selectPage" resultMap="areaResult" parameterClass="java.util.Map">
+        <![CDATA[
+        select * from area where 1=1
+        ]]>
+        <include refid="condition"/>
+        <isNotNull property="sort">
+            <isEqual property="sort" compareValue="desc">
+                <![CDATA[
+				order by areaname desc
+			    ]]>
+            </isEqual>
+            <isEqual property="sort" compareValue="asc">
+                <![CDATA[
+				order by areaname asc
+			    ]]>
+            </isEqual>
+        </isNotNull>
+        <isNull property="sort">
+            order by areaname desc
+        </isNull>
+        <include refid="global.mysqlEnd"/>
+    </select>
+
+    <select id="com.xiaoxiang.model.Area.selectCount" resultClass="int" parameterClass="java.util.Map">
+        <![CDATA[
+        select count(*) cnt from area where 1=1
+        ]]>
+        <include refid="condition"/>
     </select>
 
     <delete id="com.xiaoxiang.model.Area.deleteById" parameterClass="java.lang.String">
     <![CDATA[
 
+
+
         delete from area where areaId = #areaId#
+
+
 
         ]]>
     </delete>
 
     <delete id="com.xiaoxiang.model.Area.deleteByPrimaryKey" parameterClass="java.lang.String">
     <![CDATA[
+
+
         delete from area where areaId = #areaId#
+
+
         ]]>
     </delete>
 
     <delete id="com.xiaoxiang.model.Area.delete" parameterClass="area">
     <![CDATA[
 
+
+
         delete from area where areaId = ''
+
+
 
         ]]>
     </delete>
