@@ -66,12 +66,12 @@ var areaIndex = function ($) {
                 window.location.href = '/area/add.htm';
             });
             //修改
-            $('#data').delegate('button[name="updateArea"]', 'click', function () {
+            $('#data').delegate('a[name="updateArea"]', 'click', function () {
                 areaIndex.updateArea($(this).attr('data'));
                 return false;
             });
             //删除
-            $('#data').delegate('button[name="deleteArea"]', 'click', function () {
+            $('#data').delegate('a[name="deleteArea"]', 'click', function () {
                 areaIndex.deleteArea($(this).attr('data'));
                 return false;
             });

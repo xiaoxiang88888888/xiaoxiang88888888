@@ -14,7 +14,7 @@
             <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.areacode}</td>
             <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.orderno}</td>
             <td width="88"   align="left" valign="middle"  class="leftFabric purchaser">$!{data.remark}</td>
-            <td width="66"  align="center" valign="middle"><a name="updateArea" data="$!{data.areaId}">修改</a><a name="deleteArea" data="$!{data.areaId}">删除</a></td>
+            <td width="66"  align="center" valign="middle"><a href="javascript:void(0);" name="updateArea" data="$!{data.areaId}">修改</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" name="deleteArea" data="$!{data.areaId}">删除</a></td>
         </tr>
     #end
 </table>
