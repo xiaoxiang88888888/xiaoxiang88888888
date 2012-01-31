@@ -68,6 +68,8 @@
         <zookeeper-version>3.3.3</zookeeper-version>
         <!--验证码-->
         <kaptcha-version>2.3.2</kaptcha-version>
+        <!--jta-->
+        <atomikos-version>3.7.0</atomikos-version>
         <!-- maven plugins version -->
         <maven-compiler-version>2.3.2</maven-compiler-version>
         <maven-eclipse-version>2.8</maven-eclipse-version>
@@ -345,7 +347,22 @@
                 <artifactId>commons-io</artifactId>
                 <version>${io-version}</version>
             </dependency>
-
+            <!--jta 跨数据库事务-->
+            <dependency>
+                <groupId>com.atomikos</groupId>
+                <artifactId>transactions-jta</artifactId>
+                <version>${atomikos-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.atomikos</groupId>
+                <artifactId>transactions-jdbc</artifactId>
+                <version>${atomikos-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.atomikos</groupId>
+                <artifactId>transactions-jdbc-deprecated</artifactId>
+                <version>${atomikos-version}</version>
+            </dependency>
 
             <!-- ================================================= -->
             <!-- 测试与编译需要，打包不需要   -->

@@ -178,7 +178,7 @@
 
 
 
-        delete from area where areaId = ''
+        delete from area where areaId4 = ''
 
 
 

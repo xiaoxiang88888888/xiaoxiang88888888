@@ -19,52 +19,160 @@
             </list>
         </property>
     </bean>
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    <!--JTA相关-->
+    <bean id="JTADataSource" class="com.atomikos.jdbc.SimpleDataSourceBean"
+          init-method="init" destroy-method="close">
+        <property name="uniqueResourceName">
+            <value>JTADataSource</value>
+        </property>
+        <property name="xaDataSourceClassName">
+            <value>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</value>
+        </property>
+        <property name="xaDataSourceProperties">
+            <value>${jdbc.jta.properties}</value>
+        </property>
+        <property name="exclusiveConnectionMode">
+            <value>true</value>
+        </property>
+        <property name="connectionPoolSize">
+            <value>3</value>
+        </property>
+        <property name="validatingQuery">
+            <value>SELECT 1</value>
+        </property>
+    </bean>
+    <bean id="JTADataSource2" class="com.atomikos.jdbc.SimpleDataSourceBean"
+          init-method="init" destroy-method="close">
+        <property name="uniqueResourceName">
+            <value>JTADataSource2</value>
+        </property>
+        <property name="xaDataSourceClassName">
+            <value>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</value>
+        </property>
+        <property name="xaDataSourceProperties">
+            <value>${jdbc.jta2.properties}</value>
+        </property>
+        <property name="exclusiveConnectionMode">
+            <value>true</value>
+        </property>
+        <property name="connectionPoolSize">
+            <value>3</value>
+        </property>
+        <property name="validatingQuery">
+            <value>SELECT 1</value>
+        </property>
+    </bean>
+    <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"
+          init-method="init" destroy-method="close">
+        <property name="forceShutdown">
+            <value>true</value>
+        </property>
+    </bean>
+    <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+        <property name="transactionTimeout">
+            <value>300</value>
+        </property>
+    </bean>
+    <bean id="springJTATransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <property name="transactionManager">
+            <ref bean="atomikosTransactionManager"/>
+        </property>
+        <property name="userTransaction">
+            <ref bean="atomikosUserTransaction"/>
+        </property>
+    </bean>
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager"
+                  ref="springJTATransactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- 声明式事务边界配置 所有的bean公用一个代理bean-->
+    <bean id="baseTransactionProxy"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+          abstract="true">
+        <property name="transactionManager"
+                  ref="springJTATransactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <!-- 可以根据实际情况细化配置提高性能 -->
+                <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="save*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+                <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+            </props>
+        </property>
+    </bean>
+    <!--常用数据源 这个名称不能等于dataSource,不能jta配置会出问题-->
+    <bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-          <property name="driverClassName" value="${jdbc.driverClassName}" />
-          <property name="url" value="${jdbc.url}" />
-          <property name="username" value="${jdbc.username}" />
-          <property name="password" value="${jdbc.password}" />
-          <property name="minIdle" value="${jdbc.minIdle}" />
-          <property name="maxIdle" value="${jdbc.maxIdle}" />
-          <property name="maxActive" value="${jdbc.maxActive}" />
-          <property name="maxWait" value="${jdbc.maxWait}" />
-          <property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
-          <property name="testOnReturn" value="${jdbc.testOnReturn}" />
-          <property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
-          <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
-          <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
-          <!--生产环境需要去掉-->
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+        <property name="testOnReturn" value="${jdbc.testOnReturn}"/>
+        <property name="testOnBorrow" value="${jdbc.testOnBorrow}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+        <!--生产环境需要去掉-->
         <!-- <property name="validationQuery" value="${jdbc.validationQuery}" />-->
     </bean>
     <bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-          <property name="driverClassName" value="${jdbc.driverClassName2}" />
-          <property name="url" value="${jdbc.url2}" />
-          <property name="username" value="${jdbc.username2}" />
-          <property name="password" value="${jdbc.password2}" />
-          <property name="minIdle" value="${jdbc.minIdle2}" />
-          <property name="maxIdle" value="${jdbc.maxIdle2}" />
-          <property name="maxActive" value="${jdbc.maxActive2}" />
-          <property name="maxWait" value="${jdbc.maxWait2}" />
-          <property name="testWhileIdle" value="${jdbc.testWhileIdle2}" />
-          <property name="testOnReturn" value="${jdbc.testOnReturn2}" />
-          <property name="testOnBorrow" value="${jdbc.testOnBorrow2}" />
-          <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis2}" />
-          <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis2}" />
-          <!--生产环境需要去掉-->
+        <property name="driverClassName" value="${jdbc.driverClassName2}"/>
+        <property name="url" value="${jdbc.url2}"/>
+        <property name="username" value="${jdbc.username2}"/>
+        <property name="password" value="${jdbc.password2}"/>
+        <property name="minIdle" value="${jdbc.minIdle2}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle2}"/>
+        <property name="maxActive" value="${jdbc.maxActive2}"/>
+        <property name="maxWait" value="${jdbc.maxWait2}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle2}"/>
+        <property name="testOnReturn" value="${jdbc.testOnReturn2}"/>
+        <property name="testOnBorrow" value="${jdbc.testOnBorrow2}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis2}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis2}"/>
+        <!--生产环境需要去掉-->
         <!-- <property name="validationQuery" value="${jdbc.validationQuery2}" />-->
     </bean>
 
     <!-- iBatis SQL map定义 -->
     <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        
+        <property name="dataSource" ref="dataSource1"/>
+
         <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
     </bean>
 
     <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
         <property name="sqlMapClient" ref="sqlMapClient"/>
+    </bean>
+    <!-- jta -->
+    <bean id="sqlMapClientJTA" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="dataSource" ref="JTADataSource"/>
+
+        <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
+    </bean>
+    <bean id="sqlMapClientTemplateJTA" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+        <property name="sqlMapClient" ref="sqlMapClientJTA"/>
+    </bean>
+    <bean id="sqlMapClientJTA2" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+        <property name="dataSource" ref="JTADataSource2"/>
+
+        <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
+    </bean>
+    <bean id="sqlMapClientTemplateJTA2" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+        <property name="sqlMapClient" ref="sqlMapClientJTA2"/>
     </bean>
 
     <!--抽象dao层-->
@@ -73,25 +181,35 @@
             <ref local="sqlMapClientTemplate"/>
         </property>
     </bean>
+    <bean id="baseDAOJTA" abstract="true">
+        <property name="sqlMapClientTemplate">
+            <ref local="sqlMapClientTemplateJTA"/>
+        </property>
+    </bean>
+    <bean id="baseDAOJTA2" abstract="true">
+        <property name="sqlMapClientTemplate">
+            <ref local="sqlMapClientTemplateJTA2"/>
+        </property>
+    </bean>
 
     <!--事务相关-->
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource1"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--抽象service层,主要加入事务控制-->
-      <!--Base TransactionProxyed Service Bean 给声明的方法(通过spring aop) ，动态加入事务管理，使得数据真正保存在数据库 注意，
-      需声明为抽象，用于继承，如在需要的bean声明中加入parent="baseService"-->
+    <!--Base TransactionProxyed Service Bean 给声明的方法(通过spring aop) ，动态加入事务管理，使得数据真正保存在数据库 注意，
+    需声明为抽象，用于继承，如在需要的bean声明中加入parent="baseService"-->
     <bean id="baseService"
           class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
           abstract="true">
         <property name="transactionManager">
             <ref bean="transactionManager"/>
         </property>
-		<!--有异常也回滚-->
+        <!--有异常也回滚-->
         <property name="transactionAttributes">
             <props>
                 <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>

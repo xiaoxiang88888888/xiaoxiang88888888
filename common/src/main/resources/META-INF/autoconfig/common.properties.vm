@@ -14,7 +14,7 @@ jdbc.minEvictableIdleTimeMillis=${jdbc_minEvictableIdleTimeMillis}
 jdbc.timeBetweenEvictionRunsMillis=${jdbc_timeBetweenEvictionRunsMillis}
 jdbc.validationQuery=${jdbc_validationQuery}
 
-#dataSource select
+#dataSource2
 jdbc.driverClassName2=${jdbc_driverClassName2}
 jdbc.url2=${jdbc_url2}
 jdbc.username2=${jdbc_username2}
@@ -29,6 +29,10 @@ jdbc.testOnBorrow2=${jdbc_testOnBorrow}
 jdbc.minEvictableIdleTimeMillis2=${jdbc_minEvictableIdleTimeMillis}
 jdbc.timeBetweenEvictionRunsMillis2=${jdbc_timeBetweenEvictionRunsMillis}
 jdbc.validationQuery2=${jdbc_validationQuery}
+
+#jta
+jdbc.jta.properties=URL=${jdbc_url};user=${jdbc_username};password=${jdbc_password}
+jdbc.jta2.properties=URL=${jdbc_url2};user=${jdbc_username2};password=${jdbc_password2}
 
 #server
 server.static.version=${server_static_version}

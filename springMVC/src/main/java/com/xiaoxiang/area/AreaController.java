@@ -34,6 +34,10 @@ public class AreaController extends AbstractController {
     @Autowired
     private AreaService areaService;
 
+    @Autowired
+    private AreaService areaServiceJTA;
+    
+
     /**
      * 得到地区列表页面
      *
@@ -41,7 +45,10 @@ public class AreaController extends AbstractController {
      */
     @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView();
+        String id = StringUtil.getUUID();
+        System.out.println("gen id===="+id);
+        areaServiceJTA.insertAndDeleteArea(id);
+        ModelAndView modelAndView = new ModelAndView();         
         modelAndView.setViewName("/area/areaList");
         return modelAndView;
     }
