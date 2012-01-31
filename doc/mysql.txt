@@ -29,6 +29,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' IDENTIFIED BY 'mypassword' WITH GRAN
 如果你想允许用户myuser从ip为192.168.1.3的主机连接到mysql服务器，并使用mypassword作为密码
 GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.0.1' IDENTIFIED BY 'mypassword' WITH GRANT OPTION;
 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '4389758' WITH GRANT OPTION;
+
 ***********************************************************************
 phpMyAdmin说是用户名密码的问题，这就奇怪了,root用户名密码肯定没有问题,而且通过命令行连接没有问题。又仔细查看配置文件，还是没有问题。于是去搜了一下，找到这个解决方法.
 先用root登录MYSQL服务器，执行

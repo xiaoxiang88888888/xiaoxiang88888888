@@ -14,6 +14,22 @@ jdbc.minEvictableIdleTimeMillis=${jdbc_minEvictableIdleTimeMillis}
 jdbc.timeBetweenEvictionRunsMillis=${jdbc_timeBetweenEvictionRunsMillis}
 jdbc.validationQuery=${jdbc_validationQuery}
 
+#dataSource select
+jdbc.driverClassName2=${jdbc_driverClassName2}
+jdbc.url2=${jdbc_url2}
+jdbc.username2=${jdbc_username2}
+jdbc.password2=${jdbc_password2}
+jdbc.minIdle2=${jdbc_minIdle}
+jdbc.maxIdle2=${jdbc_maxIdle}
+jdbc.maxActive2=${jdbc_maxActive}
+jdbc.maxWait2=${jdbc_maxWait}
+jdbc.testWhileIdle2=${jdbc_testWhileIdle}
+jdbc.testOnReturn2=${jdbc_testOnReturn}
+jdbc.testOnBorrow2=${jdbc_testOnBorrow}
+jdbc.minEvictableIdleTimeMillis2=${jdbc_minEvictableIdleTimeMillis}
+jdbc.timeBetweenEvictionRunsMillis2=${jdbc_timeBetweenEvictionRunsMillis}
+jdbc.validationQuery2=${jdbc_validationQuery}
+
 #server
 server.static.version=${server_static_version}
 www.domain.static=${www_domain_static}

@@ -37,6 +37,24 @@
           <!--生产环境需要去掉-->
         <!-- <property name="validationQuery" value="${jdbc.validationQuery}" />-->
     </bean>
+    <bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+          <property name="driverClassName" value="${jdbc.driverClassName2}" />
+          <property name="url" value="${jdbc.url2}" />
+          <property name="username" value="${jdbc.username2}" />
+          <property name="password" value="${jdbc.password2}" />
+          <property name="minIdle" value="${jdbc.minIdle2}" />
+          <property name="maxIdle" value="${jdbc.maxIdle2}" />
+          <property name="maxActive" value="${jdbc.maxActive2}" />
+          <property name="maxWait" value="${jdbc.maxWait2}" />
+          <property name="testWhileIdle" value="${jdbc.testWhileIdle2}" />
+          <property name="testOnReturn" value="${jdbc.testOnReturn2}" />
+          <property name="testOnBorrow" value="${jdbc.testOnBorrow2}" />
+          <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis2}" />
+          <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis2}" />
+          <!--生产环境需要去掉-->
+        <!-- <property name="validationQuery" value="${jdbc.validationQuery2}" />-->
+    </bean>
 
     <!-- iBatis SQL map定义 -->
     <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
