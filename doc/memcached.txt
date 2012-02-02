@@ -1,0 +1,147 @@
+
+1)、下载源码:
+
+              a、wget http://memcached.googlecode.com/files/memcached-1.4.3.tar.gz
+
+              b、wget http://monkey.org/~provos/libevent-1.4.13-stable.tar.gz
+
+2)、安装libevent:
+
+              a、mkdir -p /usr
+
+              b、tar zxf libevent-1.4.13-stable.tar.gz
+
+              c、cd libevent-1.4.13-stable
+
+              d、./configure --prefix=/usr && make && make install
+              测试libevent是否安装成功
+              ls -al /usr/lib | grep libevent
+
+3)、安装memcached:
+
+              a、tar zxf memcached-1.4.3.tar.gz
+
+              b、cd memcached-1.4.3
+
+              c、./configure --prefix=/usr/xx/memcached --with-libevent=/usr && make && make install
+              sudo ./configure --prefix=/usr/xx/memcached --with-libevent=/usr && sudo make && sudo make install
+4)、应用启动:
+测试是否成功安装memcached：
+# ls -al /usr/xx/memcached/bin/mem*
+-rwxr-xr-x 1 root root 137986 11?? 12 17:39 /usr/local/bin/memcached
+-rwxr-xr-x 1 root root 140179 11?? 12 17:39 /usr/local/bin/memcached-debug
+
+如果64位机器需要运行以下命令
+
+
+ln /usr/lib/libevent-1.4.so.2.1.3 /usr/lib64/libevent-1.4.so.2
+
+启动Memcache的服务器端
+
+
+# /usr/xx/memcached -d -m 10 -u root -p 12000 -c 256 -P /tmp/memcached.pid
+
+/usr/home/admin/memcached/bin/memcached -p11211 -u root -m 456
+
+  基本选项
+
+  -p <num>             监听的TCP端口 (缺省: 11211)
+  -d                         以守护进程方式运行Memcached
+  -u <username>    运行Memcached的账户，非root用户
+  -m <num>            最大的内存使用, 单位是MB，缺省是 64 MB
+  -c <num>              软连接数量, 缺省是 1024
+  -v                          输出警告和错误信息
+  -vv                        打印客户端的请求和返回信息
+  -h                          打印帮助信息
+  -i                           打印memcached和libevent的版权信息
+
+
+  运行 Memcached
+  目标：使用11211端口、root用户、最大占用512M内存、1024个软连接，输出客户端请求，以守护进程方式运行
+  # /usr/home/admin/memcached/bin/memcached -p 11211 -d -u root -m 512 -c 1024 -vvv
+
+也可以启动多个守护进程，不过端口不能重复。
+
+结束Memcache进程
+# kill `cat /tmp/memcached.pid`
+
+
+5)、使用:
+telnet localhost 12000
+set good 32 0 10
+要输入一个10位长度的字符,才能保存成功
+
+所谓协议，可以理解为对其操作（数据存取）的语法规则，存取数据的常用命令和参数如下：
+set：存入一条记录
+
+key：记录的键值
+
+flags：十进制的int，标识存储记录时的客户端标志，在记录取出时会返回。
+
+exptim：数据的过期时间，0表示不过期，其他数值则表示有效的毫秒数，在过期后，客户端将取不到这条记录，memcached中的过期记录会被清空或删除。
+
+length:长度
+
+get：表示从memcached取出key对应的值，如果没有对应的值则返回结束标志END
+
+append：表示对key所对应的值在最后再加入输入的内容
+
+delete：删除key对应的值
+
+需要注意的是：在set时如果指定的字符长度为5，而输入的内容超过了这个长度，那么就会报错：CLIENT_ERROR bad data chunk
+
+数据存取
+set key1 0 180 3
+abc
+STORED
+add key1 0 180 3
+xyz
+NOT_STORED
+get key1
+VALUE key1 0 3
+abc
+END
+replace key1 0 180 3
+xyz
+STORED
+get key1
+VALUE key1 0 3
+xyz
+END
+delete key1
+DELETED
+
+数字加减
+set key2 0 180 4
+1234
+STORED
+incr key2 3
+1237
+get key2
+VALUE key2 0 4
+1237
+END
+decr key2 1
+1236
+get key2
+VALUE key2 0 4
+1236
+END
+
+
+
+
+/////问题解决
+在启动memcached的时候发现如下错误:
+
+/usr/bin/memcached: error while loading shared libraries: libevent-1.4.so.2: cannot open shared object file: No such file or directory
+
+如提示所示,是因为找不到 libevent-1.4.so.2 这个类库.
+
+我们用
+
+LD_DEBUG=libs /usr/bin/memcached -v 2>&1 > /dev/null | less
+
+方式来进行查找 memcached 从哪些地方查找此类库.
+
+# LD_DEBUG=libs /usr/local/memcached/bin/memcached -v 2>&1 > /dev/null | less
