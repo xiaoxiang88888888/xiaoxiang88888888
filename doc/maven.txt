@@ -21,7 +21,7 @@ mvn package
 mvn package -Prelease
 mvn install
 mvn eclipse:eclipse
-
+archetype
 mvn archetype:generate -DgroupId -DartifactId -DpackageName archetypeArtifactId (maven-archetype-webapp)
 mvn archetype:create -DgroupId -DartifactId -DpackageName
 mvn compile
@@ -356,6 +356,14 @@ http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/
 mvn archetype:create -DgroupId=com.xiaoxiang -DartifactId=dubbo -DpackageName=
 
 mvn archetype:generate -DgroupId=com.xiaoxiang -DartifactId=gen -DpackageName=com.xiaoxiang.gen
+
+
+archetypeCatalog表示插件使用的archetype元数据，默认值为remote,local，
+即中央仓库archetype元数据 （http://repo1.maven.org/maven2/archetype-catalog.xml）加上插件内置元数据的和 
+由于中央仓库的archetype太多，导致这个列表太长 因此自己指定仅用内置元数据（20个左右，好像），就可以解决你的烦恼了
+-DarchetypeCatalog=internal
+
+mvn archetype:generate  -DarchetypeCatalog=internal
 
 
 
