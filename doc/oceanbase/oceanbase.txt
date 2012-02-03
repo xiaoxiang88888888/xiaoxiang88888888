@@ -5,3 +5,6 @@ taobao 数据库团队
 http://www.taobaodba.com
 
 http://www.taobaodba.com/html/266_mysql_fenbu_architecture.html
+
+
+http://cloud.csdn.net/a/20111125/308134.html
