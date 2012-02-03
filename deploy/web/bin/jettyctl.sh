@@ -18,8 +18,11 @@ JETTY_ARGS="--ini=$START_INI"
 JETTY_PID="$OUTPUT_HOME/logs/jetty.pid"
 JETTY_LOGS="$JETTY_SERVER_HOME/logs"
 JAVA="$JAVA_HOME/bin/java" ## jetty必须执行$JAVA变量,jetty.sh启动时不依赖JAVA_HOME
+## JMX参数 用于监控
+JMX="-Dcom.sun.management.jmxremote.port=17188 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=10.20.156.113"
+JAVA_OPTIONS="$JAVA_OPTS $JMX"
 ## jvm参数
-JAVA_OPTIONS="$JAVA_OPTS "
+JAVA_OPTIONS="$JAVA_OPTS"
 export TMPDIR JETTY_CONF JETTY_WEBAPPS JETTY_ARGS START_INI JETTY_PID JETTY_LOGS JAVA_OPTIONS JAVA
 
 prepare() {

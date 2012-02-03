@@ -1,7 +1,7 @@
-Ö÷Ò³
+ä¸»é¡µ
 http://oceanbase.taobao.org/
 
-taobao Êı¾İ¿âÍÅ¶Ó
+taobao æ•°æ®åº“å›¢é˜Ÿ
 http://www.taobaodba.com
 
 http://www.taobaodba.com/html/266_mysql_fenbu_architecture.html
