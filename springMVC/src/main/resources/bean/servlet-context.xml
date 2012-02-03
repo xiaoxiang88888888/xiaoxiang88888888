@@ -121,7 +121,7 @@
     <!--上传相关配置-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置最大上传大小: 1MB -->
-        <property name="maxUploadSize" value="1048576"/>
+        <property name="maxUploadSize" value="100000000001048576"/>
     </bean>
 
     <!-- 分模块加载-->

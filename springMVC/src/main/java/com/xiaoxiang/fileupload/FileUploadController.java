@@ -58,7 +58,7 @@ public class FileUploadController {
     @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/fileupload/upload.vm");
+        modelAndView.setViewName("/fileupload/upload");
         return modelAndView;
     }
 

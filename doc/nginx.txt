@@ -138,3 +138,6 @@ nginx.conf  中加入用户定义
 
 502 Bad Gateway 错误
 是因为后台的如jetty出现的问题,如端口配置错误
+
+Nginx出现“413 Request Entity Too Large”错误
+client_max_body_size 800m;
