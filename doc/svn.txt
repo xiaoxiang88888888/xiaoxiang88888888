@@ -38,4 +38,4 @@ svn copy -m "测试分支" https://xiaoxiang88888888.googlecode.com/svn/branches
 
 svn merge https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang@687 https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang@688 
 
-
+svn log -q --stop-on-copy  https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang_20120210
