@@ -363,7 +363,9 @@ archetypeCatalog表示插件使用的archetype元数据，默认值为remote,loc
 由于中央仓库的archetype太多，导致这个列表太长 因此自己指定仅用内置元数据（20个左右，好像），就可以解决你的烦恼了
 -DarchetypeCatalog=internal
 
-mvn archetype:generate  -DarchetypeCatalog=internal
+mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=com.xx -DartifactId=parent -DpackageName=com.xx -DarchetypeCatalog=internal
+
+mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=com.xx -DartifactId=parent -DpackageName=com.xx -DarchetypeCatalog=internal
 
 
 
