@@ -34,6 +34,8 @@ export PATH=$SVN_HOME/bin:
 分支创建
 svn copy -m "测试分支" https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang_20120210
 
+合并分支
 
+svn merge https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang@687 https://xiaoxiang88888888.googlecode.com/svn/branches/new_xiaoxiang@688 
 
 
