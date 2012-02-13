@@ -1,0 +1,30 @@
+下载地址:
+http://jenkins-ci.org/
+
+版本 1.451
+http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+
+启动报
+Jetty No LoginService 错误
+
+在jetty.xml中添加
+
+    <Call name="addBean">
+      <Arg>
+        <New class="org.eclipse.jetty.security.HashLoginService">
+          <Set name="name">Test Realm</Set>
+          <Set name="config"><SystemProperty name="jetty.home" default="."/>/etc/realm.properties</Set>
+          <Set name="refreshInterval">0</Set>
+        </New>
+      </Arg>
+    </Call>
+
+即可
+
+
+findbugs
+
+mvn compile findbugs:findbugs
+
+
+

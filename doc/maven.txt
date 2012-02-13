@@ -368,5 +368,14 @@ mvn archetype:generate -DarchetypeArtifactId=maven-archetype-webapp -DgroupId=co
 mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart -DgroupId=com.xx -DartifactId=parent -DpackageName=com.xx -DarchetypeCatalog=internal
 
 
+findbugs常用命令
+
+findbugs:check 只检查，不生成报告
+
+findbugs:findbugs 产生报告
+
+findbugs:help  帮助
+
+mvn findbugs:gui  开启gui界面查看findbugs的report
 
 

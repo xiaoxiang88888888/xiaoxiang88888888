@@ -137,6 +137,19 @@
                     </additionalConfig>
                 </configuration>
             </plugin>
+            <!--findbugs-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.4.0</version>
+                <configuration>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <xmlOutput>true</xmlOutput>
+                    <!-- findbugs  xml输出路径-->
+                    <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
+                </configuration>
+            </plugin>
+
         </plugins>
 
     </build>
