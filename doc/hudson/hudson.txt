@@ -34,9 +34,22 @@ sonar.sh start
 
 乱码问题
 在hudson的系统参数中的Global MAVEN_OPTS项中加入：
--Dfile.encoding=UTF-8
-复制代码
+-Dfile.encoding=UTF-8 解决了3个问题
+
 保存后重启Hudson的jetty，重新进行构建，乱码问题解决
+
+这个问题也解决了
+Internal error in the plugin manager getting plugin 'com.xiaoxiang.maven:config-maven-plugin': Failed to create plugin container for plugin '
+
+sonar的源码乱码也解决了
+
+
+参考:
+http://www.javaeye.com/wiki/topic/326921
+http://www.5vlife.com/forum/viewthread.php?tid=645
+
+
+
 
 
 
