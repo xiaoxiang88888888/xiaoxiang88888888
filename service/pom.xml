@@ -116,9 +116,9 @@
                     <value>!release</value>
                 </property>
             </activation>
-            <!--<build>
+            <build>
                 <plugins>
-                    &lt;!&ndash;测试自定义插件&ndash;&gt;
+                    <!--测试自定义插件-->
                     <plugin>
                         <groupId>com.xiaoxiang.maven</groupId>
                         <artifactId>config-maven-plugin</artifactId>
@@ -126,7 +126,7 @@
                         <configuration>
                             <encoding>UTF-8</encoding>
                             <templateType>velocity</templateType>
-                            &lt;!&ndash; <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>&ndash;&gt;
+                            <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
                         </configuration>
                         <executions>
                             <execution>
@@ -138,7 +138,7 @@
                         </executions>
                     </plugin>
                 </plugins>
-            </build>-->
+            </build>
         </profile>
         <profile>
             <id>release</id>
