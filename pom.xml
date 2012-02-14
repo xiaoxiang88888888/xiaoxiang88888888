@@ -13,6 +13,7 @@
         <!-- compiler settings properties -->
         <java.version>1.6</java.version>
         <java.encoding>UTF-8</java.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- projects properties -->
         <project-url>http://xiaoxiang88888888.googlecode.com/svn/branches/new-xiaoxiang/</project-url>
         <project-scm-url>http://xiaoxiang88888888.googlecode.com/svn/branches/new-xiaoxiang/</project-scm-url>

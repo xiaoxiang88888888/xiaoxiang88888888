@@ -22,9 +22,24 @@ Jetty No LoginService 错误
 即可
 
 
-findbugs
+sonar下载
+http://dist.sonar.codehaus.org/sonar-2.13.1.zip
 
-mvn compile findbugs:findbugs
+解压至相关路径
+在bin下有相关启动脚本,默认端口9000
+sonar.sh start
+
+用户名,密码,分别是admin admin
+登陆进去才能做相关操作
+
+乱码问题
+在hudson的系统参数中的Global MAVEN_OPTS项中加入：
+-Dfile.encoding=UTF-8
+复制代码
+保存后重启Hudson的jetty，重新进行构建，乱码问题解决
+
+
+
 
 
 
