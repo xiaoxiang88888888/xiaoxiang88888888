@@ -36,9 +36,10 @@
                     <value>!release</value>
                 </property>
             </activation>
+<!--
             <build>
                 <plugins>
-                    <!--测试自定义插件-->
+                    &lt;!&ndash;测试自定义插件&ndash;&gt;
                     <plugin>
                         <groupId>com.xiaoxiang.maven</groupId>
                         <artifactId>config-maven-plugin</artifactId>
@@ -46,7 +47,7 @@
                         <configuration>
                             <encoding>UTF-8</encoding>
                             <templateType>velocity</templateType>
-                            <!-- <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>-->
+                            &lt;!&ndash; <propertiesPath>/home/admin/autoConfig.properties</propertiesPath>&ndash;&gt;
                         </configuration>
                         <executions>
                             <execution>
@@ -59,6 +60,7 @@
                     </plugin>
                 </plugins>
             </build>
+-->
         </profile>
         <!-- Release profile仅仅把资源文件拷贝到release目录中去，不执行auto-conf -->
         <!--在部署应用之前会先执行auto-conf -->
