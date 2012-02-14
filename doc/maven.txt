@@ -378,4 +378,7 @@ findbugs:help  帮助
 
 mvn findbugs:gui  开启gui界面查看findbugs的report
 
+Internal error in the plugin manager getting plugin 'com.xiaoxiang.maven:config-maven-plugin': Failed to create plugin container for plugin '
+这个插件的xml文件没有加
+<?xml version="1.0" encoding="UTF-8"?>
 
