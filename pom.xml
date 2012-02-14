@@ -126,6 +126,14 @@
             </snapshots>
         </repository>
     </repositories>
+    <!--插件寻找-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>xiaoxiang-maven</id>
+            <name>xiaoxiang</name>
+            <url>http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>
