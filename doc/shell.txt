@@ -69,3 +69,20 @@ chmod 4755与chmod 755 的区别在于开头多了一位，这个4表示其他�
 
 //不用重启
 source /etc/profile
+
+
+磁盘大小/
+df -h
+df -m
+df -k
+
+当前目录总大小
+du -sh  .
+
+当前目录下的直接子目录大小
+du -sh --max-depth=0 .
+
+du -sm --max-depth=0 .
+
+du -sk --max-depth=0 .
+
