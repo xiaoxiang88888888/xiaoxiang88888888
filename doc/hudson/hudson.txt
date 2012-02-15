@@ -43,10 +43,14 @@ Internal error in the plugin manager getting plugin 'com.xiaoxiang.maven:config-
 
 sonar的源码乱码也解决了
 
+内存不足
+-Xms128m -Xmx512m -XX:MaxPermSize=250m
+
 
 参考:
 http://www.javaeye.com/wiki/topic/326921
 http://www.5vlife.com/forum/viewthread.php?tid=645
+http://flashcloud.iteye.com/blog/1097179
 
 
 

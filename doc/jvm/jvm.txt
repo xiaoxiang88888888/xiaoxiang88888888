@@ -1,3 +1,9 @@
+java -XX:+PrintFlagsFinal
+jinfo -sysprops 18549
+jinfo -flag MaxPermSize 18549
+jinfo -flag CMSInitiatingOccupancyFraction 18549
+
+
 jinfo pid 查看jvm配置信息
 jstack ( 查看jvm线程运行状态，是否有死锁现象等等信息) : jstack pid : thread dump
 jmap -histo:live  pid| less :堆中活动的对象以及大小
@@ -9,6 +15,7 @@ JMX="-Dcom.sun.management.jmxremote.port=17188 -Dcom.sun.management.jmxremote.ss
 JAVA_OPTIONS="$JAVA_OPTS $JMX"
 
 $JAVA_HOME/bin/jvisualvm.exe 可视化查看vm状况
+jdk7后有些功能更强
 
 1.java性能分析命令
 
