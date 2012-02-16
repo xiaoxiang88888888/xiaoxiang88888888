@@ -19,7 +19,7 @@ public class MainTest extends TestCase {
         String encoding="UTF-8";
         String destDir=baseDir+"vo/Area.java";
         String driver="com.mysql.jdbc.Driver";
-        String url="jdbc:mysql://10.20.147.196:3306/xiaoxiang88888888";
+        String url="jdbc:mysql://10.20.156.119:3306/xiaoxiang88888888";
         String user="root";
         String password="4389758";
         //目录相对类路径

@@ -30,7 +30,7 @@ public class TableUtil {
     public Table getTable(String tableName) throws Exception {
         Table table = new Table();
         Class.forName(driver); //"com.mysql.jdbc.Driver"
-        //String url = "jdbc:mysql://10.20.147.196:3306/xiaoxiang88888888?user=root&password=4389758";
+        //String url = "jdbc:mysql://10.20.156.119:3306/xiaoxiang88888888?user=root&password=4389758";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);

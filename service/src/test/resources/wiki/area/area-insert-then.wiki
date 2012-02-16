@@ -1,4 +1,4 @@
 |connect|
-|query|select * FROM AREA  WHERE areaId='999'|
-|areaId|are_areaId|code|name|orderNo|remark|
+|query|select * FROM AREA  WHERE area_id='999'|
+|area_id|parent_d|code|name|order_no|remark|
 |999|0|888|999|1|999肖祥|
