@@ -86,3 +86,16 @@ du -sm --max-depth=0 .
 
 du -sk --max-depth=0 .
 
+内存
+free -g -m -k -b 
+
+cpu
+top  c
+
+ps -ax|grep httpd|awk '{print $1}'|xargs kill -9
+
+ps -aux|grep httpd
+
+top
+
+netstat -an

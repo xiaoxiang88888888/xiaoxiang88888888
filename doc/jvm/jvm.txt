@@ -16,6 +16,8 @@ JAVA_OPTIONS="$JAVA_OPTS $JMX"
 
 $JAVA_HOME/bin/jvisualvm.exe 可视化查看vm状况
 jdk7后有些功能更强
+最好是直接安装,不使用java默认的
+http://visualvm.java.net/download.html
 
 1.java性能分析命令
 
@@ -370,3 +372,6 @@ GCC	Cause of current Garbage Collection.
 如果能熟练运用这些命令，尤其是在linux下，那么完全可以代替jprofile等监控工具了，谁让它收费呢。呵呵。
 用命令的好处就是速度快，并且辅助于其他命令，比如grep gawk sed等，可以组装多种符合自己需求的工具。
 
+
+参考:
+http://freewind.me/blog/20111023/479.html
