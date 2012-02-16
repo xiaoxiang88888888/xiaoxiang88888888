@@ -2380,7 +2380,7 @@ DDD7D6B5E40D0A2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D
 <a:Code>area</a:Code>
 <a:CreationDate>1329360478</a:CreationDate>
 <a:Creator>wb_xiang.xiaox</a:Creator>
-<a:ModificationDate>1329369723</a:ModificationDate>
+<a:ModificationDate>1329376606</a:ModificationDate>
 <a:Modifier>wb_xiang.xiaox</a:Modifier>
 <a:Comment>地区</a:Comment>
 <c:Identifiers>
@@ -2390,7 +2390,7 @@ DDD7D6B5E40D0A2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D
 <a:Code>pk_area</a:Code>
 <a:CreationDate>1329360478</a:CreationDate>
 <a:Creator>wb_xiang.xiaox</a:Creator>
-<a:ModificationDate>1329361441</a:ModificationDate>
+<a:ModificationDate>1329376606</a:ModificationDate>
 <a:Modifier>wb_xiang.xiaox</a:Modifier>
 <c:Identifier.Attributes>
 <o:EntityAttribute Ref="o42"/>
@@ -2402,7 +2402,7 @@ DDD7D6B5E40D0A2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D
 <a:Code>ak_area</a:Code>
 <a:CreationDate>1329369552</a:CreationDate>
 <a:Creator>wb_xiang.xiaox</a:Creator>
-<a:ModificationDate>1329369723</a:ModificationDate>
+<a:ModificationDate>1329376606</a:ModificationDate>
 <a:Modifier>wb_xiang.xiaox</a:Modifier>
 <c:Identifier.Attributes>
 <o:EntityAttribute Ref="o44"/>
@@ -2428,8 +2428,9 @@ DDD7D6B5E40D0A2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D2D
 <a:ObjectID>B931AFD9-E517-44A7-9C15-1E6C5D7A5F6D</a:ObjectID>
 <a:CreationDate>1329360478</a:CreationDate>
 <a:Creator>wb_xiang.xiaox</a:Creator>
-<a:ModificationDate>1329369602</a:ModificationDate>
+<a:ModificationDate>1329376471</a:ModificationDate>
 <a:Modifier>wb_xiang.xiaox</a:Modifier>
+<a:BaseAttribute.Mandatory>1</a:BaseAttribute.Mandatory>
 <c:DataItem>
 <o:DataItem Ref="o46"/>
 </c:DataItem>
