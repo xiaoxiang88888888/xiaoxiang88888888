@@ -35,8 +35,8 @@ public class AreaServiceImpl extends BaseServiceImpl<Area, String> implements Ar
         //修改
         area.setRemark("测试事务2");
         getDao().updateEntity(area);
-        //删除
-        getDao().deleteEntity(area);
+        //删除故意出错
+        //getDao().deleteEntity(area);
         /*if (areaDAOJTA != null) {
             areaDAOJTA.addEntity(area);
         }

@@ -30,7 +30,7 @@ public class RedisCacheTest extends JTester {
     public void setExpireTest() {
         String key = "0000";
         String value = "9999";
-        int expire = 10;
+        int expire = 2;
         cacheSupport.cacheTestSet(key, value, expire);
         String result = cacheSupport.cacheTestGet(key);
         result = JsonUtil.getInstance().jsonToObject(result,String.class).toString();

@@ -13,10 +13,10 @@ public class JsonUtilTest extends JTester {
     public final String str = "{" +
             "\"id\":null," +
             "\"areaId\":\"1\"," +
-            "\"parentAreaId\":\"0\"," +
-            "\"areacode\":\"sdfsdfwerwer\"," +
-            "\"areaname\":\"测试代码\"," +
-            "\"orderno\":888," +
+            "\"parentId\":\"0\"," +
+            "\"code\":\"sdfsdfwerwer\"," +
+            "\"name\":\"测试代码\"," +
+            "\"orderNo\":888," +
             "\"remark\":\"<>@#$%^&*()_+=-}{|\\\\][';\"}";
 
     /*  //日志测试
