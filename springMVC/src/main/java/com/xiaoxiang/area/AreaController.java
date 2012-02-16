@@ -33,9 +33,6 @@ import java.util.Map;
 public class AreaController extends AbstractController {
     @Autowired
     private AreaService areaService;
-
-    @Autowired
-    private AreaService areaServiceJTA;
     
 
     /**
@@ -47,7 +44,7 @@ public class AreaController extends AbstractController {
     public ModelAndView index() {
         String id = StringUtil.getUUID();
         System.out.println("gen id===="+id);
-        areaServiceJTA.insertAndDeleteArea(id);
+        areaService.insertAndDeleteArea(id);
         ModelAndView modelAndView = new ModelAndView();         
         modelAndView.setViewName("/area/areaList");
         return modelAndView;
@@ -165,9 +162,9 @@ public class AreaController extends AbstractController {
     public JSONResult addOrUpdate(@PathVariable String id, Area area) {
         JSONResult result = new JSONResult();
         try {
-            area.setAreaname(StringUtil.urlDecode(area.getAreaname()));
-            area.setAreacode(StringUtil.urlDecode(area.getAreacode()));
-            area.setParentAreaId(StringUtil.urlDecode(area.getParentAreaId()));
+            area.setName(StringUtil.urlDecode(area.getName()));
+            area.setCode(StringUtil.urlDecode(area.getCode()));
+            area.setParentId(StringUtil.urlDecode(area.getParentId()));
             area.setRemark(StringUtil.decode(area.getRemark()));
             if (areaService.exists(id)) { //数据库中已经存在
                 areaService.updateEntity(area);

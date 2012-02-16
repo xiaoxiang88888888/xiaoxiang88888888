@@ -40,10 +40,10 @@ public class JsonUtilTest extends JTester {
     public void objectToJsonTest() {
         Area area = new Area();
         area.setAreaId("1");
-        area.setAreacode("sdfsdfwerwer");
-        area.setAreaname("测试代码");
-        area.setOrderno(888);
-        area.setParentAreaId("0");
+        area.setCode("sdfsdfwerwer");
+        area.setName("测试代码");
+        area.setOrderNo(888);
+        area.setParentId("0");
         area.setRemark("<>@#$%^&*()_+=-}{|\\][';");
         String str = JsonUtil.getInstance().ObjectToJson(area);
         want.string(str).isEqualTo(str);
@@ -56,10 +56,10 @@ public class JsonUtilTest extends JTester {
         want.object(area).notNull();
         want.string(area.getId()).isNull();
         want.string(area.getAreaId()).isEqualTo("1");
-        want.string(area.getAreacode()).isEqualTo("sdfsdfwerwer");
-        want.string(area.getAreaname()).isEqualTo("测试代码");
-        want.number(area.getOrderno()).isEqualTo(888);
-        want.string(area.getParentAreaId()).isEqualTo("0");
+        want.string(area.getCode()).isEqualTo("sdfsdfwerwer");
+        want.string(area.getName()).isEqualTo("测试代码");
+        want.number(area.getOrderNo()).isEqualTo(888);
+        want.string(area.getParentId()).isEqualTo("0");
         want.string(area.getRemark()).isEqualTo("<>@#$%^&*()_+=-}{|\\][';");
     }
 }

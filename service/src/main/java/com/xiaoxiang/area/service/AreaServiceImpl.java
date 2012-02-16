@@ -25,25 +25,25 @@ public class AreaServiceImpl extends BaseServiceImpl<Area, String> implements Ar
         Area area = new Area();
         area.setId(id);
         area.setAreaId(id);
-        area.setAreacode("id");
-        area.setAreaname("id");
-        area.setOrderno(0);
-        area.setParentAreaId("0");
+        area.setCode("id");
+        area.setName("id");
+        area.setOrderNo(0);
+        area.setParentId("0");
         area.setRemark("测试事务");
-        /*//插入
+        //插入
         getDao().addEntity(area);
         //修改
         area.setRemark("测试事务2");
         getDao().updateEntity(area);
         //删除
-        getDao().deleteEntity(area);*/
-        if (areaDAOJTA != null) {
+        getDao().deleteEntity(area);
+        /*if (areaDAOJTA != null) {
             areaDAOJTA.addEntity(area);
         }
         if (areaDAOJTA2 != null) {
         	//area.setId("01");
             areaDAOJTA2.addEntity(area);
-        }
+        }*/
         return false;
     }
 

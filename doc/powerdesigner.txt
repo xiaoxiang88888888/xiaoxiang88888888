@@ -1,0 +1,11 @@
+1 cdm生成自增列
+  生成SQL自增id列的方法是，把CMD图的ID列的字段类型选择为Serial，生成的是number的自增列
+
+2 生成唯一索引
+   CDM是在Entity Properties对话框的Identifiers页中加入.
+
+3 pdm 默认值 引号
+   http://xxf880324.iteye.com/blog/1195764
+
+4 pdm生成时没有生成唯一索引
+  检查key与index选项

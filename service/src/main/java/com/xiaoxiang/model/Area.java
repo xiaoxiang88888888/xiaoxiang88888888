@@ -10,6 +10,7 @@ import com.xiaoxiang.base.BaseVO;
  */
 @LogAnnotation(title = "地区")
 public class Area extends BaseVO<String> implements java.io.Serializable {
+
     /**
      * 地区编号
      */
@@ -19,22 +20,22 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
      * 地区编号
      */
     @LogAnnotation(title = "地区编号", orderNo = 1)
-    private String parentAreaId;
+    private String parentId;
     /**
      * 地区编码
      */
     @LogAnnotation(title = "地区编码", orderNo = 2)
-    private String areacode;
+    private String code;
     /**
      * 地区名称
      */
     @LogAnnotation(title = "地区名称", orderNo = 3)
-    private String areaname;
+    private String name;
     /**
      * 排序号
      */
     @LogAnnotation(title = "排序号", orderNo = 4)
-    private Integer orderno;
+    private Integer orderNo;
     /**
      * 备注
      */
@@ -49,12 +50,12 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
         this.areaId = areaId;
     }
 
-    public Area(String areaId, String parentAreaId, String areacode, String areaname, Integer orderno, String remark) {
+    public Area(String areaId, String parentId, String code, String name, Integer orderNo, String remark) {
         this.areaId = areaId;
-        this.parentAreaId = parentAreaId;
-        this.areacode = areacode;
-        this.areaname = areaname;
-        this.orderno = orderno;
+        this.parentId = parentId;
+        this.code = code;
+        this.name = name;
+        this.orderNo = orderNo;
         this.remark = remark;
     }
 
@@ -67,36 +68,36 @@ public class Area extends BaseVO<String> implements java.io.Serializable {
         this.areaId = areaId;
     }
 
-    public String getParentAreaId() {
-        return parentAreaId;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParentAreaId(String parentAreaId) {
-        this.parentAreaId = parentAreaId;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
-    public String getAreacode() {
-        return this.areacode;
+    public String getCode() {
+        return this.code;
     }
 
-    public void setAreacode(String areacode) {
-        this.areacode = areacode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getAreaname() {
-        return this.areaname;
+    public String getName() {
+        return this.name;
     }
 
-    public void setAreaname(String areaname) {
-        this.areaname = areaname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getOrderno() {
-        return this.orderno;
+    public Integer getOrderNo() {
+        return this.orderNo;
     }
 
-    public void setOrderno(Integer orderno) {
-        this.orderno = orderno;
+    public void setOrderNo(Integer orderNo) {
+        this.orderNo = orderNo;
     }
 
     public String getRemark() {

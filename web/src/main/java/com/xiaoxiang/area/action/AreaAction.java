@@ -74,10 +74,10 @@ public class AreaAction extends BaseAction<Area, String> {
     		Area entity  = new Area();
     		entity.setId(""+i);
     		entity.setAreaId(""+i);
-    		entity.setAreacode(""+i);
-            entity.setAreaname("地区"+i);
-            entity.setOrderno(i);
-            entity.setParentAreaId("1");
+    		entity.setCode(""+i);
+            entity.setName("地区"+i);
+            entity.setOrderNo(i);
+            entity.setParentId("1");
             entity.setRemark("标记"+i);
     		getService().addEntity(entity);
     	} */

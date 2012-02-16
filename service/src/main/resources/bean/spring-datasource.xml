@@ -19,7 +19,7 @@
             </list>
         </property>
     </bean>
-    <!--JTA相关-->
+    <!--&lt;!&ndash;JTA相关&ndash;&gt;
     <bean id="JTADataSource" class="com.atomikos.jdbc.SimpleDataSourceBean"
           init-method="init" destroy-method="close">
         <property name="uniqueResourceName">
@@ -90,7 +90,7 @@
             </props>
         </property>
     </bean>
-    <!-- 声明式事务边界配置 所有的bean公用一个代理bean-->
+    &lt;!&ndash; 声明式事务边界配置 所有的bean公用一个代理bean&ndash;&gt;
     <bean id="baseTransactionProxy"
           class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
           abstract="true">
@@ -98,7 +98,7 @@
                   ref="springJTATransactionManager"/>
         <property name="transactionAttributes">
             <props>
-                <!-- 可以根据实际情况细化配置提高性能 -->
+                &lt;!&ndash; 可以根据实际情况细化配置提高性能 &ndash;&gt;
                 <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
@@ -108,7 +108,7 @@
                 <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
             </props>
         </property>
-    </bean>
+    </bean>-->
     <!--常用数据源 这个名称不能等于dataSource,不能jta配置会出问题-->
     <bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
@@ -158,7 +158,7 @@
         <property name="sqlMapClient" ref="sqlMapClient"/>
     </bean>
     <!-- jta -->
-    <bean id="sqlMapClientJTA" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+    <!--<bean id="sqlMapClientJTA" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
         <property name="dataSource" ref="JTADataSource"/>
 
         <property name="configLocation" value="classpath:ibatis/sqlmap-config.xml"/>
@@ -173,7 +173,7 @@
     </bean>
     <bean id="sqlMapClientTemplateJTA2" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
         <property name="sqlMapClient" ref="sqlMapClientJTA2"/>
-    </bean>
+    </bean>-->
 
     <!--抽象dao层-->
     <bean id="baseDAO" abstract="true">
@@ -181,7 +181,7 @@
             <ref local="sqlMapClientTemplate"/>
         </property>
     </bean>
-    <bean id="baseDAOJTA" abstract="true">
+    <!--<bean id="baseDAOJTA" abstract="true">
         <property name="sqlMapClientTemplate">
             <ref local="sqlMapClientTemplateJTA"/>
         </property>
@@ -190,7 +190,7 @@
         <property name="sqlMapClientTemplate">
             <ref local="sqlMapClientTemplateJTA2"/>
         </property>
-    </bean>
+    </bean>-->
 
     <!--事务相关-->
     <bean id="transactionManager"

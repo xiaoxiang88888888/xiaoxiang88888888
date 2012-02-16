@@ -1,6 +1,6 @@
 |connect|
 |execute|DELETE FROM AREA  WHERE areaId like '%999%'|
-|execute|insert into area (areaId, are_areaId, areacode, areaname, orderno,remark) values ('999', '0', '888', '999', 1, '999肖祥')|
-|execute|insert into area (areaId, are_areaId, areacode, areaname, orderno,remark) values ('999999', '0', '99999', '999999', 1, '999999肖祥')|
-|execute|insert into area (areaId, are_areaId, areacode, areaname, orderno,remark) values ('99999', '0', '9999', '99999', 1, '99999肖祥')|
+|execute|insert into area (areaId, are_areaId, code, name, orderNo,remark) values ('999', '0', '888', '999', 1, '999肖祥')|
+|execute|insert into area (areaId, are_areaId, code, name, orderNo,remark) values ('999999', '0', '99999', '999999', 1, '999999肖祥')|
+|execute|insert into area (areaId, are_areaId, code, name, orderNo,remark) values ('99999', '0', '9999', '99999', 1, '99999肖祥')|
 |commit|

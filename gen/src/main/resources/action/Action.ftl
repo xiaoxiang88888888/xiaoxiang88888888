@@ -159,14 +159,14 @@ public class ${pojo.getDeclarationName()}Action extends BaseAction<${pojo.getDec
                 entities = getService().createCriteria().
                         setFirstResult(Integer.parseInt(jmesaid_p_)*Integer.parseInt(maxRows)).
                         setMaxResults(Integer.parseInt(maxRows)).
-                        addOrder(Order.asc("orderno"))
+                        addOrder(Order.asc("orderNo"))
                         .list();
                 totalRows = ((Integer)(getService().createCriteria().setProjection(Projections.rowCount()).uniqueResult())).intValue(); //总记录数
             } else {
                 entities = getService().createCriteria(Restrictions.eq("${field.name}.${c2h.getToUpperCamelCase(field)?uncap_first}", ${column.name?lower_case})).
                         setFirstResult(Integer.parseInt(jmesaid_p_)*Integer.parseInt(maxRows)).
                         setMaxResults(Integer.parseInt(maxRows)).
-                        addOrder(Order.asc("orderno"))
+                        addOrder(Order.asc("orderNo"))
                         .list();
                 totalRows = ((Integer)(getService().createCriteria(Restrictions.eq("${field.name}.${c2h.getToUpperCamelCase(field)?uncap_first}", ${column.name?lower_case})).setProjection(Projections.rowCount()).uniqueResult())).intValue(); //总记录数                              
             }
@@ -179,7 +179,7 @@ public class ${pojo.getDeclarationName()}Action extends BaseAction<${pojo.getDec
             entities = getService().createCriteria().
                     setFirstResult(Integer.parseInt(jmesaid_p_) * Integer.parseInt(maxRows)).
                     setMaxResults(Integer.parseInt(maxRows)).
-                    addOrder(Order.asc("orderno"))
+                    addOrder(Order.asc("orderNo"))
                     .list();
             totalRows = ((Integer) (getService().createCriteria().setProjection(Projections.rowCount()).uniqueResult())).intValue();
         }

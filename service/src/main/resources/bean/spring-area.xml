@@ -8,8 +8,8 @@ default-autowire="byName">
         <property name="hibernateTemplate" ref="hibernateTemplate" />
     </bean>-->
     <bean id="areaDAO" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis" parent="baseDAO"></bean>
-    <bean id="areaDAOJTA" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis" parent="baseDAOJTA"></bean>
-    <bean id="areaDAOJTA2" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis" parent="baseDAOJTA2"></bean>
+    <!--<bean id="areaDAOJTA" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis" parent="baseDAOJTA"></bean>
+    <bean id="areaDAOJTA2" class="com.xiaoxiang.area.dao.ibatis.AreaDAOIbatis" parent="baseDAOJTA2"></bean>-->
 
     <!--事务-->
     <bean id="areaService" parent="baseService">
@@ -22,7 +22,7 @@ default-autowire="byName">
         </property>
     </bean>
     <!--事务-->
-    <bean id="areaServiceJTA" parent="baseTransactionProxy">
+    <!--<bean id="areaServiceJTA" parent="baseTransactionProxy">
         <property name="target">
             <bean class="com.xiaoxiang.area.service.AreaServiceImpl">
                 <property name="dao">
@@ -36,5 +36,5 @@ default-autowire="byName">
                 </property>
             </bean>
         </property>
-    </bean>
+    </bean>-->
 </beans>

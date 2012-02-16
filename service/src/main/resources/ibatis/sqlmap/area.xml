@@ -7,39 +7,40 @@
     <typeAlias alias="area" type="com.xiaoxiang.model.Area"/>
 
     <resultMap id="areaResult" class="area">
-        <result property="areaId" column="areaId"/>
-        <result property="parentAreaId" column="are_areaId"/>
-        <result property="areacode" column="areacode"/>
-        <result property="areaname" column="areaname"/>
-        <result property="orderno" column="orderno"/>
+        <result property="id" column="id"/>
+        <result property="areaId" column="area_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="orderNo" column="order_no"/>
         <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="condition">
-        <isNotNull prepend="and" property="areaId">
-            areaId=#areaId#
+        <isNotNull prepend="and" property="area_id">
+            area_id=#areaId#
         </isNotNull>
 
-        <isNotNull prepend="and" property="parentAreaId">
+        <isNotNull prepend="and" property="parentId">
             <![CDATA[
-				are_areaId=#parentAreaId#
+				parent_id=#parentId#
 			]]>
         </isNotNull>
-        <isNotNull prepend="and" property="areacode">
+        <isNotNull prepend="and" property="code">
             <![CDATA[
-				areacode = #areacode#
-			]]>
-        </isNotNull>
-
-        <isNotNull prepend="and" property="areaname">
-            <![CDATA[
-				areaname=#areaname#
+				code = #code#
 			]]>
         </isNotNull>
 
-        <isNotNull prepend="and" property="orderno">
+        <isNotNull prepend="and" property="name">
             <![CDATA[
-				orderno=#orderno#
+				name=#name#
+			]]>
+        </isNotNull>
+
+        <isNotNull prepend="and" property="order_no">
+            <![CDATA[
+				order_no=#orderNo#
 			]]>
         </isNotNull>
 
@@ -52,72 +53,42 @@
 
     <insert id="com.xiaoxiang.model.Area.insert" parameterClass="area">
         <![CDATA[
-
-
-
         insert into
-        area (areaId, are_areaId, areacode, areaname, orderno,remark)
-        values (#areaId#, #parentAreaId#, #areacode#, #areaname#,
-                #orderno#, #remark#)
-
-
-
+        area (area_id, parent_id, code, name,
+                order_no,remark)
+        values (#areaId#, #parentId#, #code#, #name#,
+                #orderNo#, #remark#)
         ]]>
     </insert>
 
     <update id="com.xiaoxiang.model.Area.update" parameterClass="area">
     <![CDATA[
-
-
-
         update area SET
-            areaId = #areaId#,
-            are_areaId = #parentAreaId#,
-            areacode = #areacode#,
-            areaname = #areaname#,
-            orderno = #orderno#,
+            area_id = #areaId#,
+            parent_id = #parentId#,
+            code = #code#,
+            name = #name#,
+            order_no = #orderNo#,
             remark = #remark#
-        where areaId = #areaId#
-
-
-
-
+        where area_id = #areaId#
         ]]>
     </update>
 
     <select id="com.xiaoxiang.model.Area.existsById" resultMap="areaResult">
     <![CDATA[
-
-
-
-        select * from area where areaId=#areaId#
-
-
-
+        select * from area where area_id=#areaId#
         ]]>
     </select>
 
     <select id="com.xiaoxiang.model.Area.selectByName" resultMap="areaResult">
     <![CDATA[
-
-
-
-        select * from area where areaname=#areaname#
-
-
-
+        select * from area where name=#name#
         ]]>
     </select>
 
     <select id="com.xiaoxiang.model.Area.select" resultMap="areaResult">
     <![CDATA[
-
-
-
-        select * from area ORDER BY UPPER(areaname)
-
-
-
+        select * from area ORDER BY UPPER(name)
         ]]>
     </select>
 
@@ -129,17 +100,17 @@
         <isNotNull property="sort">
             <isEqual property="sort" compareValue="desc">
                 <![CDATA[
-				order by areaname desc
+				order by order_no desc
 			    ]]>
             </isEqual>
             <isEqual property="sort" compareValue="asc">
                 <![CDATA[
-				order by areaname asc
+				order by order_no asc
 			    ]]>
             </isEqual>
         </isNotNull>
         <isNull property="sort">
-            order by areaname desc
+            order by order_no desc
         </isNull>
         <include refid="global.mysqlEnd"/>
     </select>
@@ -153,35 +124,19 @@
 
     <delete id="com.xiaoxiang.model.Area.deleteById" parameterClass="java.lang.String">
     <![CDATA[
-
-
-
-        delete from area where areaId = #areaId#
-
-
-
+        delete from area where area_id = #areaId#
         ]]>
     </delete>
 
     <delete id="com.xiaoxiang.model.Area.deleteByPrimaryKey" parameterClass="java.lang.String">
     <![CDATA[
-
-
-        delete from area where areaId = #areaId#
-
-
+        delete from area where area_id = #areaId#
         ]]>
     </delete>
 
     <delete id="com.xiaoxiang.model.Area.delete" parameterClass="area">
     <![CDATA[
-
-
-
-        delete from area where areaId4 = ''
-
-
-
+        delete from area where area_id4 = ''
         ]]>
     </delete>
 
