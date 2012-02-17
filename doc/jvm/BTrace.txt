@@ -1,0 +1,16 @@
+BTrace使用简介
+
+btrace -cp btrace/build [pid] example.java
+
+./btrace -cp btrace/build 16627 TraceMethodArgsAndReturn.java
+./btrace -cp btrace/build 16627 TraceMethodCallee.java
+./btrace -cp btrace/build 16627 TraceMethodExecuteTime.java
+./btrace -cp btrace/build 16627 TraceMethodLine.java
+
+example.java文件放在build
+
+
+参考
+http://kenai.com/projects/btrace/downloads/directory/releases/release-1.2.1
+http://blog.bluedavy.com/?p=185
+
