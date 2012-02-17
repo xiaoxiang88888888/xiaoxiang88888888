@@ -13,4 +13,6 @@ example.java文件放在build
 参考
 http://kenai.com/projects/btrace/downloads/directory/releases/release-1.2.1
 http://blog.bluedavy.com/?p=185
+http://kenai.com/downloads/btrace/BTrace_BOF-5552_J12008.pdf
+http://kenai.com/projects/btrace/pages/UserGuide
 
