@@ -43,8 +43,7 @@ public class SortUseLib {
      * @return
      */
     public static <T extends Comparable> T[] sortUseLib(T[] array, final String order) {
-        List<T> list = Arrays.asList(array);
-        Collections.sort(list, new Comparator<T>() {
+        Arrays.sort(array, new Comparator<T>() {
             @Override
             public int compare(T o1, T o2) {
                 if (order == null || !"desc".equalsIgnoreCase(order)) {
@@ -54,6 +53,6 @@ public class SortUseLib {
                 }
             }
         });
-        return list.toArray(array);
+        return array;
     }
 }

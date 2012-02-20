@@ -1,5 +1,7 @@
 package com.xiaoxiang.tool.ds.sort;
 
+import junit.framework.TestCase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @author xiang.xiaox
  */
 
-public class SortUseLibTest {
+public class SortUseLibTest extends TestCase {
     public int itemNum = 20;
 
     /**
