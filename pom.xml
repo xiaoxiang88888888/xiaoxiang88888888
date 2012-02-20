@@ -100,7 +100,7 @@
 
     <repositories>
         <repository>
-            <id>javaNet-maven</id>
+            <id>central</id>
             <name>javaNet</name>
             <url>http://download.java.net/maven/2/</url>
         </repository>
