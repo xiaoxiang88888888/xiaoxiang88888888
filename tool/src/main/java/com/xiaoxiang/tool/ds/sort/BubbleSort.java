@@ -5,17 +5,40 @@ import java.util.List;
 
 /**
  * 冒泡排序
+ * 真正意义的冒泡排序，效率也比较高
+ * 以数组长度10个为例，第一次需要比较9次，第二次8次，以此类推，
+ * 每次比较之后，数组最右边的数据时有序的了。
+ * 所以时间复杂度为9+8+7。。。+1=N*(N-1)/2
+ * 算法作约，复杂度为N*N/2，几位O(N*N);
+ * 注意外层循环的out>1,可以减少一次多余的循环。
  *
  * @author xiang.xiaox
  */
 
 public class BubbleSort {
 
+    /**
+     * 数组交换
+     *
+     * @param array
+     * @param one
+     * @param two
+     * @param <T>
+     */
     public static <T extends Comparable> void swap(T[] array, int one, int two) {
         T temp = array[one];
         array[one] = array[two];
         array[two] = temp;
     }
+
+    /**
+     * 列表元素交换
+     *
+     * @param list
+     * @param one
+     * @param two
+     * @param <T>
+     */
 
     public static <T extends Comparable> void swap(List<T> list, int one, int two) {
         T temp = list.get(one);
@@ -24,14 +47,8 @@ public class BubbleSort {
         list.set(two, temp);
     }
 
-
     /**
-     * 真正意义的冒泡排序，效率也比较高
-     * 以数组长度10个为例，第一次需要比较9次，第二次8次，以此类推，
-     * 每次比较之后，数组最右边的数据时有序的了。
-     * 所以时间复杂度为9+8+7。。。+1=N*(N-1)/2
-     * 算法作约，复杂度为N*N/2，几位O(N*N);
-     * 注意外层循环的out>1,可以减少一次多余的循环。
+     * * 对array数组元素排序
      *
      * @param array
      * @param order desc从大到小 asc从小到大
@@ -59,6 +76,14 @@ public class BubbleSort {
         return array;
     }
 
+    /**
+     * 对list列表元素排序
+     *
+     * @param list
+     * @param order
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable> List<T> sort(List<T> list, String order) {
         if (order == null || !"desc".equalsIgnoreCase(order)) { //升序
             for (int out = list.size() - 1; out > 1; out--) {
@@ -79,6 +104,8 @@ public class BubbleSort {
         }
         return list;
     }
+
+
 
 
 } 
