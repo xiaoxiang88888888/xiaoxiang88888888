@@ -1,4 +1,4 @@
-package com.xiaoxiang.ds.sort;
+package com.xiaoxiang.tool.ds.sort;
 
 
 /**
@@ -41,18 +41,7 @@ public class BubbleSort {
             }  
         }  
         return array;  
-    }  
+    }
       
-     public static void main(String args[]){  
-             int[] array = new int[20];  
-             for (int i = 0; i < array.length; i++) {  
-                array[i] = (int)(Math.random()*45);  
-            }  
-            BubbleSort sort = new BubbleSort();  
-            sort.bubbleSort(array);  
-            for (int i = 0; i < array.length; i++) {  
-                System.out.println(array[i]);  
-            }  
-              
-        }  
+
 } 
