@@ -100,8 +100,8 @@
 
     <repositories>
         <repository>
-            <id>cental-maven</id>
-            <name>cental</name>
+            <id>javaNet-maven</id>
+            <name>javaNet</name>
             <url>http://download.java.net/maven/2/</url>
         </repository>
         <repository>
