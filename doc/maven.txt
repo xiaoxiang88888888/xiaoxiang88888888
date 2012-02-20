@@ -382,3 +382,13 @@ Internal error in the plugin manager getting plugin 'com.xiaoxiang.maven:config-
 这个插件的xml文件没有加
 <?xml version="1.0" encoding="UTF-8"?>
 
+如果默认仓库不能访问,可以在settings.xml文件中加入:
+<mirrors>
+    <mirror>
+      <id>maven-net-cn</id>
+      <name>Maven China Mirror</name>
+      <url>http://download.java.net/maven/2/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+

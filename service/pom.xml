@@ -87,7 +87,7 @@
             <artifactId>commons-dbcp</artifactId>
         </dependency>
         <!--jta 跨数据库事务-->
-        <!--<dependency>
+        <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions-jta</artifactId>
         </dependency>
@@ -98,7 +98,7 @@
         <dependency>
             <groupId>com.atomikos</groupId>
             <artifactId>transactions-jdbc-deprecated</artifactId>
-        </dependency>-->
+        </dependency>
         <!--工程依赖-->
         <dependency>
             <groupId>com.xiaoxiang</groupId>

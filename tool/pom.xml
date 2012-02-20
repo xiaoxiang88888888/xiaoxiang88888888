@@ -14,6 +14,42 @@
     <version>1.0-SNAPSHOT</version>
     <name>tool</name>
     <url>http://maven.apache.org</url>
+
+    <repositories>
+        <repository>
+            <id>javaNet</id>
+            <name>javaNet</name>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+        <repository>
+            <id>jtester-maven</id>
+            <name>JTester</name>
+            <url>http://java-tester.googlecode.com/svn/maven2/</url>
+        </repository>
+        <repository>
+            <id>xiaoxiang-maven</id>
+            <name>xiaoxiang</name>
+            <url>http://xiaoxiang88888888maven.googlecode.com/svn/trunk/repository/</url>
+        </repository>
+        <!--<repository>
+            <id>ynzc</id>
+            <name>ynzc</name>
+            <url>http://repo.ynzc.cn/nexus/content/groups/public</url>
+        </repository>-->
+        <repository>
+            <id>alibaba-opensource-releases</id>
+            <url>
+                http://code.alibabatech.com/mvn/releases
+            </url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!--httpclient-->
         <dependency>
