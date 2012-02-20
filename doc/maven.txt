@@ -111,6 +111,7 @@ Z:\xiaoxiang\m2\repository\org\apache\maven\skins\maven-default-skin
 
 ##执行某个类的方法 注意，多模块下，要先转到该模块，不能在父模块执行，否则会出错
 mvn exec:java -Dexec.mainClass=com.common.util.StringUtil
+mvn exec:java -Dexec.mainClass=com.xiaoxiang.ds.sort.BubbleSort
 
 mvn exec:java -Dexec.mainClass=com.Main -Dexec.args="1 128"
 
