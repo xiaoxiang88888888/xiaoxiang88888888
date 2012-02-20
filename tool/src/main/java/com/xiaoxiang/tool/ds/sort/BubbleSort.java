@@ -1,6 +1,8 @@
 package com.xiaoxiang.tool.ds.sort;
 
 
+import java.util.List;
+
 /**
  * 冒泡排序
  *
@@ -13,6 +15,13 @@ public class BubbleSort {
         T temp = array[one];
         array[one] = array[two];
         array[two] = temp;
+    }
+
+    public static <T extends Comparable> void swap(List<T> list, int one, int two) {
+        T temp = list.get(one);
+        //不能用add 要用set
+        list.set(one, list.get(two));
+        list.set(two, temp);
     }
 
 
@@ -39,15 +48,36 @@ public class BubbleSort {
                 }
             }
         } else {//降序
-            for(int out=0;out<array.length-1;out++){
-              for(int in=array.length-1;in>out;in--){
-                  if (array[in].compareTo(array[in - 1]) > 0) {
-                      swap(array, in, in - 1);
-                  }
-              }
+            for (int out = 0; out < array.length - 1; out++) {
+                for (int in = array.length - 1; in > out; in--) {
+                    if (array[in].compareTo(array[in - 1]) > 0) {
+                        swap(array, in, in - 1);
+                    }
+                }
             }
         }
         return array;
+    }
+
+    public static <T extends Comparable> List<T> sort(List<T> list, String order) {
+        if (order == null || !"desc".equalsIgnoreCase(order)) { //升序
+            for (int out = list.size() - 1; out > 1; out--) {
+                for (int in = 0; in < out; in++) {
+                    if (list.get(in).compareTo(list.get(in + 1)) > 0) {
+                        swap(list, in, in + 1);
+                    }
+                }
+            }
+        } else {//降序
+            for (int out = 0; out < list.size() - 1; out++) {
+                for (int in = list.size() - 1; in > out; in--) {
+                    if (list.get(in).compareTo(list.get(in - 1)) > 0) {
+                        swap(list, in, in - 1);
+                    }
+                }
+            }
+        }
+        return list;
     }
 
 
