@@ -21,31 +21,26 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>${jackson-version}</version>
         </dependency>
         <!--汉语转拼音,用于排序-->
         <dependency>
             <groupId>net.sourceforge</groupId>
             <artifactId>pinyin4j</artifactId>
-            <version>${pinyin4j-version}</version>
         </dependency>
         <!--cache-->
         <!-- java readis客户端 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>${redis-version}</version>
         </dependency>
         <!--验证码-->
         <dependency>
             <groupId>kaptcha</groupId>
             <artifactId>kaptcha</artifactId>
-            <version>${kaptcha-version}</version>
         </dependency>
         <!--apache commons-->
         <dependency>
@@ -56,18 +51,15 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-			<version>2.1</version>
         </dependency>
         <!--查看底层sql-->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
-            <version>${p6spy-version}</version>
         </dependency>
     </dependencies>
 
