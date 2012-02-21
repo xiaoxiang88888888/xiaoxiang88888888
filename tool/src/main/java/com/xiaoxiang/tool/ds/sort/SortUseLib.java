@@ -55,4 +55,63 @@ public class SortUseLib {
         });
         return array;
     }
+
+    public static void swap(int[] array, int one, int two) {
+        int temp = array[one];
+        array[one] = array[two];
+        array[two] = temp;
+    }
+
+    public static int[] sort(int[] array, String order) {
+        if (array == null) return array;
+        int size = array.length;
+        if (order == null || !"desc".equalsIgnoreCase(order)) {//从大到小
+            //先从最右边排起
+            for (int out = size - 1; out > 1; out--) {
+                for (int in = 0; in < out; in++) {
+                    if (array[in] < array[in + 1]) {
+                        swap(array, in, in + 1);
+                    }
+                }
+            }
+        } else {//从小到大
+            //先从最右边排起
+            for (int out = size - 1; out > 1; out--) {
+                for (int in = 0; in < out; in++) {
+                    if (array[in] > array[in + 1]) {
+                        swap(array, in, in + 1);
+                    }
+                }
+
+            }
+        }
+        return array;
+    }
+
+    public static int[] sortTwo(int[] array, String order) {
+        if (array == null) return array;
+        int size = array.length;
+        if (order == null || !"desc".equalsIgnoreCase(order)) {//从小到大
+            //先从最左边排起
+            for (int out = 0; out < size - 1; out++) {
+                for (int in = size - 1; in > out; in--) {
+                    if (array[in] < array[in - 1]) {
+                        swap(array, in, in - 1);
+                    }
+                }
+            }
+        } else {//从大到小
+            //先从最左边排起
+            for (int out = 0; out < size - 1; out++) {
+                for (int in = size - 1; in > out; in--) {
+                    if (array[in] > array[in - 1]) {
+                        swap(array, in, in - 1);
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
+
 }
