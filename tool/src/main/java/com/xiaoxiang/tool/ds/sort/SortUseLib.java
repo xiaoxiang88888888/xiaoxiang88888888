@@ -69,7 +69,7 @@ public class SortUseLib {
             //先从最右边排起
             for (int out = size - 1; out > 1; out--) {
                 for (int in = 0; in < out; in++) {
-                    if (array[in] < array[in + 1]) {
+                    if (array[in] > array[in + 1]) {
                         swap(array, in, in + 1);
                     }
                 }
@@ -78,7 +78,7 @@ public class SortUseLib {
             //先从最右边排起
             for (int out = size - 1; out > 1; out--) {
                 for (int in = 0; in < out; in++) {
-                    if (array[in] > array[in + 1]) {
+                    if (array[in] < array[in + 1]) {
                         swap(array, in, in + 1);
                     }
                 }

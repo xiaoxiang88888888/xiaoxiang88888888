@@ -17,35 +17,7 @@ import java.util.List;
 
 public class BubbleSort {
 
-    /**
-     * 数组交换
-     *
-     * @param array
-     * @param one
-     * @param two
-     * @param <T>
-     */
-    public static <T extends Comparable> void swap(T[] array, int one, int two) {
-        T temp = array[one];
-        array[one] = array[two];
-        array[two] = temp;
-    }
 
-    /**
-     * 列表元素交换
-     *
-     * @param list
-     * @param one
-     * @param two
-     * @param <T>
-     */
-
-    public static <T extends Comparable> void swap(List<T> list, int one, int two) {
-        T temp = list.get(one);
-        //不能用add 要用set
-        list.set(one, list.get(two));
-        list.set(two, temp);
-    }
 
     /**
      * * 对array数组元素排序
@@ -60,7 +32,7 @@ public class BubbleSort {
             for (int out = array.length - 1; out > 1; out--) {
                 for (int in = 0; in < out; in++) {
                     if (array[in].compareTo(array[in + 1]) > 0) {
-                        swap(array, in, in + 1);
+                        SortUtil.swap(array, in, in + 1);
                     }
                 }
             }
@@ -68,7 +40,7 @@ public class BubbleSort {
             for (int out = 0; out < array.length - 1; out++) {
                 for (int in = array.length - 1; in > out; in--) {
                     if (array[in].compareTo(array[in - 1]) > 0) {
-                        swap(array, in, in - 1);
+                        SortUtil.swap(array, in, in - 1);
                     }
                 }
             }
@@ -89,7 +61,7 @@ public class BubbleSort {
             for (int out = list.size() - 1; out > 1; out--) {
                 for (int in = 0; in < out; in++) {
                     if (list.get(in).compareTo(list.get(in + 1)) > 0) {
-                        swap(list, in, in + 1);
+                        SortUtil.swap(list, in, in + 1);
                     }
                 }
             }
@@ -97,7 +69,7 @@ public class BubbleSort {
             for (int out = 0; out < list.size() - 1; out++) {
                 for (int in = list.size() - 1; in > out; in--) {
                     if (list.get(in).compareTo(list.get(in - 1)) > 0) {
-                        swap(list, in, in - 1);
+                        SortUtil.swap(list, in, in - 1);
                     }
                 }
             }

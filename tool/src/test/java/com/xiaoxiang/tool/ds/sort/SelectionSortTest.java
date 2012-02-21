@@ -11,7 +11,8 @@ import java.util.List;
  * @author xiang.xiaox
  */
 
-public class BubbleSortTest extends TestCase {
+public class SelectionSortTest extends TestCase {
+
     public int itemNum = 20;
 
     /**
@@ -28,7 +29,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("Array sort D:");
-        BubbleSort.sort(array, "desc");
+        SelectionSort.sort(array, "desc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
         }
@@ -43,13 +44,14 @@ public class BubbleSortTest extends TestCase {
         for (int i = 0; i < array.length; i++) {
             array[i] = (int) (Math.random() * 45);
         }
+        //Integer[] array = {26,39,21,42,37,43,32,40,37,5,1,42,13,38,3,40,31,5,0,20};
         System.out.print("Array before:");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
         }
         System.out.println();
         System.out.print("Array sort A:");
-        BubbleSort.sort(array, "asc");
+        SelectionSort.sort(array, "asc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
         }
@@ -70,7 +72,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("Array sort D:");
-        BubbleSort.sort(array, "desc");
+        SelectionSort.sort(array, "desc");
         for (Double anArray : array) {
             System.out.print(anArray + ",");
         }
@@ -91,7 +93,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("Array sort A:");
-        BubbleSort.sort(array, "asc");
+        SelectionSort.sort(array, "asc");
         for (Double anArray : array) {
             System.out.print(anArray + ",");
         }
@@ -112,7 +114,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("List sort D:");
-        BubbleSort.sort(list, "desc");
+        SelectionSort.sort(list, "desc");
         for (Integer anArray : list) {
             System.out.print(anArray + ",");
         }
@@ -133,7 +135,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("List sort A:");
-        BubbleSort.sort(list, "asc");
+        SelectionSort.sort(list, "asc");
         for (Integer anArray : list) {
             System.out.print(anArray + ",");
         }
@@ -154,7 +156,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("List sort D:");
-        BubbleSort.sort(list, "desc");
+        SelectionSort.sort(list, "desc");
         for (Double anArray : list) {
             System.out.print(anArray + ",");
         }
@@ -175,7 +177,7 @@ public class BubbleSortTest extends TestCase {
         }
         System.out.println();
         System.out.print("List sort A:");
-        BubbleSort.sort(list, "asc");
+        SelectionSort.sort(list, "asc");
         for (Double anArray : list) {
             System.out.print(anArray + ",");
         }

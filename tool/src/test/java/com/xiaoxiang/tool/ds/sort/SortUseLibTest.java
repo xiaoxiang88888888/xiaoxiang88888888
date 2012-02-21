@@ -27,7 +27,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("List sort  :");
+        System.out.print("List sort A:");
         SortUseLib.sortUseLib(list, "asc");
         for (Integer anArray : list) {
             System.out.print(anArray + ",");
@@ -48,7 +48,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("List sort  :");
+        System.out.print("List sort D:");
         SortUseLib.sortUseLib(list, "desc");
         for (Double anArray : list) {
             System.out.print(anArray + ",");
@@ -69,7 +69,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort D:");
         SortUseLib.sortUseLib(array, "desc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
@@ -90,7 +90,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort A:");
         SortUseLib.sortUseLib(array, "asc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
@@ -111,7 +111,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort A:");
         SortUseLib.sort(array, "asc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
@@ -132,7 +132,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort D:");
         SortUseLib.sort(array, "desc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
@@ -153,7 +153,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort A:");
         SortUseLib.sortTwo(array, "asc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
@@ -174,7 +174,7 @@ public class SortUseLibTest extends TestCase {
             System.out.print(anArray + ",");
         }
         System.out.println();
-        System.out.print("Array sort  :");
+        System.out.print("Array sort D:");
         SortUseLib.sortTwo(array, "desc");
         for (Integer anArray : array) {
             System.out.print(anArray + ",");
