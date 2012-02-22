@@ -1,6 +1,7 @@
 package com.xiaoxiang.tool.ds.sort;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,6 +43,7 @@ public class QuickSort {
     public static <T extends Comparable> T[] sort(T[] array, String order, int low, int high) {
         if (low < high) {
             int mid = partition(array, order, low, high);
+            System.out.println("mid="+mid+":value="+array[mid]);
             //对枢纽关键字左边的分区进行分区
             sort(array, order, low, mid - 1);
             //对枢纽关键字右边的分区进行分区
@@ -118,7 +120,7 @@ public class QuickSort {
             }
         }
         //打印每次分区后的结果
-        //System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array));
         //将这个分区结束时的坐标i返回，用于下次执行时当做前分区的尾坐标，当做后分区的头坐标
         return i;
     }
@@ -223,7 +225,7 @@ public class QuickSort {
             }
         }
         //打印每次分区后的结果
-        //System.out.println(Arrays.toString(list.toArray()));
+        System.out.println(Arrays.toString(list.toArray()));
         //将这个分区结束时的坐标i返回，用于下次执行时当做前分区的尾坐标，当做后分区的头坐标
         return i;
     }
